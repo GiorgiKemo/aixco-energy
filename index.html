@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="AIXCO Energy focuses on scalable solar, wind, hydrogen, battery storage and intelligent energy infrastructure projects designed for long-term value creation." />
+    <meta name="keywords" content="AIXCO Energy, AIXCO Global, renewable energy, solar, wind, hydrogen, battery storage, infrastructure, energy investment" />
+    <meta name="author" content="AIXCO Energy" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/aixco-energy/images/AIXW.png" type="image/png" />
+    <title>AIXCO Energy | Renewable Energy Investment Platform</title>
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var route = params.get("p");
+        if (!route) return;
+        params.delete("p");
+        var base = window.location.pathname.replace(/\/$/, "");
+        var nextQuery = params.toString();
+        window.history.replaceState(
+          null,
+          "",
+          base + route + (nextQuery ? "?" + nextQuery : "") + window.location.hash
+        );
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

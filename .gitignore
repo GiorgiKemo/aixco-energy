@@ -1,0 +1,11 @@
+node_modules/
+build/
+dist/
+coverage/
+.playwright-mcp/
+.deploy-gh-pages/
+aixco-energy-*.png
+.DS_Store
+*.log
+.env*
+!.env.example
