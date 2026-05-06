@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
-    "test:news": "node scripts/validate-news-content.mjs"
+    "test:news": "node scripts/validate-news-content.mjs",
+    "test:brand": "node scripts/validate-brand-domain.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",
