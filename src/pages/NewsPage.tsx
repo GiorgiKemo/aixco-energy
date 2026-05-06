@@ -5,10 +5,10 @@ import { aixcoAssets, ctaCopy, futureGrowth, investorReasons, pressArticles, pvA
 const NewsPage: React.FC = () => {
   return (
     <main className="pt-24 lg:pt-32 min-h-screen bg-industrial-white text-industrial-black">
-      <section className="py-28 px-6 max-w-7xl mx-auto">
+      <section className="px-6 pb-24 pt-16 md:py-28 max-w-7xl mx-auto">
         <div className="mb-20">
           <div className="text-brand-red text-[10px] font-black uppercase tracking-widest mb-6">Press archive</div>
-          <h1 className="text-[clamp(3rem,9vw,8rem)] mb-10 italic">
+          <h1 className="mb-10 break-words text-[clamp(3rem,9vw,8rem)] italic">
             News & <span className="text-brand-red">press</span>
           </h1>
           <p className="max-w-4xl text-sm font-black uppercase text-zinc-500 leading-relaxed">
@@ -20,9 +20,9 @@ const NewsPage: React.FC = () => {
           {pressArticles.map((article, index) => (
             <article
               key={article.slug}
-              className={`bg-zinc-950 transition-colors hover:bg-zinc-900 ${index === 0 ? "lg:col-span-2" : ""}`}
+              className={`min-w-0 bg-zinc-950 transition-colors hover:bg-zinc-900 ${index === 0 ? "lg:col-span-2" : ""}`}
             >
-              <a href={article.href} target="_blank" rel="noreferrer" className="group flex h-full flex-col">
+              <a href={article.href} target="_blank" rel="noreferrer" className="group flex h-full min-w-0 flex-col">
                 <div className="border-b border-zinc-800 bg-industrial-white p-4">
                   <img
                     src={article.image}
@@ -30,13 +30,13 @@ const NewsPage: React.FC = () => {
                     className={`w-full object-contain ${index === 0 ? "h-80" : "h-64"}`}
                   />
                 </div>
-                <div className="flex flex-1 flex-col p-7 md:p-8">
+                <div className="flex min-w-0 flex-1 flex-col p-6 sm:p-7 md:p-8">
                   <div className="mb-6 flex flex-wrap items-center gap-3 text-[10px] font-black uppercase tracking-widest">
                     <span className="text-brand-red">{article.category}</span>
                     <span className="text-zinc-600">/</span>
                     <span className="text-zinc-500">{article.date}</span>
                   </div>
-                  <h2 className={`mb-5 leading-none ${index === 0 ? "text-[clamp(2.4rem,5vw,4.6rem)]" : "text-[clamp(1.9rem,3vw,3rem)]"}`}>
+                  <h2 className={`mb-5 break-words leading-none ${index === 0 ? "text-[clamp(2.4rem,5vw,4.6rem)]" : "text-[clamp(1.9rem,3vw,3rem)]"}`}>
                     {article.title}
                   </h2>
                   <div className="mb-6 text-[10px] font-black uppercase tracking-widest text-zinc-500">
@@ -68,7 +68,7 @@ const NewsPage: React.FC = () => {
             <div className="flex items-center gap-3 text-brand-red text-[10px] font-black uppercase tracking-widest mb-6">
               Featured article <ArrowRight className="h-4 w-4" /> {pvArticle.category}
             </div>
-            <h2 className="text-[clamp(3rem,8vw,7.8rem)] mb-8 italic break-words">
+            <h2 className="mb-8 break-words text-[clamp(3rem,8vw,7.8rem)] italic">
               {pvArticle.title}
             </h2>
             <div className="flex flex-wrap gap-4 text-[10px] font-black uppercase tracking-widest text-zinc-500">
@@ -96,7 +96,7 @@ const NewsPage: React.FC = () => {
               </div>
             </aside>
 
-            <div className="lg:col-span-8">
+            <div className="min-w-0 lg:col-span-8">
               <div className="mb-10 border-l-4 border-brand-red pl-6">
                 <p className="text-2xl font-black leading-tight text-industrial-black">
                   {pvArticle.summary}
@@ -105,9 +105,9 @@ const NewsPage: React.FC = () => {
 
               <div className="grid grid-cols-1 gap-px bg-zinc-800 border border-zinc-800">
                 {pvArticle.sections.map((section, index) => (
-                  <section key={section.title} className="bg-zinc-950 p-7 md:p-10">
+                  <section key={section.title} className="min-w-0 bg-zinc-950 p-6 sm:p-7 md:p-10">
                     <div className="mb-6 text-[10px] font-black uppercase tracking-widest text-brand-red">0{index + 1}</div>
-                    <h2 className="mb-6 text-[clamp(1.9rem,4vw,3.4rem)]">{section.title}</h2>
+                    <h2 className="mb-6 break-words text-[clamp(1.9rem,4vw,3.4rem)]">{section.title}</h2>
                     <div className="space-y-5 text-base leading-8 text-zinc-500">
                       {section.paragraphs.map((paragraph) => (
                         <p key={paragraph}>{paragraph}</p>
@@ -122,7 +122,7 @@ const NewsPage: React.FC = () => {
 
         <div className="mb-20 text-center border-t border-zinc-800 pt-28">
           <div className="text-brand-red text-[10px] font-black uppercase tracking-widest mb-6">{futureGrowth.label}</div>
-          <h2 className="text-[clamp(3.2rem,9vw,8rem)] mb-8 italic">
+          <h2 className="mb-8 break-words text-[clamp(3.2rem,9vw,8rem)] italic">
             Where future growth <br /> <span className="text-brand-red">may come from</span>
           </h2>
           <p className="max-w-3xl mx-auto uppercase text-xs font-black tracking-widest text-zinc-500 leading-relaxed">
@@ -131,8 +131,8 @@ const NewsPage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-800 border border-zinc-800 mb-20">
-          <div className="bg-zinc-950 p-8 md:p-12">
-            <h2 className="text-[clamp(2.2rem,4vw,4rem)] mb-8">{futureGrowth.title}</h2>
+          <div className="min-w-0 bg-zinc-950 p-6 sm:p-8 md:p-12">
+            <h2 className="mb-8 break-words text-[clamp(2.2rem,4vw,4rem)]">{futureGrowth.title}</h2>
             <div className="flex flex-wrap gap-3 mb-10">
               {futureGrowth.tags.map((tag) => (
                 <span key={tag} className="border border-brand-red/40 bg-brand-red/10 px-3 py-2 text-[10px] font-black uppercase text-brand-red">
@@ -143,9 +143,9 @@ const NewsPage: React.FC = () => {
             <p className="text-zinc-500 uppercase text-xs font-black leading-relaxed">{futureGrowth.close}</p>
           </div>
 
-          <div className="bg-industrial-white text-industrial-black p-8 md:p-12">
+          <div className="min-w-0 bg-industrial-white text-industrial-black p-6 sm:p-8 md:p-12">
             <div className="text-brand-red text-[10px] font-black uppercase tracking-widest mb-5">{investorReasons.label}</div>
-            <h2 className="text-[clamp(2rem,4vw,3.6rem)] mb-8">{investorReasons.title}</h2>
+            <h2 className="mb-8 break-words text-[clamp(2rem,4vw,3.6rem)]">{investorReasons.title}</h2>
             <ul className="space-y-4">
               {investorReasons.bullets.map((bullet) => (
                 <li key={bullet} className="flex gap-3 text-xs font-black uppercase leading-relaxed text-zinc-500">
@@ -157,9 +157,9 @@ const NewsPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-brand-red text-industrial-white p-10 md:p-16">
+        <div className="bg-brand-red text-industrial-white p-8 sm:p-10 md:p-16">
           <div className="text-[10px] font-black uppercase tracking-widest mb-5">{ctaCopy.label}</div>
-          <h2 className="text-[clamp(2.4rem,5vw,5rem)] mb-8">{ctaCopy.title}</h2>
+          <h2 className="mb-8 break-words text-[clamp(2.4rem,5vw,5rem)]">{ctaCopy.title}</h2>
           <p className="max-w-3xl text-xs font-black uppercase tracking-widest leading-relaxed">{ctaCopy.body}</p>
         </div>
       </section>

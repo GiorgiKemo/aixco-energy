@@ -6,7 +6,7 @@ import { platformMetrics, strategyCopy, whyCopy } from '../content/aixcoEnergy';
 const PlatformPage: React.FC = () => {
   return (
     <main className="pt-24 lg:pt-32 min-h-screen bg-industrial-white text-industrial-black">
-      <section className="py-28 px-6 max-w-7xl mx-auto">
+      <section className="px-6 pb-24 pt-16 md:py-28 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -14,7 +14,7 @@ const PlatformPage: React.FC = () => {
           className="mb-24"
         >
           <div className="text-brand-red text-[10px] font-black uppercase tracking-widest mb-6">{whyCopy.label}</div>
-          <h1 className="text-[clamp(3rem,9vw,8rem)] mb-12">
+          <h1 className="mb-12 break-words text-[clamp(3rem,9vw,8rem)]">
             AIXCO <br /> <span className="text-brand-red italic">Energy</span>
           </h1>
           <p className="max-w-4xl text-xl font-black uppercase text-zinc-500 leading-tight">
@@ -32,11 +32,11 @@ const PlatformPage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-5">
+          <div className="min-w-0 lg:col-span-5">
             <div className="text-brand-red text-[10px] font-black uppercase tracking-widest mb-6">{strategyCopy.label}</div>
-            <h2 className="text-[clamp(2.5rem,5vw,5rem)] mb-8">{strategyCopy.title}</h2>
+            <h2 className="mb-8 break-words text-[clamp(2.5rem,5vw,5rem)]">{strategyCopy.title}</h2>
           </div>
-          <div className="lg:col-span-7">
+          <div className="min-w-0 lg:col-span-7">
             <p className="text-zinc-500 text-sm font-black uppercase leading-relaxed mb-10">{strategyCopy.body}</p>
             <ul className="space-y-5">
               {strategyCopy.bullets.map((bullet) => (
