@@ -40,7 +40,7 @@ export const Hero: React.FC = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.7 }}
-                className="text-[clamp(3.2rem,8vw,6rem)] font-black leading-[0.92] uppercase italic tracking-normal mb-5"
+                className="hero-reference-font mb-5 text-[clamp(3.2rem,8vw,6rem)] font-semibold leading-[0.82] tracking-normal drop-shadow-[0_18px_42px_rgba(0,0,0,0.38)]"
               >
                 {heroCopy.title}
               </motion.h1>
@@ -48,7 +48,7 @@ export const Hero: React.FC = () => {
                 initial={{ y: 12, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.85 }}
-                className="text-[clamp(1.45rem,3.2vw,2.45rem)] text-brand-red font-black uppercase italic mb-6 sm:whitespace-nowrap"
+                className="hero-reference-font mb-6 text-[clamp(1.2rem,4vw,4rem)] font-light leading-none tracking-normal text-brand-red [text-transform:uppercase] sm:whitespace-nowrap"
               >
                 {heroCopy.subtitle}
               </motion.h2>
@@ -56,7 +56,7 @@ export const Hero: React.FC = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1 }}
-                className="text-zinc-300 text-sm max-w-2xl font-medium leading-relaxed uppercase"
+                className="hero-reference-font max-w-2xl text-[clamp(1rem,1.35vw,1.2rem)] font-normal leading-[1.55] text-zinc-200/90"
               >
                 {heroCopy.body}
               </motion.p>
