@@ -14,7 +14,7 @@ export const Hero: React.FC = () => {
           <div className="group relative min-h-[720px] flex-1 overflow-hidden bg-zinc-900 lg:min-h-0">
             <motion.video
                initial={{ scale: 1.1, opacity: 0 }}
-               animate={{ scale: 1, opacity: 0.54 }}
+               animate={{ scale: 1, opacity: 0.48 }}
                transition={{ duration: 1.5 }}
                className="absolute inset-0 h-full w-full object-cover"
                src={aixcoAssets.heroVideo}
@@ -24,7 +24,7 @@ export const Hero: React.FC = () => {
                playsInline
                poster={aixcoAssets.solarProject}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-industrial-black/86 via-industrial-black/34 to-industrial-white/28"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-industrial-black/90 via-industrial-black/48 to-industrial-black/24"></div>
             
             <div className="absolute bottom-8 left-6 right-6 text-industrial-white md:left-10 md:right-10 lg:bottom-6 xl:bottom-8">
               <div className="mb-4 flex gap-2 lg:mb-3 xl:mb-4">
