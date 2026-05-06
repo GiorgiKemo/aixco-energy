@@ -1,15 +1,13 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-import { existsSync } from 'node:fs';
 import path from 'path';
 import {defineConfig, loadEnv} from 'vite';
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   const repositoryName = process.env.GITHUB_REPOSITORY?.split('/')[1];
-  const hasCustomDomain = Boolean(env.VITE_CUSTOM_DOMAIN) || existsSync(path.resolve(__dirname, 'public/CNAME'));
   return {
-    base: env.VITE_BASE || (mode === 'production' && repositoryName && !hasCustomDomain ? `/${repositoryName}/` : '/'),
+    base: env.VITE_BASE || (mode === 'production' && repositoryName ? `/${repositoryName}/` : '/'),
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
