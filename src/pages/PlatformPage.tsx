@@ -5,7 +5,7 @@ import { platformMetrics, strategyCopy, whyCopy } from '../content/aixcoEnergy';
 
 const PlatformPage: React.FC = () => {
   return (
-    <main className="pt-24 lg:pt-32 min-h-screen bg-industrial-black">
+    <main className="pt-24 lg:pt-32 min-h-screen bg-industrial-white text-industrial-black">
       <section className="py-28 px-6 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -26,7 +26,7 @@ const PlatformPage: React.FC = () => {
           {platformMetrics.map((metric) => (
             <div key={metric.label} className="bg-zinc-950 p-8 hover:bg-zinc-900 transition-colors">
               <div className="text-6xl font-black italic text-brand-red mb-6">{metric.value}</div>
-              <p className="text-xs font-black uppercase tracking-widest leading-relaxed text-zinc-400">{metric.label}</p>
+              <p className="text-xs font-black uppercase tracking-widest leading-relaxed text-zinc-500">{metric.label}</p>
             </div>
           ))}
         </div>
@@ -37,10 +37,10 @@ const PlatformPage: React.FC = () => {
             <h2 className="text-[clamp(2.5rem,5vw,5rem)] mb-8">{strategyCopy.title}</h2>
           </div>
           <div className="lg:col-span-7">
-            <p className="text-zinc-400 text-sm font-black uppercase leading-relaxed mb-10">{strategyCopy.body}</p>
+            <p className="text-zinc-500 text-sm font-black uppercase leading-relaxed mb-10">{strategyCopy.body}</p>
             <ul className="space-y-5">
               {strategyCopy.bullets.map((bullet) => (
-                <li key={bullet} className="flex gap-4 text-xs font-black uppercase leading-relaxed text-zinc-300">
+                <li key={bullet} className="flex gap-4 text-xs font-black uppercase leading-relaxed text-zinc-500">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
                   {bullet}
                 </li>

@@ -5,7 +5,7 @@ import { focusAreas, investmentThemes } from '../content/aixcoEnergy';
 
 const ProjectsPage: React.FC = () => {
   return (
-    <main className="pt-24 lg:pt-32 min-h-screen bg-industrial-black">
+    <main className="pt-24 lg:pt-32 min-h-screen bg-industrial-white text-industrial-black">
       <section className="py-28 px-6 max-w-7xl mx-auto">
         <div className="mb-20">
           <div className="text-brand-red text-[10px] font-black uppercase tracking-widest mb-6">Featured focus areas</div>
@@ -37,7 +37,7 @@ const ProjectsPage: React.FC = () => {
                 <p className="text-xs font-black uppercase tracking-widest leading-relaxed text-zinc-500">{project.body}</p>
               </div>
               <div className="md:col-span-2 flex justify-end">
-                <a href="https://bluerock.cc" target="_blank" rel="noreferrer" className="p-4 bg-zinc-800 text-industrial-white group-hover:bg-brand-red group-hover:text-industrial-black transition-colors" aria-label={`Open ${project.title}`}>
+                <a href="https://bluerock.cc" target="_blank" rel="noreferrer" className="p-4 bg-zinc-900 text-industrial-black group-hover:bg-brand-red group-hover:text-industrial-white transition-colors" aria-label={`Open ${project.title}`}>
                   <ArrowRight />
                 </a>
               </div>

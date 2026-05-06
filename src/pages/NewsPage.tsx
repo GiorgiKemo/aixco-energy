@@ -4,7 +4,7 @@ import { aixcoAssets, ctaCopy, futureGrowth, investorReasons, pressArticles, pvA
 
 const NewsPage: React.FC = () => {
   return (
-    <main className="pt-24 lg:pt-32 min-h-screen bg-industrial-black">
+    <main className="pt-24 lg:pt-32 min-h-screen bg-industrial-white text-industrial-black">
       <section className="py-28 px-6 max-w-7xl mx-auto">
         <div className="mb-20">
           <div className="text-brand-red text-[10px] font-black uppercase tracking-widest mb-6">Press archive</div>
@@ -42,7 +42,7 @@ const NewsPage: React.FC = () => {
                   <div className="mb-6 text-[10px] font-black uppercase tracking-widest text-zinc-500">
                     {article.publication}
                   </div>
-                  <p className="mb-8 text-sm leading-7 text-zinc-300">
+                  <p className="mb-8 text-sm leading-7 text-zinc-500">
                     {article.summary}
                   </p>
                   <div className="mt-auto">
@@ -53,7 +53,7 @@ const NewsPage: React.FC = () => {
                         </span>
                       ))}
                     </div>
-                    <span className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-industrial-white transition-colors group-hover:text-brand-red">
+                    <span className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-industrial-black transition-colors group-hover:text-brand-red">
                       Open PDF <ExternalLink className="h-4 w-4" />
                     </span>
                   </div>
@@ -82,7 +82,7 @@ const NewsPage: React.FC = () => {
             <aside className="lg:col-span-4">
               <div className="sticky top-32 space-y-6">
                 <div className="overflow-hidden border border-zinc-800 bg-zinc-950">
-                  <img src={aixcoAssets.solarProject} alt="AT&S Fehring solar installation" className="aspect-[4/3] w-full object-cover grayscale opacity-80" />
+                  <img src={aixcoAssets.solarProject} alt="AT&S Fehring solar installation" className="aspect-[4/3] w-full object-cover opacity-95" />
                   <p className="p-5 text-[10px] font-black uppercase tracking-widest leading-relaxed text-zinc-500">
                     {pvArticle.imageCaption}
                   </p>
@@ -98,7 +98,7 @@ const NewsPage: React.FC = () => {
 
             <div className="lg:col-span-8">
               <div className="mb-10 border-l-4 border-brand-red pl-6">
-                <p className="text-2xl font-black leading-tight text-industrial-white">
+                <p className="text-2xl font-black leading-tight text-industrial-black">
                   {pvArticle.summary}
                 </p>
               </div>
@@ -108,7 +108,7 @@ const NewsPage: React.FC = () => {
                   <section key={section.title} className="bg-zinc-950 p-7 md:p-10">
                     <div className="mb-6 text-[10px] font-black uppercase tracking-widest text-brand-red">0{index + 1}</div>
                     <h2 className="mb-6 text-[clamp(1.9rem,4vw,3.4rem)]">{section.title}</h2>
-                    <div className="space-y-5 text-base leading-8 text-zinc-300">
+                    <div className="space-y-5 text-base leading-8 text-zinc-500">
                       {section.paragraphs.map((paragraph) => (
                         <p key={paragraph}>{paragraph}</p>
                       ))}
@@ -140,7 +140,7 @@ const NewsPage: React.FC = () => {
                 </span>
               ))}
             </div>
-            <p className="text-zinc-400 uppercase text-xs font-black leading-relaxed">{futureGrowth.close}</p>
+            <p className="text-zinc-500 uppercase text-xs font-black leading-relaxed">{futureGrowth.close}</p>
           </div>
 
           <div className="bg-industrial-white text-industrial-black p-8 md:p-12">
@@ -148,7 +148,7 @@ const NewsPage: React.FC = () => {
             <h2 className="text-[clamp(2rem,4vw,3.6rem)] mb-8">{investorReasons.title}</h2>
             <ul className="space-y-4">
               {investorReasons.bullets.map((bullet) => (
-                <li key={bullet} className="flex gap-3 text-xs font-black uppercase leading-relaxed text-zinc-800">
+                <li key={bullet} className="flex gap-3 text-xs font-black uppercase leading-relaxed text-zinc-500">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
                   {bullet}
                 </li>
@@ -157,7 +157,7 @@ const NewsPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-brand-red text-industrial-black p-10 md:p-16">
+        <div className="bg-brand-red text-industrial-white p-10 md:p-16">
           <div className="text-[10px] font-black uppercase tracking-widest mb-5">{ctaCopy.label}</div>
           <h2 className="text-[clamp(2.4rem,5vw,5rem)] mb-8">{ctaCopy.title}</h2>
           <p className="max-w-3xl text-xs font-black uppercase tracking-widest leading-relaxed">{ctaCopy.body}</p>

@@ -14,7 +14,7 @@ export const Hero: React.FC = () => {
           <div className="relative min-h-[780px] flex-1 bg-zinc-900 overflow-hidden group lg:min-h-0">
             <motion.video
                initial={{ scale: 1.1, opacity: 0 }}
-               animate={{ scale: 1, opacity: 0.42 }}
+               animate={{ scale: 1, opacity: 0.54 }}
                transition={{ duration: 1.5 }}
                className="absolute inset-0 h-full w-full object-cover"
                src={aixcoAssets.heroVideo}
@@ -24,9 +24,9 @@ export const Hero: React.FC = () => {
                playsInline
                poster={aixcoAssets.solarProject}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-industrial-black via-industrial-black/20 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-industrial-black/86 via-industrial-black/34 to-industrial-white/28"></div>
             
-            <div className="absolute bottom-10 left-10 right-10">
+            <div className="absolute bottom-10 left-10 right-10 text-industrial-white">
               <motion.div 
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
@@ -81,7 +81,7 @@ export const Hero: React.FC = () => {
             </div>
           </div>
           
-          <div className="border-t border-zinc-800 grid grid-cols-2 md:grid-cols-4 divide-x divide-zinc-800 bg-industrial-black lg:h-48">
+          <div className="border-t border-zinc-800 grid grid-cols-2 md:grid-cols-4 divide-x divide-zinc-800 bg-industrial-white text-industrial-black lg:h-48">
             {platformMetrics.map((stat, i) => (
               <div key={i} className="min-h-40 p-6 flex flex-col justify-between hover:bg-zinc-900 transition-colors cursor-crosshair lg:min-h-0">
                 <span className="text-[10px] text-zinc-500 uppercase font-black tracking-widest leading-none">{stat.label}</span>
@@ -92,8 +92,8 @@ export const Hero: React.FC = () => {
           </div>
         </div>
         
-        <div className="lg:w-1/3 flex flex-col bg-zinc-950">
-          <div className="p-6 border-b border-zinc-800 bg-zinc-900/50">
+        <div className="lg:w-1/3 flex flex-col bg-zinc-950 text-industrial-black">
+          <div className="p-6 border-b border-zinc-800 bg-zinc-900/70">
             <h2 className="text-xs font-black uppercase tracking-widest flex items-center gap-2">
               <div className="w-2 h-2 bg-brand-red animate-pulse"></div>
               Core Technology Verticals
@@ -113,7 +113,7 @@ export const Hero: React.FC = () => {
               );
             })}
           </div>
-          <Link to="/#faqs" className="h-24 flex items-center justify-center px-6 bg-brand-red text-industrial-black font-black uppercase text-xl leading-none hover:bg-industrial-white transition-all cursor-pointer shrink-0 italic tracking-normal text-center">
+          <Link to="/#faqs" className="h-24 flex items-center justify-center px-6 bg-brand-red text-industrial-white font-black uppercase text-xl leading-none hover:bg-industrial-black transition-all cursor-pointer shrink-0 italic tracking-normal text-center">
             Investor FAQs
           </Link>
         </div>

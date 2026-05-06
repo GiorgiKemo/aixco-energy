@@ -5,7 +5,7 @@ import { focusAreas } from '../content/aixcoEnergy';
 
 export const NewsGrid: React.FC = () => {
   return (
-    <section id="projects" className="py-32 px-6 bg-industrial-black text-industrial-white border-t border-zinc-800">
+    <section id="projects" className="py-32 px-6 bg-industrial-white text-industrial-black border-t border-zinc-800">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <div>
@@ -18,7 +18,7 @@ export const NewsGrid: React.FC = () => {
             href="https://bluerock.cc"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 font-black uppercase tracking-[0.3em] text-[10px] group text-zinc-500 hover:text-industrial-white transition-colors"
+            className="flex items-center gap-2 font-black uppercase tracking-[0.3em] text-[10px] group text-zinc-500 hover:text-brand-red transition-colors"
           >
             Buy on BlueRock <ArrowRight className="group-hover:translate-x-2 transition-transform" />
           </a>
@@ -32,7 +32,7 @@ export const NewsGrid: React.FC = () => {
               className={`flex min-h-[260px] flex-col overflow-hidden p-8 transition-colors ${
                 index > 2
                   ? "bg-zinc-950 hover:bg-zinc-900"
-                  : "bg-zinc-900 hover:bg-zinc-800"
+                  : "bg-industrial-white hover:bg-zinc-900"
               }`}
             >
               <div className="mb-8 text-[10px] font-black uppercase tracking-widest text-brand-red">

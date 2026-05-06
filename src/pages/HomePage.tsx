@@ -8,7 +8,7 @@ import { StrategySection } from '../components/StrategySection';
 
 const HomePage: React.FC = () => {
   return (
-    <main className="bg-industrial-black">
+    <main className="bg-industrial-white text-industrial-black">
       <Hero />
       <StrategySection />
       <NewsTicker />

@@ -5,14 +5,14 @@ import { aixcoAssets, ctaCopy } from '../content/aixcoEnergy';
 
 export const NewsBanner: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-zinc-950 border-y border-zinc-800 px-6 py-28">
+    <section className="relative overflow-hidden bg-zinc-950 text-industrial-black border-y border-zinc-800 px-6 py-28">
       <img
         src={aixcoAssets.windGridProject}
         alt=""
         aria-hidden
-        className="absolute inset-0 h-full w-full object-cover opacity-[0.18] grayscale"
+        className="absolute inset-0 h-full w-full object-cover opacity-[0.16]"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-industrial-black via-industrial-black/90 to-industrial-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-r from-industrial-white via-industrial-white/92 to-industrial-white/60" />
 
       <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div className="lg:col-span-8">
@@ -20,7 +20,7 @@ export const NewsBanner: React.FC = () => {
           <h2 className="text-[clamp(2.5rem,5vw,5rem)] mb-8 max-w-5xl">
             {ctaCopy.title}
           </h2>
-          <p className="text-zinc-400 uppercase text-sm font-black leading-relaxed max-w-3xl">
+          <p className="text-zinc-500 uppercase text-sm font-black leading-relaxed max-w-3xl">
             {ctaCopy.body}
           </p>
         </div>

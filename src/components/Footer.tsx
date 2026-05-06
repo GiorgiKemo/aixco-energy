@@ -13,7 +13,7 @@ import {
 
 export const Footer: React.FC = () => {
   return (
-    <footer id="contact" className="relative overflow-hidden bg-industrial-black border-t border-zinc-800 px-6 py-20">
+    <footer id="contact" className="relative overflow-hidden bg-industrial-white text-industrial-black border-t border-zinc-800 px-6 py-20">
       <img
         src={aixcoAssets.footerShape}
         alt=""
@@ -23,18 +23,21 @@ export const Footer: React.FC = () => {
 
       <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
         <div className="md:col-span-4">
-          <img src={aixcoAssets.logoWide} alt="AIXCO Global" className="mb-8 h-12 w-auto object-contain" />
+          <div className="mb-8 inline-flex items-center gap-3">
+            <img src={aixcoAssets.markBlack} alt="" aria-hidden className="h-10 w-10 object-contain" />
+            <span className="text-lg font-medium tracking-[-0.02em]">AIXCO.ENERGY</span>
+          </div>
           <p className="text-zinc-500 mb-8 uppercase text-[10px] font-black leading-relaxed tracking-widest max-w-xs">
             {footerIntro}
           </p>
           <div className="flex gap-2">
-            <a href="https://aixco.global" target="_blank" rel="noreferrer" aria-label="AIXCO Global" className="p-3 border border-zinc-800 text-zinc-500 hover:bg-brand-red hover:text-industrial-black hover:border-brand-red transition-all">
+            <a href="https://aixco.global" target="_blank" rel="noreferrer" aria-label="AIXCO Global" className="p-3 border border-zinc-800 text-zinc-500 hover:bg-brand-red hover:text-industrial-white hover:border-brand-red transition-all">
               <Globe size={18} />
             </a>
-            <a href="#contact" aria-label="LinkedIn" className="p-3 border border-zinc-800 text-zinc-500 hover:bg-brand-red hover:text-industrial-black hover:border-brand-red transition-all">
+            <a href="#contact" aria-label="LinkedIn" className="p-3 border border-zinc-800 text-zinc-500 hover:bg-brand-red hover:text-industrial-white hover:border-brand-red transition-all">
               <Linkedin size={18} />
             </a>
-            <a href="#contact" aria-label="X" className="p-3 border border-zinc-800 text-zinc-500 hover:bg-brand-red hover:text-industrial-black hover:border-brand-red transition-all">
+            <a href="#contact" aria-label="X" className="p-3 border border-zinc-800 text-zinc-500 hover:bg-brand-red hover:text-industrial-white hover:border-brand-red transition-all">
               <Twitter size={18} />
             </a>
           </div>
@@ -45,7 +48,7 @@ export const Footer: React.FC = () => {
           <ul className="flex flex-col gap-4 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
             {energyFocus.map((item) => (
               <li key={item}>
-                <Link to={item === "Technology News" ? "/news" : "/projects"} className="hover:text-industrial-white transition-colors">
+                <Link to={item === "Technology News" ? "/news" : "/projects"} className="hover:text-brand-red transition-colors">
                   {item}
                 </Link>
               </li>
@@ -58,7 +61,7 @@ export const Footer: React.FC = () => {
           <ul className="flex flex-col gap-4 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
             {navItems.map((item) => (
               <li key={item.label}>
-                <Link to={item.to} className="hover:text-industrial-white transition-colors">
+                <Link to={item.to} className="hover:text-brand-red transition-colors">
                   {item.label}
                 </Link>
               </li>
@@ -70,16 +73,16 @@ export const Footer: React.FC = () => {
           <h4 className="text-brand-red mb-6 text-[10px] font-black tracking-widest underline decoration-2 underline-offset-4">CONTACT US</h4>
           <div className="space-y-6 text-[10px] font-black uppercase tracking-widest text-zinc-400">
             <div>
-              <div className="mb-2 flex items-center gap-2 text-industrial-white"><MapPin size={14} className="text-brand-red" /> Head Office</div>
+              <div className="mb-2 flex items-center gap-2 text-industrial-black"><MapPin size={14} className="text-brand-red" /> Head Office</div>
               <p>{contact.address}</p>
             </div>
             <div>
-              <div className="mb-2 flex items-center gap-2 text-industrial-white"><Phone size={14} className="text-brand-red" /> Investor Support</div>
+              <div className="mb-2 flex items-center gap-2 text-industrial-black"><Phone size={14} className="text-brand-red" /> Investor Support</div>
               <p>{contact.supportDetail}</p>
             </div>
             <div>
-              <div className="mb-2 flex items-center gap-2 text-industrial-white"><Mail size={14} className="text-brand-red" /> Email</div>
-              <a href={`mailto:${contact.email}`} className="hover:text-industrial-white transition-colors">{contact.email}</a>
+              <div className="mb-2 flex items-center gap-2 text-industrial-black"><Mail size={14} className="text-brand-red" /> Email</div>
+              <a href={`mailto:${contact.email}`} className="hover:text-brand-red transition-colors">{contact.email}</a>
             </div>
           </div>
         </div>
