@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { focusAreas } from '../content/aixcoEnergy';
 
@@ -27,15 +26,14 @@ export const NewsGrid: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800 border border-zinc-800">
           {focusAreas.map((area, index) => (
-            <motion.article
+            <article
               key={area.title}
-              whileHover={{ scale: 0.98 }}
-              className="min-h-[260px]"
+              className="h-full min-h-[20rem]"
             >
               <Link
                 to="/projects"
                 aria-label={`Explore ${area.title} project types`}
-                className={`group flex min-h-[260px] flex-col overflow-hidden p-8 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red ${
+                className={`group flex h-full min-h-[20rem] flex-col overflow-hidden p-8 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red sm:p-9 lg:p-10 ${
                   index > 2
                     ? "bg-zinc-950 hover:bg-zinc-900"
                     : "bg-industrial-white hover:bg-zinc-900"
@@ -54,7 +52,7 @@ export const NewsGrid: React.FC = () => {
                   Explore projects <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
-            </motion.article>
+            </article>
           ))}
         </div>
       </div>

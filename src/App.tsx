@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -12,20 +12,51 @@ import PlatformPage from './pages/PlatformPage';
 import ProjectsPage from './pages/ProjectsPage';
 import NewsPage from './pages/NewsPage';
 import ArticlePage from './pages/ArticlePage';
+import { installGlideScroll, scrollToHash, scrollToPageTop } from './lib/smooth-scroll';
 
-function ScrollToHash() {
+function ScrollManager() {
   const location = useLocation();
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.slice(1);
-      window.setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 0);
-      return;
-    }
+    if (typeof window === 'undefined' || !('scrollRestoration' in window.history)) return;
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const previous = window.history.scrollRestoration;
+    window.history.scrollRestoration = 'manual';
+
+    return () => {
+      window.history.scrollRestoration = previous;
+    };
+  }, []);
+
+  useEffect(() => installGlideScroll(), []);
+
+  useEffect(() => {
+    const firstRender = isFirstRender.current;
+    isFirstRender.current = false;
+    const frameIds: number[] = [];
+
+    const runScroll = (attemptsLeft = 12) => {
+      if (location.hash) {
+        const didScroll = scrollToHash(location.hash, firstRender ? 'auto' : undefined);
+        if ((!didScroll || firstRender) && attemptsLeft > 0) {
+          const frameId = window.requestAnimationFrame(() => runScroll(attemptsLeft - 1));
+          frameIds.push(frameId);
+        }
+        return;
+      }
+
+      if (!firstRender) {
+        scrollToPageTop();
+      }
+    };
+
+    const frameId = window.requestAnimationFrame(() => runScroll(firstRender ? 36 : 12));
+    frameIds.push(frameId);
+
+    return () => {
+      frameIds.forEach((id) => window.cancelAnimationFrame(id));
+    };
   }, [location.pathname, location.hash]);
 
   return null;
@@ -34,7 +65,7 @@ function ScrollToHash() {
 export default function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
-      <ScrollToHash />
+      <ScrollManager />
       <div className="flex flex-col min-h-screen">
         <Header />
         <div className="flex-grow">

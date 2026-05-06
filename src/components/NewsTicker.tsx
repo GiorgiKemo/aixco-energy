@@ -2,26 +2,26 @@ import React from 'react';
 import { aixcoAssets, marqueeItems } from '../content/aixcoEnergy';
 
 export const NewsTicker: React.FC = () => {
-  const tickerItems = [...marqueeItems, ...marqueeItems];
+  const tickerGroups = [0, 1];
 
   return (
-    <div className="bg-brand-red text-industrial-black h-20 flex items-center overflow-hidden whitespace-nowrap border-y border-industrial-black shrink-0 font-mono font-black uppercase shadow-[0_0_24px_rgba(173,125,46,0.24)] z-20">
-      <div className="inline-block animate-marquee whitespace-nowrap">
-        {tickerItems.map((item, index) => (
-          <span key={`${item}-${index}`} className="inline-flex items-center gap-8 px-10 text-4xl font-black italic tracking-normal">
-            {item}
-            <img src={aixcoAssets.markBlack} alt="" aria-hidden className="h-10 w-10 object-contain" />
-          </span>
+    <section
+      id="energy-ticker"
+      aria-label="AIXCO Energy focus areas"
+      className="energy-ticker bg-brand-red text-industrial-black overflow-hidden whitespace-nowrap border-y border-industrial-black shrink-0 font-black uppercase shadow-[0_0_24px_rgba(173,125,46,0.24)] z-20"
+    >
+      <div className="energy-ticker__track" aria-hidden="true">
+        {tickerGroups.map((group) => (
+          <div key={group} className="energy-ticker__group">
+            {marqueeItems.map((item) => (
+              <span key={`${group}-${item}`} className="energy-ticker__item">
+                {item}
+                <img src={aixcoAssets.markBlack} alt="" aria-hidden className="energy-ticker__mark object-contain" />
+              </span>
+            ))}
+          </div>
         ))}
       </div>
-      <div className="inline-block animate-marquee whitespace-nowrap" aria-hidden="true">
-        {tickerItems.map((item, index) => (
-          <span key={`dup-${item}-${index}`} className="inline-flex items-center gap-8 px-10 text-4xl font-black italic tracking-normal">
-            {item}
-            <img src={aixcoAssets.markBlack} alt="" aria-hidden className="h-10 w-10 object-contain" />
-          </span>
-        ))}
-      </div>
-    </div>
+    </section>
   );
 };
