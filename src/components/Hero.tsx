@@ -73,7 +73,7 @@ export const Hero: React.FC = () => {
                   href="https://bluerock.cc"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-3 border border-zinc-700 px-8 py-4 text-[10px] font-black uppercase tracking-widest text-industrial-white hover:border-brand-red hover:text-brand-red transition-colors"
+                  className="btn-ghost-gold"
                 >
                   Buy on BlueRock <ExternalLink size={14} />
                 </a>

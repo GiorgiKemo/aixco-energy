@@ -21,10 +21,17 @@
 @layer base {
   body {
     @apply bg-industrial-black text-industrial-white font-sans overflow-x-hidden;
+    font-feature-settings: "kern";
+    font-size: 16.5px;
+    line-height: 1.6;
   }
 
   h1, h2, h3, h4 {
-    @apply font-black uppercase tracking-normal leading-none italic;
+    @apply leading-none;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
 }
 
@@ -38,12 +45,86 @@
   }
 
   .brutal-btn {
-    @apply inline-block px-8 py-4 bg-brand-red text-industrial-black font-black uppercase tracking-widest hover:bg-industrial-white transition-colors cursor-pointer;
-    box-shadow: 0 14px 30px -20px rgba(215, 161, 63, 0.72), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-6 py-3 text-industrial-white transition-all duration-300 cursor-pointer;
+    background: linear-gradient(135deg, #e3b55a 0%, #ad7d2e 54%, #7d561f 100%);
+    box-shadow: 0 0 0 1px rgba(173, 125, 46, 0.28), 0 14px 30px -18px rgba(173, 125, 46, 0.68), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+    font-size: 0.96rem;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1;
+    text-transform: none;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .brutal-btn:hover {
+    @apply text-industrial-white;
+    filter: brightness(1.05) saturate(1.06);
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 1px rgba(173, 125, 46, 0.46), 0 18px 38px -20px rgba(173, 125, 46, 0.78), inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  }
+
+  .btn-gold {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-5 py-3 text-industrial-white transition-all duration-300;
+    background: linear-gradient(135deg, #e3b55a 0%, #ad7d2e 54%, #7d561f 100%);
+    box-shadow: 0 0 0 1px rgba(173, 125, 46, 0.28), 0 14px 30px -18px rgba(173, 125, 46, 0.68), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+    font-size: 0.96rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1;
+    text-transform: none;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn-gold:hover {
+    filter: brightness(1.05) saturate(1.06);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost-gold {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-brand-red/35 px-5 py-3 text-brand-red transition-all duration-300;
+    background: rgba(249, 247, 243, 0.04);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 12px 26px -22px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    font-size: 0.96rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1;
+    text-transform: none;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn-ghost-gold:hover {
+    @apply border-brand-red/60 bg-brand-red/10;
+    transform: translateY(-1px);
   }
 
   .status-tag {
-    @apply bg-brand-red px-2 py-1 text-[10px] font-black uppercase text-industrial-white;
+    @apply bg-brand-red px-2 py-1 text-[10px] font-semibold uppercase text-industrial-white;
+  }
+}
+
+@layer utilities {
+  .font-black {
+    font-weight: 600;
+  }
+
+  .italic {
+    font-style: normal;
+  }
+
+  .tracking-tighter,
+  .tracking-tight {
+    letter-spacing: -0.02em;
+  }
+
+  .tracking-widest {
+    letter-spacing: 0.08em;
+  }
+
+  .uppercase {
+    text-transform: none;
   }
 }
 

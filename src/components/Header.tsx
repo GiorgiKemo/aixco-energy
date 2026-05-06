@@ -49,7 +49,7 @@ export const Header: React.FC = () => {
             href="https://bluerock.cc"
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 bg-brand-red text-industrial-black px-4 py-2 text-[10px] font-black uppercase tracking-widest hover:bg-industrial-white transition-all"
+            className="btn-gold hidden min-h-9 px-4 py-2 text-[0.82rem] sm:inline-flex"
           >
             Buy on BlueRock <ExternalLink size={13} />
           </a>
