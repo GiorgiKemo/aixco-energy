@@ -184,6 +184,81 @@ export const ctaCopy = {
   body: "Explore our energy strategy, read the latest sector news, review the FAQs and learn how investors can access the 6% AIXCO bond through BlueRock.",
 };
 
+export const pressArticles = [
+  {
+    slug: "solar-energy-new-thinking",
+    category: "Energiewende",
+    title: "Solar-Energie neu gedacht",
+    publication: "PV Asset",
+    date: "2025",
+    summary:
+      "A feature on how Photovoltaik-Contracting helps companies, institutions and private households access green electricity while reducing upfront investment and operational effort.",
+    image: publicAsset("aixco-energy/images/news/pv-asset.png"),
+    href: publicAsset("aixco-energy/news/pv-asset.pdf"),
+    tags: ["PV-Contracting", "Green PV Gruppe", "Solar"],
+  },
+  {
+    slug: "2morrow-solar-real-assets",
+    category: "Special Issue",
+    title: "Zukunftsanker Fotovoltaik",
+    publication: "2morrow Spezial",
+    date: "2025",
+    summary:
+      "The 2morrow special issue brings together the solar contracting story with sustainable Bauherrenmodell coverage focused on real assets, climate-efficient buildings and long-term value.",
+    image: publicAsset("aixco-energy/images/news/2morrow-2025.png"),
+    href: publicAsset("aixco-energy/news/2morrow-2025-ansicht-immo.pdf"),
+    tags: ["Fotovoltaik", "Bauherrenmodell", "Sustainable Assets"],
+  },
+  {
+    slug: "investment-mit-gesellschaftlichem-mehrwert",
+    category: "Real Assets",
+    title: "Investment mit gesellschaftlichem Mehrwert",
+    publication: "assets 1/2025",
+    date: "2025",
+    summary:
+      "Coverage of Valuita and BSP Immobilien Invest highlighting Bauherrenmodelle as a model for investor returns, affordable housing and ecological standards in Austrian residential development.",
+    image: publicAsset("aixco-energy/images/news/assets-01-2025.png"),
+    href: publicAsset("aixco-energy/news/assets-01-2025-ansicht-immo.pdf"),
+    tags: ["Valuita", "BSP Immobilien", "Affordable Housing"],
+  },
+  {
+    slug: "solide-veranlagung",
+    category: "Round Table",
+    title: "Solide Veranlagung",
+    publication: "assets 2/2025",
+    date: "2025",
+    summary:
+      "An assets real-estate round table on market stabilization, residential investments and Bauherrenmodelle, featuring Mario Bruckner-Simon and other Austrian property leaders.",
+    image: publicAsset("aixco-energy/images/news/assets-02-2025.png"),
+    href: publicAsset("aixco-energy/news/assets-02-2025-ansicht-immo.pdf"),
+    tags: ["Round Table", "Residential Investment", "Market Outlook"],
+  },
+  {
+    slug: "kapitalanlage-mit-mehrwert",
+    category: "Advertorial",
+    title: "Kapitalanlage mit Mehrwert",
+    publication: "Das Stanglwirt-Magazin",
+    date: "2025",
+    summary:
+      "A Valuita and BSP Immobilien Invest article on Bauherrenmodelle as a way to combine investment opportunity, tax structure and creation of affordable rental housing.",
+    image: publicAsset("aixco-energy/images/news/stanglwirt-2025.png"),
+    href: publicAsset("aixco-energy/news/stanglwirt-m-2025-ansicht-immo.pdf"),
+    tags: ["Valuita", "Bauherrenmodell", "Residential"],
+  },
+  {
+    slug: "bruckner-simon-pressespiegel",
+    category: "Press Coverage",
+    title: "Mario Bruckner-Simon Pressespiegel",
+    publication: "NEWS, Trend.Premium, TV-MEDIA",
+    date: "2024-2025",
+    summary:
+      "A compiled press overview with magazine, online, social and newsletter placements connected to Mario Bruckner-Simon, Bauherren investor topics and contracting coverage.",
+    image: publicAsset("aixco-energy/images/news/bruckner-simon-pressespiegel.png"),
+    href: publicAsset("aixco-energy/news/bruckner-simon-pressespiegel.pdf"),
+    tags: ["Pressespiegel", "Media", "Bruckner-Simon"],
+  },
+];
+
 export const footerIntro =
   "AIXCO Energy focuses on renewable and intelligent energy infrastructure opportunities including solar, wind, hydrogen, battery storage and supporting technologies that can contribute to long-term platform strength.";
 
