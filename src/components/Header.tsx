@@ -16,6 +16,10 @@ export const Header: React.FC = () => {
       return location.pathname === "/" && location.hash === to.slice(1);
     }
 
+    if (to === "/news") {
+      return location.pathname === "/news" || location.pathname.startsWith("/news/");
+    }
+
     return location.pathname === to;
   };
 

@@ -3,7 +3,9 @@ import { resolve } from "node:path";
 
 const root = process.cwd();
 const contentPath = resolve(root, "src/content/aixcoEnergy.ts");
+const articlePath = resolve(root, "src/content/newsArticles.ts");
 const content = readFileSync(contentPath, "utf8");
+const articleContent = existsSync(articlePath) ? readFileSync(articlePath, "utf8") : "";
 
 const expectedItems = [
   {
@@ -42,9 +44,17 @@ if (!content.includes("export const pressArticles")) {
   throw new Error("Missing pressArticles export.");
 }
 
+if (!articleContent.includes("export const newsArticles")) {
+  throw new Error("Missing newsArticles export.");
+}
+
 for (const item of expectedItems) {
   if (!content.includes(`slug: "${item.slug}"`)) {
     throw new Error(`Missing press article slug: ${item.slug}`);
+  }
+
+  if (!articleContent.includes(`"${item.slug}"`)) {
+    throw new Error(`Missing article body for slug: ${item.slug}`);
   }
 
   for (const relativePath of [item.pdf, item.image]) {

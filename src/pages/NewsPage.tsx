@@ -1,6 +1,8 @@
 import React from 'react';
 import { ArrowRight, Check, ExternalLink, Quote } from 'lucide-react';
-import { aixcoAssets, ctaCopy, futureGrowth, investorReasons, pressArticles, pvArticle } from '../content/aixcoEnergy';
+import { Link } from 'react-router-dom';
+import { aixcoAssets, ctaCopy, futureGrowth, investorReasons, pvArticle } from '../content/aixcoEnergy';
+import { newsArticles } from '../content/newsArticles';
 
 const NewsPage: React.FC = () => {
   return (
@@ -17,19 +19,19 @@ const NewsPage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800 border border-zinc-800 mb-28">
-          {pressArticles.map((article, index) => (
+          {newsArticles.map((article, index) => (
             <article
               key={article.slug}
               className={`min-w-0 bg-zinc-950 transition-colors hover:bg-zinc-900 ${index === 0 ? "lg:col-span-2" : ""}`}
             >
-              <a href={article.href} target="_blank" rel="noreferrer" className="group flex h-full min-w-0 flex-col">
-                <div className="border-b border-zinc-800 bg-industrial-white p-4">
+              <div className="flex h-full min-w-0 flex-col">
+                <Link to={`/news/${article.slug}`} className="group block border-b border-zinc-800 bg-industrial-white p-4">
                   <img
                     src={article.image}
-                    alt={`${article.title} PDF preview`}
+                    alt={`${article.title} article preview`}
                     className={`w-full object-contain ${index === 0 ? "h-80" : "h-64"}`}
                   />
-                </div>
+                </Link>
                 <div className="flex min-w-0 flex-1 flex-col p-6 sm:p-7 md:p-8">
                   <div className="mb-6 flex flex-wrap items-center gap-3 text-sm font-black uppercase tracking-normal">
                     <span className="text-brand-red">{article.category}</span>
@@ -53,12 +55,25 @@ const NewsPage: React.FC = () => {
                         </span>
                       ))}
                     </div>
-                    <span className="inline-flex items-center gap-3 text-sm font-black uppercase tracking-normal text-industrial-black transition-colors group-hover:text-brand-red">
-                      Open PDF <ExternalLink className="h-4 w-4" />
-                    </span>
+                    <div className="flex flex-wrap gap-3">
+                      <Link
+                        to={`/news/${article.slug}`}
+                        className="btn-gold min-h-11 px-4 py-2 text-sm"
+                      >
+                        Read article <ArrowRight className="h-4 w-4" />
+                      </Link>
+                      <a
+                        href={article.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-ghost-gold min-h-11 px-4 py-2 text-sm"
+                      >
+                        Original PDF <ExternalLink className="h-4 w-4" />
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </a>
+              </div>
             </article>
           ))}
         </div>
@@ -101,6 +116,12 @@ const NewsPage: React.FC = () => {
                 <p className="text-2xl font-black leading-tight text-industrial-black">
                   {pvArticle.summary}
                 </p>
+              </div>
+
+              <div className="mb-10">
+                <Link to="/news/solar-energy-new-thinking" className="btn-gold">
+                  Read full article page <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
 
               <div className="grid grid-cols-1 gap-px bg-zinc-800 border border-zinc-800">

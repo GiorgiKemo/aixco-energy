@@ -11,6 +11,7 @@ import HomePage from './pages/HomePage';
 import PlatformPage from './pages/PlatformPage';
 import ProjectsPage from './pages/ProjectsPage';
 import NewsPage from './pages/NewsPage';
+import ArticlePage from './pages/ArticlePage';
 
 function ScrollToHash() {
   const location = useLocation();
@@ -43,6 +44,7 @@ export default function App() {
             <Route path="/platform" element={<PlatformPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/news" element={<NewsPage />} />
+            <Route path="/news/:slug" element={<ArticlePage />} />
             <Route path="/faq" element={<Navigate to="/#faqs" replace />} />
             <Route path="/faqs" element={<Navigate to="/#faqs" replace />} />
             <Route path="*" element={<Navigate to="/" replace />} />
