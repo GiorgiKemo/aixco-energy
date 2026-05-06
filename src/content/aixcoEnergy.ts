@@ -20,6 +20,11 @@ export const contact = {
   hours: "Monday - Friday 09.00 - 17.00 CET",
 };
 
+export const socialLinks = {
+  aixcoGlobal: "https://aixco.global",
+  linkedin: "https://www.linkedin.com/company/aixco-global",
+};
+
 export const navItems = [
   { label: "Home", to: "/" },
   { label: "About", to: "/#about" },

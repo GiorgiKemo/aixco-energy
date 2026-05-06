@@ -4,7 +4,7 @@
  */
 
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -43,8 +43,9 @@ export default function App() {
             <Route path="/platform" element={<PlatformPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/news" element={<NewsPage />} />
-            <Route path="/faq" element={<HomePage />} />
-            <Route path="/faqs" element={<HomePage />} />
+            <Route path="/faq" element={<Navigate to="/#faqs" replace />} />
+            <Route path="/faqs" element={<Navigate to="/#faqs" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
         <Footer />

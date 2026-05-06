@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'motion/react';
 import { Check } from 'lucide-react';
 import { platformMetrics, strategyCopy, whyCopy } from '../content/aixcoEnergy';
 
@@ -7,40 +6,35 @@ const PlatformPage: React.FC = () => {
   return (
     <main className="pt-24 lg:pt-32 min-h-screen bg-industrial-white text-industrial-black">
       <section className="px-6 pb-24 pt-16 md:py-28 max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          className="mb-24"
-        >
-          <div className="text-brand-red text-[10px] font-black uppercase tracking-widest mb-6">{whyCopy.label}</div>
+        <div className="mb-24">
+          <div className="mb-6 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{whyCopy.label}</div>
           <h1 className="mb-12 break-words text-[clamp(3rem,9vw,8rem)]">
             AIXCO <br /> <span className="text-brand-red italic">Energy</span>
           </h1>
           <p className="max-w-4xl text-xl font-black uppercase text-zinc-500 leading-tight">
             {whyCopy.body}
           </p>
-        </motion.div>
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-800 border border-zinc-800 mb-24">
           {platformMetrics.map((metric) => (
-            <div key={metric.label} className="bg-zinc-950 p-8 hover:bg-zinc-900 transition-colors">
+            <div key={metric.label} className="bg-zinc-950 p-8">
               <div className="text-6xl font-black italic text-brand-red mb-6">{metric.value}</div>
-              <p className="text-xs font-black uppercase tracking-widest leading-relaxed text-zinc-500">{metric.label}</p>
+              <p className="text-sm font-black uppercase leading-relaxed text-zinc-500">{metric.label}</p>
             </div>
           ))}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="min-w-0 lg:col-span-5">
-            <div className="text-brand-red text-[10px] font-black uppercase tracking-widest mb-6">{strategyCopy.label}</div>
+            <div className="mb-6 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{strategyCopy.label}</div>
             <h2 className="mb-8 break-words text-[clamp(2.5rem,5vw,5rem)]">{strategyCopy.title}</h2>
           </div>
           <div className="min-w-0 lg:col-span-7">
             <p className="text-zinc-500 text-sm font-black uppercase leading-relaxed mb-10">{strategyCopy.body}</p>
             <ul className="space-y-5">
               {strategyCopy.bullets.map((bullet) => (
-                <li key={bullet} className="flex gap-4 text-xs font-black uppercase leading-relaxed text-zinc-500">
+                <li key={bullet} className="flex gap-4 text-sm font-black uppercase leading-relaxed text-zinc-500">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
                   {bullet}
                 </li>

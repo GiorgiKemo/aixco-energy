@@ -16,7 +16,7 @@ export const NewsBanner: React.FC = () => {
 
       <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div className="lg:col-span-8">
-          <div className="text-brand-red text-[10px] font-black uppercase tracking-widest mb-5">{ctaCopy.label}</div>
+          <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{ctaCopy.label}</div>
           <h2 className="text-[clamp(2.5rem,5vw,5rem)] mb-8 max-w-5xl">
             {ctaCopy.title}
           </h2>

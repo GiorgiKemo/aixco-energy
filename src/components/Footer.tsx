@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Globe, Linkedin, Mail, MapPin, Phone, Twitter } from 'lucide-react';
+import { Globe, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import {
   aboutEnergy,
   aixcoAssets,
@@ -9,6 +9,7 @@ import {
   footerIntro,
   investmentFocus,
   navItems,
+  socialLinks,
 } from '../content/aixcoEnergy';
 
 export const Footer: React.FC = () => {
@@ -25,30 +26,27 @@ export const Footer: React.FC = () => {
         <div className="md:col-span-4">
           <div className="mb-8 inline-flex items-center gap-3">
             <img src={aixcoAssets.markBlack} alt="" aria-hidden className="h-10 w-10 object-contain" />
-            <span className="text-lg font-medium tracking-[-0.02em]">AIXCO.ENERGY</span>
+            <span className="text-lg font-medium tracking-normal">AIXCO.ENERGY</span>
           </div>
-          <p className="text-zinc-500 mb-8 uppercase text-[10px] font-black leading-relaxed tracking-widest max-w-xs">
+          <p className="mb-8 max-w-xs text-sm font-black uppercase leading-relaxed text-zinc-500">
             {footerIntro}
           </p>
           <div className="flex gap-2">
-            <a href="https://aixco.global" target="_blank" rel="noreferrer" aria-label="AIXCO Global" className="p-3 border border-zinc-800 text-zinc-500 hover:bg-brand-red hover:text-industrial-white hover:border-brand-red transition-all">
+            <a href={socialLinks.aixcoGlobal} target="_blank" rel="noreferrer" aria-label="AIXCO Global" className="border border-zinc-800 p-3.5 text-zinc-500 transition-all hover:border-brand-red hover:bg-brand-red hover:text-industrial-white">
               <Globe size={18} />
             </a>
-            <a href="#contact" aria-label="LinkedIn" className="p-3 border border-zinc-800 text-zinc-500 hover:bg-brand-red hover:text-industrial-white hover:border-brand-red transition-all">
+            <a href={socialLinks.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="border border-zinc-800 p-3.5 text-zinc-500 transition-all hover:border-brand-red hover:bg-brand-red hover:text-industrial-white">
               <Linkedin size={18} />
-            </a>
-            <a href="#contact" aria-label="X" className="p-3 border border-zinc-800 text-zinc-500 hover:bg-brand-red hover:text-industrial-white hover:border-brand-red transition-all">
-              <Twitter size={18} />
             </a>
           </div>
         </div>
         
         <div className="md:col-span-3">
-          <h4 className="text-brand-red mb-6 text-[10px] font-black tracking-widest underline decoration-2 underline-offset-4">ENERGY FOCUS</h4>
-          <ul className="flex flex-col gap-4 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+          <h4 className="mb-6 text-sm font-black tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">ENERGY FOCUS</h4>
+          <ul className="flex flex-col gap-4 text-sm font-bold uppercase tracking-normal text-zinc-400">
             {energyFocus.map((item) => (
               <li key={item}>
-                <Link to={item === "Technology News" ? "/news" : "/projects"} className="hover:text-brand-red transition-colors">
+                <Link to={item === "Technology News" ? "/news" : "/projects"} className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-brand-red">
                   {item}
                 </Link>
               </li>
@@ -57,11 +55,11 @@ export const Footer: React.FC = () => {
         </div>
         
         <div className="md:col-span-2">
-          <h4 className="text-brand-red mb-6 text-[10px] font-black tracking-widest underline decoration-2 underline-offset-4">COMPANY</h4>
-          <ul className="flex flex-col gap-4 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+          <h4 className="mb-6 text-sm font-black tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">COMPANY</h4>
+          <ul className="flex flex-col gap-4 text-sm font-bold uppercase tracking-normal text-zinc-400">
             {navItems.map((item) => (
               <li key={item.label}>
-                <Link to={item.to} className="hover:text-brand-red transition-colors">
+                <Link to={item.to} className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-brand-red">
                   {item.label}
                 </Link>
               </li>
@@ -70,8 +68,8 @@ export const Footer: React.FC = () => {
         </div>
         
         <div className="md:col-span-3">
-          <h4 className="text-brand-red mb-6 text-[10px] font-black tracking-widest underline decoration-2 underline-offset-4">CONTACT US</h4>
-          <div className="space-y-6 text-[10px] font-black uppercase tracking-widest text-zinc-400">
+          <h4 className="mb-6 text-sm font-black tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">CONTACT US</h4>
+          <div className="space-y-6 text-sm font-black uppercase leading-relaxed tracking-normal text-zinc-400">
             <div>
               <div className="mb-2 flex items-center gap-2 text-industrial-black"><MapPin size={14} className="text-brand-red" /> Head Office</div>
               <p>{contact.address}</p>
@@ -82,7 +80,7 @@ export const Footer: React.FC = () => {
             </div>
             <div>
               <div className="mb-2 flex items-center gap-2 text-industrial-black"><Mail size={14} className="text-brand-red" /> Email</div>
-              <a href={`mailto:${contact.email}`} className="hover:text-brand-red transition-colors">{contact.email}</a>
+              <a href={`mailto:${contact.email}`} className="inline-flex min-h-11 items-center transition-colors hover:text-brand-red">{contact.email}</a>
             </div>
           </div>
         </div>
@@ -91,25 +89,25 @@ export const Footer: React.FC = () => {
       <div className="relative max-w-7xl mx-auto mt-16 border-t border-zinc-900 pt-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <div>
-            <h4 className="text-brand-red mb-5 text-[10px] font-black tracking-widest underline decoration-2 underline-offset-4">INVESTMENT FOCUS</h4>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[10px] font-black uppercase tracking-widest text-zinc-500">
+            <h4 className="mb-5 text-sm font-black tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">INVESTMENT FOCUS</h4>
+            <ul className="grid grid-cols-1 gap-3 text-sm font-black uppercase tracking-normal text-zinc-500 sm:grid-cols-2">
               {investmentFocus.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
           </div>
           <div>
-            <h4 className="text-brand-red mb-5 text-[10px] font-black tracking-widest underline decoration-2 underline-offset-4">ABOUT AIXCO ENERGY</h4>
-            <p className="text-zinc-500 text-[10px] font-black uppercase tracking-widest leading-relaxed">{aboutEnergy}</p>
+            <h4 className="mb-5 text-sm font-black tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">ABOUT AIXCO ENERGY</h4>
+            <p className="text-sm font-black uppercase leading-relaxed text-zinc-500">{aboutEnergy}</p>
           </div>
         </div>
       </div>
       
       <div className="relative max-w-7xl mx-auto mt-16 pt-10 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="text-[10px] font-black text-zinc-600 uppercase tracking-normal">
+        <div className="text-sm font-black uppercase tracking-normal text-zinc-600">
           © 2026 AIXCO Energy.
         </div>
-        <div className="flex flex-wrap justify-center gap-8 text-[9px] font-black uppercase tracking-widest text-zinc-500 border border-zinc-900 px-4 py-2 bg-zinc-950/50">
+        <div className="flex flex-wrap justify-center gap-6 border border-zinc-900 bg-zinc-950/50 px-4 py-2 text-sm font-black uppercase tracking-normal text-zinc-500">
           <span>Terms &amp; Conditions</span>
           <span>Privacy Policy</span>
           <span>{contact.hours}</span>

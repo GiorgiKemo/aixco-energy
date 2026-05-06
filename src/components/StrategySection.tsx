@@ -15,7 +15,7 @@ export const StrategySection: React.FC = () => {
             viewport={{ once: true, amount: 0.3 }}
             className="lg:col-span-3"
           >
-            <div className="text-brand-red text-[10px] font-black uppercase tracking-widest mb-4">{whyCopy.label}</div>
+            <div className="mb-4 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{whyCopy.label}</div>
             <div className="h-1 w-20 bg-brand-red" />
           </motion.div>
           <motion.div
@@ -52,7 +52,7 @@ export const StrategySection: React.FC = () => {
             viewport={{ once: true, amount: 0.25 }}
             className="lg:col-span-6"
           >
-            <div className="text-brand-red text-[10px] font-black uppercase tracking-widest mb-5">{strategyCopy.label}</div>
+            <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{strategyCopy.label}</div>
             <h2 className="text-[clamp(2.1rem,4vw,3.8rem)] leading-[1] mb-8">
               {strategyCopy.title}
             </h2>
@@ -61,7 +61,7 @@ export const StrategySection: React.FC = () => {
             </p>
             <ul className="space-y-4 mb-10">
               {strategyCopy.bullets.map((bullet) => (
-                <li key={bullet} className="flex gap-3 text-xs font-black uppercase leading-relaxed text-zinc-500">
+                <li key={bullet} className="flex gap-3 text-sm font-black uppercase leading-relaxed text-zinc-500">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
                   {bullet}
                 </li>

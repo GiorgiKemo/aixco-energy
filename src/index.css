@@ -56,12 +56,24 @@
     line-height: 1.6;
   }
 
+  a,
+  button {
+    -webkit-tap-highlight-color: rgba(173, 122, 46, 0.18);
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--color-brand-red);
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+
   h1, h2, h3, h4 {
     @apply leading-none;
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
     font-style: normal;
     font-weight: 600;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
 }
 
@@ -153,7 +165,7 @@
   }
 
   .status-tag {
-    @apply bg-brand-red px-2 py-1 text-[10px] font-semibold uppercase text-industrial-white;
+    @apply bg-brand-red px-2.5 py-1 text-sm font-semibold uppercase text-industrial-white;
   }
 
   .shadow-soft {
@@ -194,7 +206,7 @@
 
   .tracking-tighter,
   .tracking-tight {
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
 
   .tracking-widest {
@@ -218,4 +230,24 @@
 
 .pause-marquee:hover .animate-marquee {
   animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-marquee {
+    animation: none;
+    transform: none;
+  }
 }
