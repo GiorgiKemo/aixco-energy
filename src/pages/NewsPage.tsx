@@ -5,6 +5,8 @@ import { aixcoAssets, ctaCopy, futureGrowth, investorReasons, pvArticle } from '
 import { newsArticles } from '../content/newsArticles';
 
 const NewsPage: React.FC = () => {
+  const lastArticleIndex = newsArticles.length - 1;
+
   return (
     <main className="pt-24 lg:pt-32 min-h-screen bg-industrial-white text-industrial-black">
       <section className="px-6 pb-24 pt-16 md:py-28 max-w-7xl mx-auto">
@@ -19,63 +21,79 @@ const NewsPage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800 border border-zinc-800 mb-28">
-          {newsArticles.map((article, index) => (
-            <article
-              key={article.slug}
-              className={`min-w-0 bg-zinc-950 transition-colors hover:bg-zinc-900 ${index === 0 ? "lg:col-span-2" : ""}`}
-            >
-              <div className="flex h-full min-w-0 flex-col">
-                <Link to={`/news/${article.slug}`} className="group block border-b border-zinc-800 bg-industrial-white p-4">
-                  <img
-                    src={article.image}
-                    alt={`${article.title} article preview`}
-                    className={`w-full object-contain ${index === 0 ? "h-80" : "h-64"}`}
-                  />
-                </Link>
-                <div className="flex min-w-0 flex-1 flex-col p-6 sm:p-7 md:p-8">
-                  <div className="mb-6 flex flex-wrap items-center gap-3 text-sm font-black uppercase tracking-normal">
-                    <span className="text-brand-red">{article.category}</span>
-                    <span className="text-zinc-600">/</span>
-                    <span className="text-zinc-500">{article.date}</span>
-                  </div>
-                  <h2 className={`mb-5 break-words leading-none ${index === 0 ? "text-[clamp(2.4rem,5vw,4.6rem)]" : "text-[clamp(1.9rem,3vw,3rem)]"}`}>
-                    {article.title}
-                  </h2>
-                  <div className="mb-6 text-sm font-black uppercase tracking-normal text-zinc-500">
-                    {article.publication}
-                  </div>
-                  <p className="mb-8 text-sm leading-7 text-zinc-500">
-                    {article.summary}
-                  </p>
-                  <div className="mt-auto">
-                    <div className="mb-8 flex flex-wrap gap-2">
-                      {article.tags.map((tag) => (
-                        <span key={tag} className="border border-brand-red/35 bg-brand-red/10 px-3 py-2 text-sm font-black uppercase text-brand-red">
-                          {tag}
-                        </span>
-                      ))}
+          {newsArticles.map((article, index) => {
+            const isOnlyArticle = newsArticles.length === 1;
+            const isFeaturedArticle = index === 0 && !isOnlyArticle;
+            const isLastArticle = index === lastArticleIndex;
+            const isLgOrphan = isOnlyArticle || (newsArticles.length > 2 && isLastArticle && (newsArticles.length - 2) % 3 === 1);
+            const isMdOrphan = isOnlyArticle || (isLastArticle && newsArticles.length % 2 === 1);
+            const isWideArticle = isFeaturedArticle || isLgOrphan;
+
+            return (
+              <article
+                key={article.slug}
+                className={`min-w-0 bg-zinc-950 transition-colors hover:bg-zinc-900 ${
+                  isFeaturedArticle ? "lg:col-span-2" : ""
+                } ${isMdOrphan ? "md:col-span-2" : ""} ${isLgOrphan ? "lg:col-span-3" : ""}`}
+              >
+                <div className={`flex h-full min-w-0 flex-col ${isLgOrphan ? "lg:grid lg:grid-cols-12" : ""}`}>
+                  <Link
+                    to={`/news/${article.slug}`}
+                    className={`group block border-b border-zinc-800 bg-industrial-white p-4 ${
+                      isLgOrphan ? "lg:col-span-4 lg:border-b-0 lg:border-r lg:p-8" : ""
+                    }`}
+                  >
+                    <img
+                      src={article.image}
+                      alt={`${article.title} article preview`}
+                      className={`w-full object-contain ${isWideArticle ? "h-80" : "h-64"} ${isLgOrphan ? "lg:h-full lg:min-h-[24rem]" : ""}`}
+                    />
+                  </Link>
+                  <div className={`flex min-w-0 flex-1 flex-col p-6 sm:p-7 md:p-8 ${isLgOrphan ? "lg:col-span-8 lg:p-10 xl:p-12" : ""}`}>
+                    <div className="mb-6 flex flex-wrap items-center gap-3 text-sm font-black uppercase tracking-normal">
+                      <span className="text-brand-red">{article.category}</span>
+                      <span className="text-zinc-600">/</span>
+                      <span className="text-zinc-500">{article.date}</span>
                     </div>
-                    <div className="flex flex-wrap gap-3">
-                      <Link
-                        to={`/news/${article.slug}`}
-                        className="btn-gold min-h-11 px-4 py-2 text-sm"
-                      >
-                        Read article <ArrowRight className="h-4 w-4" />
-                      </Link>
-                      <a
-                        href={article.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="btn-ghost-gold min-h-11 px-4 py-2 text-sm"
-                      >
-                        Original PDF <ExternalLink className="h-4 w-4" />
-                      </a>
+                    <h2 className={`mb-5 break-words leading-none ${isWideArticle ? "text-[clamp(2.4rem,5vw,4.6rem)]" : "text-[clamp(1.9rem,3vw,3rem)]"}`}>
+                      {article.title}
+                    </h2>
+                    <div className="mb-6 text-sm font-black uppercase tracking-normal text-zinc-500">
+                      {article.publication}
+                    </div>
+                    <p className="mb-8 text-sm leading-7 text-zinc-500">
+                      {article.summary}
+                    </p>
+                    <div className="mt-auto">
+                      <div className="mb-8 flex flex-wrap gap-2">
+                        {article.tags.map((tag) => (
+                          <span key={tag} className="border border-brand-red/35 bg-brand-red/10 px-3 py-2 text-sm font-black uppercase text-brand-red">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex flex-wrap gap-3">
+                        <Link
+                          to={`/news/${article.slug}`}
+                          className="btn-gold min-h-11 px-4 py-2 text-sm"
+                        >
+                          Read article <ArrowRight className="h-4 w-4" />
+                        </Link>
+                        <a
+                          href={article.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="btn-ghost-gold min-h-11 px-4 py-2 text-sm"
+                        >
+                          Original PDF <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
 
         <article className="mb-28">
