@@ -5,6 +5,8 @@ const root = process.cwd();
 const header = readFileSync(resolve(root, "src/components/Header.tsx"), "utf8");
 const app = readFileSync(resolve(root, "src/App.tsx"), "utf8");
 const smoothScroll = readFileSync(resolve(root, "src/lib/smooth-scroll.ts"), "utf8");
+const strategySection = readFileSync(resolve(root, "src/components/StrategySection.tsx"), "utf8");
+const css = readFileSync(resolve(root, "src/index.css"), "utf8");
 
 const expectations = [
   {
@@ -48,6 +50,26 @@ const expectations = [
       smoothScroll.includes('document.addEventListener("wheel"') &&
       smoothScroll.includes("window.requestAnimationFrame(step)") &&
       smoothScroll.includes('document.documentElement.dataset.glideScroll = "enabled"'),
+  },
+  {
+    label: "Glide easing is normalized by requestAnimationFrame timing instead of frame count",
+    pass:
+      smoothScroll.includes("lastGlideFrameTime") &&
+      smoothScroll.includes("deltaMs") &&
+      smoothScroll.includes("1000 / 60") &&
+      smoothScroll.includes("Math.pow(1 - resolvedEasing"),
+  },
+  {
+    label: "Glide scroll exposes active state so heavy fixed effects can cooperate with wheel motion",
+    pass: smoothScroll.includes("glideScrollState") && css.includes('[data-glide-scroll-state="active"]'),
+  },
+  {
+    label: "Scroll reveal Motion animations use explicit compositor-friendly transitions",
+    pass:
+      strategySection.includes("usePrefersReducedMotion") &&
+      strategySection.includes("revealTransition") &&
+      strategySection.includes("motion-reveal-surface") &&
+      !strategySection.includes("transition={{ delay: 0.1 }}"),
   },
 ];
 

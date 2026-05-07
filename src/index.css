@@ -193,6 +193,24 @@
     @apply border-brand-red/40 bg-industrial-white/80;
     transform: translateY(-1px);
   }
+
+  .scroll-fixed-surface {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .motion-reveal-surface {
+    backface-visibility: hidden;
+    transform-origin: 50% 50%;
+    will-change: opacity, transform;
+  }
+
+  html[data-glide-scroll-state="active"] .scroll-fixed-surface,
+  html[data-glide-scroll-state="active"] .icon-button-glass {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
 }
 
 @layer utilities {

@@ -7,6 +7,7 @@ let activeScrollFrame: number | null = null;
 let activeGlideFrame: number | null = null;
 let glideCurrentTop = 0;
 let glideTargetTop = 0;
+let lastGlideFrameTime: number | null = null;
 
 const nativeScrollSelector = [
   "[contenteditable='true']",
@@ -44,11 +45,19 @@ function cancelActiveScroll() {
   }
 }
 
+function setGlideScrollState(state: "active" | "idle") {
+  if (typeof document === "undefined") return;
+  document.documentElement.dataset.glideScrollState = state;
+}
+
 export function cancelGlideScroll() {
   if (activeGlideFrame !== null) {
     window.cancelAnimationFrame(activeGlideFrame);
     activeGlideFrame = null;
   }
+
+  lastGlideFrameTime = null;
+  setGlideScrollState("idle");
 
   if (typeof window !== "undefined") {
     glideCurrentTop = window.scrollY;
@@ -95,13 +104,23 @@ export function installGlideScroll({ easing = 0.16, multiplier = 1.05 }: GlideSc
 
   const resolvedEasing = clamp(easing, 0.08, 1);
   const resolvedMultiplier = clamp(multiplier, 0.35, 2);
+  const targetFrameMs = 1000 / 60;
 
-  const step = () => {
-    glideCurrentTop += (glideTargetTop - glideCurrentTop) * resolvedEasing;
+  const step = (timestamp: number) => {
+    const deltaMs =
+      lastGlideFrameTime === null
+        ? targetFrameMs
+        : clamp(timestamp - lastGlideFrameTime, targetFrameMs * 0.5, targetFrameMs * 2.5);
+    const frameEasing = 1 - Math.pow(1 - resolvedEasing, deltaMs / targetFrameMs);
+    lastGlideFrameTime = timestamp;
+
+    glideCurrentTop += (glideTargetTop - glideCurrentTop) * frameEasing;
 
     if (Math.abs(glideTargetTop - glideCurrentTop) < 0.5) {
       window.scrollTo({ top: glideTargetTop, left: 0, behavior: "auto" });
       activeGlideFrame = null;
+      lastGlideFrameTime = null;
+      setGlideScrollState("idle");
       return;
     }
 
@@ -115,6 +134,7 @@ export function installGlideScroll({ easing = 0.16, multiplier = 1.05 }: GlideSc
 
     event.preventDefault();
     cancelActiveScroll();
+    setGlideScrollState("active");
 
     glideCurrentTop = activeGlideFrame === null ? window.scrollY : glideCurrentTop;
     glideTargetTop = clamp(
@@ -124,17 +144,20 @@ export function installGlideScroll({ easing = 0.16, multiplier = 1.05 }: GlideSc
     );
 
     if (activeGlideFrame === null) {
+      lastGlideFrameTime = null;
       activeGlideFrame = window.requestAnimationFrame(step);
     }
   };
 
   document.documentElement.dataset.glideScroll = "enabled";
+  document.documentElement.dataset.glideScrollState = "idle";
   document.addEventListener("wheel", onWheel, { passive: false });
 
   return () => {
     document.removeEventListener("wheel", onWheel);
-    document.documentElement.removeAttribute("data-glide-scroll");
     cancelGlideScroll();
+    document.documentElement.removeAttribute("data-glide-scroll");
+    document.documentElement.removeAttribute("data-glide-scroll-state");
   };
 }
 

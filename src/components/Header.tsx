@@ -54,7 +54,7 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-40 border-b border-zinc-800/60 bg-industrial-white/80 shadow-soft backdrop-blur-2xl">
+    <header className="scroll-fixed-surface fixed top-0 left-0 w-full z-40 border-b border-zinc-800/60 bg-industrial-white/90 shadow-soft backdrop-blur-2xl">
       <div className="hidden lg:block border-b border-zinc-800/60">
         <div className="max-w-7xl mx-auto px-6 h-8 flex items-center justify-between text-sm font-medium tracking-wide text-zinc-500">
           <div className="flex items-center gap-8">
