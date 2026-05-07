@@ -12,6 +12,17 @@ const expectations = [
     pass: app.includes("installGlideScroll") && app.includes("<ScrollManager />"),
   },
   {
+    label: "Initial hash loads are normalized so refresh starts at the top",
+    pass:
+      app.includes("normalizeInitialHashNavigation") &&
+      app.includes("window.history.replaceState") &&
+      app.includes("scrollToPageTop('auto')"),
+  },
+  {
+    label: "First-render scroll state is consumed only when the scheduled scroll frame runs",
+    pass: !/const firstRender = isFirstRender\.current;\s*isFirstRender\.current = false;/.test(app),
+  },
+  {
     label: "Header imports the custom scroll helpers",
     pass: header.includes("scrollToHash") && header.includes("scrollToPageTop"),
   },

@@ -4,7 +4,7 @@
  */
 
 import React, { useEffect, useRef } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -16,6 +16,7 @@ import { installGlideScroll, scrollToHash, scrollToPageTop } from './lib/smooth-
 
 function ScrollManager() {
   const location = useLocation();
+  const navigate = useNavigate();
   const isFirstRender = useRef(true);
 
   useEffect(() => {
@@ -32,11 +33,28 @@ function ScrollManager() {
   useEffect(() => installGlideScroll(), []);
 
   useEffect(() => {
-    const firstRender = isFirstRender.current;
-    isFirstRender.current = false;
     const frameIds: number[] = [];
 
+    const normalizeInitialHashNavigation = (firstRender: boolean) => {
+      if (!firstRender || !location.hash || typeof window === 'undefined') return false;
+
+      const topUrl = `${location.pathname}${location.search}`;
+      window.history.replaceState(window.history.state, document.title, topUrl);
+      navigate(topUrl, { replace: true });
+      scrollToPageTop('auto');
+      return true;
+    };
+
     const runScroll = (attemptsLeft = 12) => {
+      const firstRender = isFirstRender.current;
+      if (firstRender) {
+        isFirstRender.current = false;
+      }
+
+      if (normalizeInitialHashNavigation(firstRender)) {
+        return;
+      }
+
       if (location.hash) {
         const didScroll = scrollToHash(location.hash, firstRender ? 'auto' : undefined);
         if ((!didScroll || firstRender) && attemptsLeft > 0) {
@@ -51,13 +69,13 @@ function ScrollManager() {
       }
     };
 
-    const frameId = window.requestAnimationFrame(() => runScroll(firstRender ? 36 : 12));
+    const frameId = window.requestAnimationFrame(() => runScroll(isFirstRender.current ? 36 : 12));
     frameIds.push(frameId);
 
     return () => {
       frameIds.forEach((id) => window.cancelAnimationFrame(id));
     };
-  }, [location.pathname, location.hash]);
+  }, [location.pathname, location.search, location.hash, navigate]);
 
   return null;
 }
