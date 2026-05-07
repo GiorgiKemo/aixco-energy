@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
+    "test:smooth-scroll": "node scripts/validate-smooth-scroll-integration.mjs",
     "test:news": "node scripts/validate-news-content.mjs"
   },
   "dependencies": {

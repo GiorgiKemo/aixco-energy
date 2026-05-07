@@ -1,11 +1,41 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, type MouseEvent } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ExternalLink, Globe, Linkedin, Menu, X } from 'lucide-react';
 import { aixcoAssets, contact, navItems, socialLinks } from '../content/aixcoEnergy';
+import { scrollToHash, scrollToPageTop } from '../lib/smooth-scroll';
 
 export const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleInternalLinkClick = (event: MouseEvent<HTMLAnchorElement>, to: string) => {
+    setOpen(false);
+
+    if (to === "/") {
+      if (location.pathname !== "/") return;
+
+      event.preventDefault();
+      if (location.hash) {
+        navigate("/");
+      }
+      scrollToPageTop();
+      return;
+    }
+
+    const hashIndex = to.indexOf("#");
+    if (hashIndex === -1) return;
+
+    const targetPath = to.slice(0, hashIndex) || "/";
+    const targetHash = to.slice(hashIndex);
+    if (location.pathname !== targetPath) return;
+
+    event.preventDefault();
+    if (location.hash !== targetHash) {
+      navigate(to);
+    }
+    scrollToHash(targetHash);
+  };
 
   const isActive = (to: string) => {
     if (to === "/") {
@@ -28,8 +58,8 @@ export const Header: React.FC = () => {
       <div className="hidden lg:block border-b border-zinc-800/60">
         <div className="max-w-7xl mx-auto px-6 h-8 flex items-center justify-between text-sm font-medium tracking-wide text-zinc-500">
           <div className="flex items-center gap-8">
-            <a href="#contact" className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red">{contact.address}</a>
-            <a href="#contact" className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red">{contact.support}</a>
+            <Link to="/#contact" onClick={(event) => handleInternalLinkClick(event, "/#contact")} className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red">{contact.address}</Link>
+            <Link to="/#contact" onClick={(event) => handleInternalLinkClick(event, "/#contact")} className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red">{contact.support}</Link>
             <a href={`mailto:${contact.email}`} className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red">{contact.email}</a>
           </div>
           <div className="flex items-center gap-3">
@@ -45,7 +75,7 @@ export const Header: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-6">
-          <Link to="/" aria-label="AIXCO Energy home" className="inline-flex min-h-11 items-center gap-2.5 text-industrial-black">
+          <Link to="/" onClick={(event) => handleInternalLinkClick(event, "/")} aria-label="AIXCO Energy home" className="inline-flex min-h-11 items-center gap-2.5 text-industrial-black">
             <img src={aixcoAssets.markBlack} alt="" aria-hidden className="h-8 w-8 object-contain md:h-9 md:w-9" />
             <span className="whitespace-nowrap text-sm font-medium tracking-normal md:text-[15px]">
               AIXCO.ENERGY
@@ -56,6 +86,7 @@ export const Header: React.FC = () => {
               <Link
                 key={item.label}
                 to={item.to}
+                onClick={(event) => handleInternalLinkClick(event, item.to)}
                 aria-current={isActive(item.to) ? "page" : undefined}
                 className={`inline-flex min-h-10 items-center rounded-full px-3 transition-colors hover:bg-brand-red/10 hover:text-brand-red ${isActive(item.to) ? "bg-brand-red/10 text-brand-red" : ""}`}
               >
@@ -94,7 +125,7 @@ export const Header: React.FC = () => {
               <Link
                 key={item.label}
                 to={item.to}
-                onClick={() => setOpen(false)}
+                onClick={(event) => handleInternalLinkClick(event, item.to)}
                 aria-current={isActive(item.to) ? "page" : undefined}
                 className={`inline-flex min-h-11 min-w-11 items-center rounded-lg px-3 transition-colors hover:bg-brand-red/10 hover:text-brand-red ${isActive(item.to) ? "bg-brand-red/10 text-brand-red" : ""}`}
               >
