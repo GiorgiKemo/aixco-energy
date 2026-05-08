@@ -9,3 +9,5 @@ aixco-energy-*.png
 *.log
 .env*
 !.env.example
+
+.vercel
