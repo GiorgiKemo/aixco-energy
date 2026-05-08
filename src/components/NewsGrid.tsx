@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { focusAreas } from '../content/aixcoEnergy';
+import { TrackedBlueRockLink } from './TrackedBlueRockLink';
 
 export const NewsGrid: React.FC = () => {
   return (
@@ -14,14 +15,12 @@ export const NewsGrid: React.FC = () => {
               Examples of project types we may pursue
             </h2>
           </div>
-          <a
-            href="https://bluerock.cc"
-            target="_blank"
-            rel="noreferrer"
+          <TrackedBlueRockLink
+            label="focus_areas_bluerock"
             className="group inline-flex min-h-11 items-center gap-2 text-sm font-black uppercase tracking-normal text-zinc-500 transition-colors hover:text-brand-red"
           >
             Buy on BlueRock <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-          </a>
+          </TrackedBlueRockLink>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800 border border-zinc-800">
@@ -31,7 +30,7 @@ export const NewsGrid: React.FC = () => {
               className="h-full min-h-[20rem]"
             >
               <Link
-                to="/projects"
+                href="/projects"
                 aria-label={`Explore ${area.title} project types`}
                 className={`group flex h-full min-h-[20rem] flex-col overflow-hidden p-8 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red sm:p-9 lg:p-10 ${
                   index > 2

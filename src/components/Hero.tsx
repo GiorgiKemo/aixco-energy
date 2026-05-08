@@ -1,8 +1,11 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion } from 'motion/react';
 import { BatteryCharging, Droplets, ExternalLink, Network, Sun, Wind } from 'lucide-react';
 import { aixcoAssets, heroCopy, heroVerticals, platformMetrics } from '../content/aixcoEnergy';
+import { recordBlueRockClick } from '../lib/backend/energy-lead-capture';
 
 const verticalIcons = [Sun, Wind, BatteryCharging, Droplets, Network];
 
@@ -41,13 +44,16 @@ export const Hero: React.FC = () => {
                 {heroCopy.body}
               </p>
               <div className="mt-6 flex flex-wrap gap-4">
-                <Link to="/projects" className="brutal-btn italic">
+                <Link href="/projects" className="brutal-btn italic">
                   Explore Projects
                 </Link>
                 <a
                   href="https://bluerock.cc"
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => {
+                    void recordBlueRockClick('hero_bluerock');
+                  }}
                   className="btn-ghost-gold"
                 >
                   Buy on BlueRock <ExternalLink size={14} />
@@ -90,7 +96,7 @@ export const Hero: React.FC = () => {
               );
             })}
           </div>
-          <Link to="/#faqs" className="flex h-16 shrink-0 cursor-pointer items-center justify-center bg-brand-red px-6 text-center text-lg font-black uppercase italic leading-none tracking-normal text-industrial-white transition-all hover:bg-industrial-black xl:h-20 xl:text-xl">
+          <Link href="/#faqs" className="flex h-16 shrink-0 cursor-pointer items-center justify-center bg-brand-red px-6 text-center text-lg font-black uppercase italic leading-none tracking-normal text-industrial-white transition-all hover:bg-industrial-black xl:h-20 xl:text-xl">
             Investor FAQs
           </Link>
         </div>

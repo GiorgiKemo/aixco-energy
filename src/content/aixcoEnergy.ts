@@ -1,4 +1,4 @@
-const publicAsset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+const publicAsset = (path: string) => `/${path.replace(/^\//, "")}`;
 
 export const aixcoAssets = {
   logoWide: publicAsset("aixco-energy/images/AIXCOGlobalWlong.png"),

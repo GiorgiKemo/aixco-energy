@@ -1,13 +1,17 @@
 node_modules/
 build/
 dist/
+.next/
+out/
 coverage/
 .playwright-mcp/
 .deploy-gh-pages/
 aixco-energy-*.png
 .DS_Store
 *.log
+*.tsbuildinfo
 .env*
 !.env.example
 
 .vercel
+supabase/.temp/

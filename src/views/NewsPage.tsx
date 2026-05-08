@@ -1,8 +1,10 @@
 import React from 'react';
+import Image from 'next/image';
 import { ArrowRight, Check, ExternalLink, Quote } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { aixcoAssets, ctaCopy, futureGrowth, investorReasons, pvArticle } from '../content/aixcoEnergy';
 import { newsArticles } from '../content/newsArticles';
+import { TrackedPdfLink } from '../components/TrackedPdfLink';
 
 const NewsPage: React.FC = () => {
   const lastArticleIndex = newsArticles.length - 1;
@@ -38,16 +40,20 @@ const NewsPage: React.FC = () => {
               >
                 <div className={`flex h-full min-w-0 flex-col ${isLgOrphan ? "lg:grid lg:grid-cols-12" : ""}`}>
                   <Link
-                    to={`/news/${article.slug}`}
+                    href={`/news/${article.slug}`}
                     className={`group block border-b border-zinc-800 bg-industrial-white p-4 ${
                       isLgOrphan ? "lg:col-span-4 lg:border-b-0 lg:border-r lg:p-8" : ""
                     }`}
                   >
-                    <img
-                      src={article.image}
-                      alt={`${article.title} article preview`}
-                      className={`w-full object-contain ${isWideArticle ? "h-80" : "h-64"} ${isLgOrphan ? "lg:h-full lg:min-h-[24rem]" : ""}`}
-                    />
+                    <span className={`relative block w-full ${isWideArticle ? "h-80" : "h-64"} ${isLgOrphan ? "lg:h-full lg:min-h-[24rem]" : ""}`}>
+                      <Image
+                        src={article.image}
+                        alt={`${article.title} article preview`}
+                        fill
+                        sizes={isLgOrphan ? "(max-width: 1024px) 100vw, 33vw" : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"}
+                        className="object-contain"
+                      />
+                    </span>
                   </Link>
                   <div className={`flex min-w-0 flex-1 flex-col p-6 sm:p-7 md:p-8 ${isLgOrphan ? "lg:col-span-8 lg:p-10 xl:p-12" : ""}`}>
                     <div className="mb-6 flex flex-wrap items-center gap-3 text-sm font-black uppercase tracking-normal">
@@ -74,19 +80,22 @@ const NewsPage: React.FC = () => {
                       </div>
                       <div className="flex flex-wrap gap-3">
                         <Link
-                          to={`/news/${article.slug}`}
+                          href={`/news/${article.slug}`}
                           className="btn-gold min-h-11 px-4 py-2 text-sm"
                         >
                           Read article <ArrowRight className="h-4 w-4" />
                         </Link>
-                        <a
+                        <TrackedPdfLink
                           href={article.href}
-                          target="_blank"
-                          rel="noreferrer"
+                          label="news_archive_original_pdf"
+                          metadata={{
+                            article_slug: article.slug,
+                            article_title: article.title,
+                          }}
                           className="btn-ghost-gold min-h-11 px-4 py-2 text-sm"
                         >
                           Original PDF <ExternalLink className="h-4 w-4" />
-                        </a>
+                        </TrackedPdfLink>
                       </div>
                     </div>
                   </div>
@@ -115,7 +124,15 @@ const NewsPage: React.FC = () => {
             <aside className="lg:col-span-4">
               <div className="sticky top-32 space-y-6">
                 <div className="overflow-hidden border border-zinc-800 bg-zinc-950">
-                  <img src={aixcoAssets.solarProject} alt="AT&S Fehring solar installation" className="aspect-[4/3] w-full object-cover opacity-95" />
+                  <div className="relative aspect-[4/3] w-full">
+                    <Image
+                      src={aixcoAssets.solarProject}
+                      alt="AT&S Fehring solar installation"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                      className="object-cover opacity-95"
+                    />
+                  </div>
                   <p className="p-5 text-sm font-black uppercase leading-relaxed text-zinc-500">
                     {pvArticle.imageCaption}
                   </p>
@@ -137,7 +154,7 @@ const NewsPage: React.FC = () => {
               </div>
 
               <div className="mb-10">
-                <Link to="/news/solar-energy-new-thinking" className="btn-gold">
+                <Link href="/news/solar-energy-new-thinking" className="btn-gold">
                   Read full article page <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>

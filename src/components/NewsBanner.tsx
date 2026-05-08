@@ -1,15 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { aixcoAssets, ctaCopy } from '../content/aixcoEnergy';
 
 export const NewsBanner: React.FC = () => {
   return (
     <section className="relative overflow-hidden bg-zinc-950 text-industrial-black border-y border-zinc-800 px-6 py-28">
-      <img
+      <Image
         src={aixcoAssets.windGridProject}
         alt=""
         aria-hidden
+        fill
+        sizes="100vw"
         className="absolute inset-0 h-full w-full object-cover opacity-[0.16]"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-industrial-white via-industrial-white/92 to-industrial-white/60" />
@@ -25,7 +28,7 @@ export const NewsBanner: React.FC = () => {
           </p>
         </div>
         <div className="lg:col-span-4 lg:text-right">
-          <Link to="/news" className="brutal-btn group inline-flex items-center gap-4 italic">
+          <Link href="/news" className="brutal-btn group inline-flex items-center gap-4 italic">
             Read News <ArrowRight className="group-hover:translate-x-2 transition-transform" />
           </Link>
         </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { aixcoAssets, marqueeItems } from '../content/aixcoEnergy';
 
 export const NewsTicker: React.FC = () => {
@@ -16,7 +17,15 @@ export const NewsTicker: React.FC = () => {
             {marqueeItems.map((item) => (
               <span key={`${group}-${item}`} className="energy-ticker__item">
                 {item}
-                <img src={aixcoAssets.markBlack} alt="" aria-hidden className="energy-ticker__mark object-contain" />
+                <Image
+                  src={aixcoAssets.markBlack}
+                  alt=""
+                  aria-hidden
+                  width={779}
+                  height={705}
+                  sizes="40px"
+                  className="energy-ticker__mark object-contain"
+                />
               </span>
             ))}
           </div>

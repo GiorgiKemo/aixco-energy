@@ -1,23 +1,47 @@
-import React, { useState, type MouseEvent } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+'use client';
+
+import React, { useEffect, useState, type MouseEvent } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ExternalLink, Globe, Linkedin, Menu, X } from 'lucide-react';
 import { aixcoAssets, contact, navItems, socialLinks } from '../content/aixcoEnergy';
+import { recordBlueRockClick, recordEmailClick } from '../lib/backend/energy-lead-capture';
 import { scrollToHash, scrollToPageTop } from '../lib/smooth-scroll';
 
 export const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const [currentHash, setCurrentHash] = useState('');
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const updateHash = () => setCurrentHash(window.location.hash);
+
+    updateHash();
+    window.addEventListener('hashchange', updateHash);
+    window.addEventListener('popstate', updateHash);
+
+    return () => {
+      window.removeEventListener('hashchange', updateHash);
+      window.removeEventListener('popstate', updateHash);
+    };
+  }, []);
+
+  useEffect(() => {
+    setCurrentHash(window.location.hash);
+  }, [pathname]);
 
   const handleInternalLinkClick = (event: MouseEvent<HTMLAnchorElement>, to: string) => {
     setOpen(false);
+    const activePathname = pathname || '/';
 
     if (to === "/") {
-      if (location.pathname !== "/") return;
+      if (activePathname !== "/") return;
 
       event.preventDefault();
-      if (location.hash) {
-        navigate("/");
+      if (currentHash) {
+        window.history.pushState(window.history.state, document.title, "/");
+        setCurrentHash("");
       }
       scrollToPageTop();
       return;
@@ -28,29 +52,32 @@ export const Header: React.FC = () => {
 
     const targetPath = to.slice(0, hashIndex) || "/";
     const targetHash = to.slice(hashIndex);
-    if (location.pathname !== targetPath) return;
+    if (activePathname !== targetPath) return;
 
     event.preventDefault();
-    if (location.hash !== targetHash) {
-      navigate(to);
+    if (currentHash !== targetHash) {
+      window.history.pushState(window.history.state, document.title, to);
+      setCurrentHash(targetHash);
     }
     scrollToHash(targetHash);
   };
 
   const isActive = (to: string) => {
+    const activePathname = pathname || '/';
+
     if (to === "/") {
-      return location.pathname === "/" && !location.hash;
+      return activePathname === "/" && !currentHash;
     }
 
     if (to.startsWith("/#")) {
-      return location.pathname === "/" && location.hash === to.slice(1);
+      return activePathname === "/" && currentHash === to.slice(1);
     }
 
     if (to === "/news") {
-      return location.pathname === "/news" || location.pathname.startsWith("/news/");
+      return activePathname === "/news" || activePathname.startsWith("/news/");
     }
 
-    return location.pathname === to;
+    return activePathname === to;
   };
 
   return (
@@ -58,9 +85,17 @@ export const Header: React.FC = () => {
       <div className="hidden lg:block border-b border-zinc-800/60">
         <div className="max-w-7xl mx-auto px-6 h-8 flex items-center justify-between text-sm font-medium tracking-wide text-zinc-500">
           <div className="flex items-center gap-8">
-            <Link to="/#contact" onClick={(event) => handleInternalLinkClick(event, "/#contact")} className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red">{contact.address}</Link>
-            <Link to="/#contact" onClick={(event) => handleInternalLinkClick(event, "/#contact")} className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red">{contact.support}</Link>
-            <a href={`mailto:${contact.email}`} className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red">{contact.email}</a>
+            <Link href="/#contact" onClick={(event) => handleInternalLinkClick(event, "/#contact")} className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red">{contact.address}</Link>
+            <Link href="/#contact" onClick={(event) => handleInternalLinkClick(event, "/#contact")} className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red">{contact.support}</Link>
+            <a
+              href={`mailto:${contact.email}`}
+              onClick={() => {
+                void recordEmailClick('header_email', contact.email);
+              }}
+              className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red"
+            >
+              {contact.email}
+            </a>
           </div>
           <div className="flex items-center gap-3">
             <a href={socialLinks.aixcoGlobal} target="_blank" rel="noreferrer" aria-label="AIXCO Global" className="inline-flex h-8 w-8 items-center justify-center transition-colors hover:text-brand-red">
@@ -75,8 +110,16 @@ export const Header: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-6">
-          <Link to="/" onClick={(event) => handleInternalLinkClick(event, "/")} aria-label="AIXCO Energy home" className="inline-flex min-h-11 items-center gap-2.5 text-industrial-black">
-            <img src={aixcoAssets.markBlack} alt="" aria-hidden className="h-8 w-8 object-contain md:h-9 md:w-9" />
+          <Link href="/" onClick={(event) => handleInternalLinkClick(event, "/")} aria-label="AIXCO Energy home" className="inline-flex min-h-11 items-center gap-2.5 text-industrial-black">
+            <Image
+              src={aixcoAssets.markBlack}
+              alt=""
+              aria-hidden
+              width={779}
+              height={705}
+              sizes="36px"
+              className="h-8 w-8 object-contain md:h-9 md:w-9"
+            />
             <span className="whitespace-nowrap text-sm font-medium tracking-normal md:text-[15px]">
               AIXCO.ENERGY
             </span>
@@ -85,7 +128,7 @@ export const Header: React.FC = () => {
             {navItems.map((item) => (
               <Link
                 key={item.label}
-                to={item.to}
+                href={item.to}
                 onClick={(event) => handleInternalLinkClick(event, item.to)}
                 aria-current={isActive(item.to) ? "page" : undefined}
                 className={`inline-flex min-h-10 items-center rounded-full px-3 transition-colors hover:bg-brand-red/10 hover:text-brand-red ${isActive(item.to) ? "bg-brand-red/10 text-brand-red" : ""}`}
@@ -101,6 +144,9 @@ export const Header: React.FC = () => {
             href="https://bluerock.cc"
             target="_blank"
             rel="noreferrer"
+            onClick={() => {
+              void recordBlueRockClick('header_desktop_bluerock');
+            }}
             className="btn-gold hidden min-h-11 px-4 py-2 text-sm font-bold !text-white sm:inline-flex"
           >
             Buy on BlueRock <ExternalLink size={13} />
@@ -124,7 +170,7 @@ export const Header: React.FC = () => {
             {navItems.map((item) => (
               <Link
                 key={item.label}
-                to={item.to}
+                href={item.to}
                 onClick={(event) => handleInternalLinkClick(event, item.to)}
                 aria-current={isActive(item.to) ? "page" : undefined}
                 className={`inline-flex min-h-11 min-w-11 items-center rounded-lg px-3 transition-colors hover:bg-brand-red/10 hover:text-brand-red ${isActive(item.to) ? "bg-brand-red/10 text-brand-red" : ""}`}
@@ -132,7 +178,16 @@ export const Header: React.FC = () => {
                 {item.label}
               </Link>
             ))}
-            <a href="https://bluerock.cc" target="_blank" rel="noreferrer" onClick={() => setOpen(false)} className="btn-gold mt-2 justify-center">
+            <a
+              href="https://bluerock.cc"
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => {
+                setOpen(false);
+                void recordBlueRockClick('header_mobile_bluerock');
+              }}
+              className="btn-gold mt-2 justify-center"
+            >
               Buy on BlueRock
             </a>
           </div>

@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
 import { motion, type Transition } from 'motion/react';
 import { Check, MoveRight } from 'lucide-react';
 import { aixcoAssets, strategyCopy, whyCopy } from '../content/aixcoEnergy';
@@ -72,10 +75,22 @@ export const StrategySection: React.FC = () => {
             className="motion-reveal-surface lg:col-span-6 relative min-h-[520px]"
           >
             <div className="absolute left-0 top-6 aspect-[4/3] w-[72%] overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 shadow-elegant">
-              <img src={aixcoAssets.solarProject} alt="Solar project" className="h-full w-full object-cover opacity-95" />
+              <Image
+                src={aixcoAssets.solarProject}
+                alt="Solar project"
+                fill
+                sizes="(max-width: 1024px) 72vw, 36vw"
+                className="object-cover opacity-95"
+              />
             </div>
             <div className="absolute right-0 bottom-4 aspect-[4/3] w-[68%] overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 shadow-elegant">
-              <img src={aixcoAssets.windGridProject} alt="Wind and grid project" className="h-full w-full object-cover opacity-95" />
+              <Image
+                src={aixcoAssets.windGridProject}
+                alt="Wind and grid project"
+                fill
+                sizes="(max-width: 1024px) 68vw, 34vw"
+                className="object-cover opacity-95"
+              />
             </div>
           </motion.div>
 
@@ -101,7 +116,7 @@ export const StrategySection: React.FC = () => {
                 </li>
               ))}
             </ul>
-            <Link to="/platform" className="brutal-btn inline-flex items-center gap-3 italic">
+            <Link href="/platform" className="brutal-btn inline-flex items-center gap-3 italic">
               Learn More About AIXCO Energy <MoveRight size={18} />
             </Link>
           </motion.div>

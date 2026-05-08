@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
 import { Globe, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import {
   aboutEnergy,
@@ -11,21 +14,33 @@ import {
   navItems,
   socialLinks,
 } from '../content/aixcoEnergy';
+import { recordEmailClick } from '../lib/backend/energy-lead-capture';
 
 export const Footer: React.FC = () => {
   return (
     <footer id="contact" className="relative overflow-hidden bg-industrial-white text-industrial-black border-t border-zinc-800 px-6 py-20">
-      <img
+      <Image
         src={aixcoAssets.footerShape}
         alt=""
         aria-hidden
-        className="pointer-events-none absolute bottom-0 right-0 w-1/2 max-w-3xl opacity-10"
+        width={2240}
+        height={2240}
+        sizes="(max-width: 768px) 50vw, 768px"
+        className="pointer-events-none absolute bottom-0 right-0 h-auto w-1/2 max-w-3xl opacity-10"
       />
 
       <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
         <div className="md:col-span-4">
           <div className="mb-8 inline-flex items-center gap-3">
-            <img src={aixcoAssets.markBlack} alt="" aria-hidden className="h-10 w-10 object-contain" />
+            <Image
+              src={aixcoAssets.markBlack}
+              alt=""
+              aria-hidden
+              width={779}
+              height={705}
+              sizes="40px"
+              className="h-10 w-10 object-contain"
+            />
             <span className="text-lg font-medium tracking-normal">AIXCO.ENERGY</span>
           </div>
           <p className="mb-8 max-w-xs text-sm font-black uppercase leading-relaxed text-zinc-500">
@@ -46,7 +61,7 @@ export const Footer: React.FC = () => {
           <ul className="flex flex-col gap-4 text-sm font-bold uppercase tracking-normal text-zinc-400">
             {energyFocus.map((item) => (
               <li key={item}>
-                <Link to={item === "Technology News" ? "/news" : "/projects"} className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-brand-red">
+                <Link href={item === "Technology News" ? "/news" : "/projects"} className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-brand-red">
                   {item}
                 </Link>
               </li>
@@ -59,7 +74,7 @@ export const Footer: React.FC = () => {
           <ul className="flex flex-col gap-4 text-sm font-bold uppercase tracking-normal text-zinc-400">
             {navItems.map((item) => (
               <li key={item.label}>
-                <Link to={item.to} className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-brand-red">
+                <Link href={item.to} className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-brand-red">
                   {item.label}
                 </Link>
               </li>
@@ -80,7 +95,15 @@ export const Footer: React.FC = () => {
             </div>
             <div>
               <div className="mb-2 flex items-center gap-2 text-industrial-black"><Mail size={14} className="text-brand-red" /> Email</div>
-              <a href={`mailto:${contact.email}`} className="inline-flex min-h-11 items-center transition-colors hover:text-brand-red">{contact.email}</a>
+              <a
+                href={`mailto:${contact.email}`}
+                onClick={() => {
+                  void recordEmailClick('footer_email', contact.email);
+                }}
+                className="inline-flex min-h-11 items-center transition-colors hover:text-brand-red"
+              >
+                {contact.email}
+              </a>
             </div>
           </div>
         </div>

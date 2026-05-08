@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { focusAreas, investmentThemes } from '../content/aixcoEnergy';
+import { TrackedBlueRockLink } from '../components/TrackedBlueRockLink';
 
 const ProjectsPage: React.FC = () => {
   return (
@@ -18,12 +19,14 @@ const ProjectsPage: React.FC = () => {
         
         <div className="flex flex-col gap-4 mb-24">
           {focusAreas.map((project, index) => (
-            <a
+            <TrackedBlueRockLink
               key={project.title}
-              href="https://bluerock.cc"
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`View ${project.title} on BlueRock`}
+              label="projects_page_focus_area"
+              metadata={{
+                focus_area: project.title,
+                position: index + 1,
+              }}
+              ariaLabel={`View ${project.title} on BlueRock`}
               className="group grid min-w-0 grid-cols-1 items-center border border-zinc-800 bg-zinc-950 p-6 text-industrial-black transition-all hover:border-brand-red hover:bg-brand-red/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red sm:p-8 md:grid-cols-12"
             >
               <div className="text-sm font-black text-brand-red md:col-span-1">
@@ -41,7 +44,7 @@ const ProjectsPage: React.FC = () => {
                   <ArrowRight aria-hidden />
                 </span>
               </div>
-            </a>
+            </TrackedBlueRockLink>
           ))}
         </div>
         

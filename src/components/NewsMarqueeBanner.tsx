@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRight, Newspaper } from 'lucide-react';
 import { pressArticles } from '../content/aixcoEnergy';
 
@@ -24,7 +25,7 @@ export const NewsMarqueeBanner: React.FC = () => {
             </h2>
           </div>
           <Link
-            to="/news"
+            href="/news"
             className="group inline-flex min-h-11 shrink-0 items-center gap-2 text-sm font-semibold text-zinc-500 transition-colors hover:text-brand-red"
           >
             View all news
@@ -39,12 +40,19 @@ export const NewsMarqueeBanner: React.FC = () => {
                 {pressArticles.map((article) => (
                   <Link
                     key={`${group}-${article.slug}`}
-                    to={`/news/${article.slug}`}
+                    href={`/news/${article.slug}`}
                     tabIndex={group > 0 ? -1 : undefined}
                     className="news-marquee__card group"
                   >
                     <span className="news-marquee__image-wrap">
-                      <img src={article.image} alt="" aria-hidden="true" className="news-marquee__image" />
+                      <Image
+                        src={article.image}
+                        alt=""
+                        aria-hidden="true"
+                        fill
+                        sizes="(max-width: 768px) 100px, 144px"
+                        className="news-marquee__image"
+                      />
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className="mb-2 flex flex-wrap items-center gap-2 text-[0.76rem] font-semibold text-brand-red">

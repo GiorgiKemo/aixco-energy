@@ -1,14 +1,19 @@
 import React from "react";
+import Image from "next/image";
 import { ArrowLeft, Check, ExternalLink, Quote } from "lucide-react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import Link from "next/link";
 import { getNewsArticleBySlug, newsArticles } from "../content/newsArticles";
+import { TrackedPdfLink } from "../components/TrackedPdfLink";
 
-const ArticlePage: React.FC = () => {
-  const { slug } = useParams();
+type ArticlePageProps = {
+  slug: string;
+};
+
+const ArticlePage: React.FC<ArticlePageProps> = ({ slug }) => {
   const article = getNewsArticleBySlug(slug);
 
   if (!article) {
-    return <Navigate to="/news" replace />;
+    return null;
   }
 
   const relatedArticles = newsArticles
@@ -19,12 +24,20 @@ const ArticlePage: React.FC = () => {
     <main className="min-h-screen bg-industrial-white pt-24 text-industrial-black lg:pt-32">
       <article className="mx-auto max-w-7xl px-6 pb-24 pt-12 md:pt-18">
         <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
-          <Link to="/news" className="btn-ghost-gold">
+          <Link href="/news" className="btn-ghost-gold">
             <ArrowLeft className="h-4 w-4" /> Back to news
           </Link>
-          <a href={article.href} target="_blank" rel="noreferrer" className="btn-gold">
+          <TrackedPdfLink
+            href={article.href}
+            label="article_page_original_pdf"
+            metadata={{
+              article_slug: article.slug,
+              article_title: article.title,
+            }}
+            className="btn-gold"
+          >
             Original PDF <ExternalLink className="h-4 w-4" />
-          </a>
+          </TrackedPdfLink>
         </div>
 
         <header className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
@@ -43,11 +56,15 @@ const ArticlePage: React.FC = () => {
           <aside className="lg:col-span-5">
             <div className="overflow-hidden border border-zinc-800 bg-zinc-950 shadow-soft">
               <div className="border-b border-zinc-800 bg-industrial-white p-5">
-                <img
-                  src={article.image}
-                  alt={`${article.title} source preview`}
-                  className="mx-auto h-80 w-full object-contain"
-                />
+                <div className="relative h-80 w-full">
+                  <Image
+                    src={article.image}
+                    alt={`${article.title} source preview`}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-contain"
+                  />
+                </div>
               </div>
               <div className="space-y-4 p-6">
                 <div className="flex flex-wrap gap-2 text-sm font-black text-zinc-500">
@@ -130,7 +147,7 @@ const ArticlePage: React.FC = () => {
             {relatedArticles.map((item) => (
               <Link
                 key={item.slug}
-                to={`/news/${item.slug}`}
+                href={`/news/${item.slug}`}
                 className="group min-w-0 bg-industrial-white p-6 transition-colors hover:bg-zinc-900"
               >
                 <div className="mb-5 text-sm font-black text-brand-red">{item.publication}</div>
