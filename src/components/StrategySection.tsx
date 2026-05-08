@@ -10,10 +10,7 @@ import { aixcoAssets, strategyCopy, whyCopy } from '../content/aixcoEnergy';
 const premiumEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 function usePrefersReducedMotion() {
-  const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(() => {
-    if (typeof window === 'undefined') return false;
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  });
+  const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(false);
 
   React.useEffect(() => {
     if (typeof window === 'undefined') return;
