@@ -54,7 +54,7 @@ export const NewsMarqueeBanner: React.FC = () => {
                         className="news-marquee__image"
                       />
                     </span>
-                    <span className="min-w-0 flex-1">
+                    <span className="news-marquee__body">
                       <span className="mb-2 flex flex-wrap items-center gap-2 text-[0.76rem] font-semibold text-brand-red">
                         <span>{article.category}</span>
                         <span className="h-1 w-1 rounded-full bg-zinc-700" aria-hidden="true" />
