@@ -211,6 +211,7 @@
     box-shadow: var(--shadow-gold);
     opacity: 0;
     pointer-events: none;
+    cursor: pointer;
     transform: translateY(0.75rem);
     backface-visibility: hidden;
     will-change: opacity, transform;

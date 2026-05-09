@@ -222,14 +222,14 @@ export const Footer: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveLegal('terms')}
-            className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red"
+            className="inline-flex min-h-8 cursor-pointer items-center transition-colors hover:text-brand-red focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red"
           >
             Terms &amp; Conditions
           </button>
           <button
             type="button"
             onClick={() => setActiveLegal('privacy')}
-            className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red"
+            className="inline-flex min-h-8 cursor-pointer items-center transition-colors hover:text-brand-red focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red"
           >
             Privacy Policy
           </button>
@@ -262,7 +262,7 @@ export const Footer: React.FC = () => {
                 type="button"
                 aria-label="Close"
                 onClick={() => setActiveLegal(null)}
-                className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-zinc-300 text-zinc-600 transition-colors hover:border-brand-red hover:bg-brand-red hover:text-industrial-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red"
+                className="inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-zinc-300 text-zinc-600 transition-colors hover:border-brand-red hover:bg-brand-red hover:text-industrial-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red"
               >
                 <X className="h-5 w-5" aria-hidden="true" />
               </button>
