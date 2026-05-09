@@ -9,10 +9,10 @@ export const NewsMarqueeBanner: React.FC = () => {
 
   return (
     <section
-      id="press-banner"
+      id="news"
       data-nav-section="/news"
       aria-label="Latest AIXCO Energy press coverage"
-      className="news-marquee border-y border-zinc-800 bg-industrial-white text-industrial-black"
+      className="news-marquee scroll-mt-[65px] border-y border-zinc-800 bg-industrial-white text-industrial-black lg:scroll-mt-[98px]"
     >
       <div className="mx-auto max-w-7xl px-6 py-12 lg:py-14">
         <div className="news-marquee__header">

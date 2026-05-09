@@ -1,12 +1,12 @@
 import React from 'react';
-import { BatteryCharging, Check, Droplets, Network, Sun, Wind } from 'lucide-react';
-import { futureGrowth, investmentThemes, investorReasons } from '../content/aixcoEnergy';
+import { BatteryCharging, Droplets, Sun, Wind } from 'lucide-react';
+import { futureGrowth, investmentThemes } from '../content/aixcoEnergy';
 
 const themeIcons = [Sun, Wind, BatteryCharging, Droplets];
 
 export const TechSection: React.FC = () => {
   return (
-    <section data-nav-section="/news" className="bg-zinc-950 text-industrial-black border-y border-zinc-800">
+    <section data-nav-section="/projects" className="bg-zinc-950 text-industrial-black border-y border-zinc-800">
       <div className="max-w-7xl mx-auto px-6 py-32">
         <div className="max-w-3xl mx-auto text-center mb-20">
           <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">Investment Themes</div>
@@ -33,37 +33,18 @@ export const TechSection: React.FC = () => {
           })}
         </div>
 
-        <div id="news" data-nav-section="/news" className="grid scroll-mt-[65px] grid-cols-1 gap-px border border-zinc-800 bg-zinc-800 lg:grid-cols-2 lg:scroll-mt-[98px]">
-          <div className="bg-industrial-white p-8 md:p-12">
-            <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{futureGrowth.label}</div>
-            <h2 className="text-[clamp(2.3rem,5vw,4.8rem)] mb-8">{futureGrowth.title}</h2>
-            <p className="mb-8 text-sm font-black uppercase leading-relaxed text-zinc-500">{futureGrowth.body}</p>
-            <div className="flex flex-wrap gap-3 mb-8">
-              {futureGrowth.tags.map((tag) => (
-                <span key={tag} className="border border-brand-red/40 bg-brand-red/10 px-3 py-2 text-sm font-black uppercase text-brand-red">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <p className="text-sm font-black uppercase leading-relaxed text-zinc-500">{futureGrowth.close}</p>
+        <div className="border border-zinc-800 bg-industrial-white p-8 md:p-12">
+          <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{futureGrowth.label}</div>
+          <h2 className="mb-8 text-[clamp(2.3rem,5vw,4.8rem)]">{futureGrowth.title}</h2>
+          <p className="mb-8 text-sm font-black uppercase leading-relaxed text-zinc-500">{futureGrowth.body}</p>
+          <div className="mb-8 flex flex-wrap gap-3">
+            {futureGrowth.tags.map((tag) => (
+              <span key={tag} className="border border-brand-red/40 bg-brand-red/10 px-3 py-2 text-sm font-black uppercase text-brand-red">
+                {tag}
+              </span>
+            ))}
           </div>
-
-          <div id="faqs" data-nav-section="/#faqs" className="scroll-mt-[65px] bg-industrial-white p-8 text-industrial-black md:p-12 lg:scroll-mt-[98px]">
-            <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{investorReasons.label}</div>
-            <h2 className="text-[clamp(2.2rem,4vw,4rem)] mb-8">{investorReasons.title}</h2>
-            <ul className="space-y-4">
-              {investorReasons.bullets.map((bullet) => (
-                <li key={bullet} className="flex gap-3 text-sm font-black uppercase leading-relaxed text-zinc-500">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
-                  {bullet}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-10 flex items-center gap-3 text-brand-red">
-              <Network size={20} />
-              <span className="text-sm font-black uppercase tracking-normal">Investor FAQs</span>
-            </div>
-          </div>
+          <p className="text-sm font-black uppercase leading-relaxed text-zinc-500">{futureGrowth.close}</p>
         </div>
       </div>
     </section>

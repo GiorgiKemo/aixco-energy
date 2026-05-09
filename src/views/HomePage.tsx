@@ -6,17 +6,19 @@ import { TechSection } from '../components/TechSection';
 import { NewsBanner } from '../components/NewsBanner';
 import { NewsMarqueeBanner } from '../components/NewsMarqueeBanner';
 import { StrategySection } from '../components/StrategySection';
+import { FaqSection } from '../components/FaqSection';
 
 const HomePage: React.FC = () => {
   return (
     <main className="bg-industrial-white text-industrial-black">
       <Hero />
-      <NewsMarqueeBanner />
       <StrategySection />
-      <NewsTicker />
-      <TechSection />
       <NewsGrid />
+      <TechSection />
+      <NewsTicker />
+      <NewsMarqueeBanner />
       <NewsBanner />
+      <FaqSection />
     </main>
   );
 };
