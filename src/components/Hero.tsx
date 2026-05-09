@@ -96,7 +96,7 @@ export const Hero: React.FC = () => {
               );
             })}
           </div>
-          <Link href="/#faqs" className="flex h-16 shrink-0 cursor-pointer items-center justify-center bg-brand-red px-6 text-center text-lg font-black uppercase italic leading-none tracking-normal text-industrial-white transition-all hover:bg-industrial-black xl:h-20 xl:text-xl">
+          <Link href="/#faqs" className="-mb-px flex h-16 shrink-0 cursor-pointer items-center justify-center bg-brand-red px-6 text-center text-lg font-black uppercase italic leading-none tracking-normal text-industrial-white transition-all hover:bg-industrial-black xl:h-20 xl:text-xl">
             Investor FAQs
           </Link>
         </div>

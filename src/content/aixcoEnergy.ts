@@ -22,7 +22,7 @@ export const contact = {
 
 export const socialLinks = {
   aixcoGlobal: "https://aixco.global",
-  linkedin: "https://www.linkedin.com/company/aixco-global",
+  linkedin: "https://www.linkedin.com/company/aixco/",
 };
 
 export const navItems = [
