@@ -58,10 +58,10 @@ export const Footer: React.FC = () => {
         
         <div className="md:col-span-3">
           <h4 className="mb-6 text-sm font-black tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">ENERGY FOCUS</h4>
-          <ul className="flex flex-col gap-4 text-sm font-bold uppercase tracking-normal text-zinc-400">
+          <ul className="flex flex-col gap-2 text-sm font-bold uppercase tracking-normal text-zinc-400">
             {energyFocus.map((item) => (
               <li key={item}>
-                <Link href={item === "Technology News" ? "/news" : "/projects"} className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-brand-red">
+                <Link href={item === "Technology News" ? "/news" : "/projects"} className="inline-flex min-h-8 min-w-11 items-center transition-colors hover:text-brand-red">
                   {item}
                 </Link>
               </li>
@@ -71,10 +71,10 @@ export const Footer: React.FC = () => {
         
         <div className="md:col-span-2">
           <h4 className="mb-6 text-sm font-black tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">COMPANY</h4>
-          <ul className="flex flex-col gap-4 text-sm font-bold uppercase tracking-normal text-zinc-400">
+          <ul className="flex flex-col gap-2 text-sm font-bold uppercase tracking-normal text-zinc-400">
             {navItems.map((item) => (
               <li key={item.label}>
-                <Link href={item.to} className="inline-flex min-h-11 min-w-11 items-center transition-colors hover:text-brand-red">
+                <Link href={item.to} className="inline-flex min-h-8 min-w-11 items-center transition-colors hover:text-brand-red">
                   {item.label}
                 </Link>
               </li>
@@ -84,7 +84,7 @@ export const Footer: React.FC = () => {
         
         <div className="md:col-span-3">
           <h4 className="mb-6 text-sm font-black tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">CONTACT US</h4>
-          <div className="space-y-6 text-sm font-black uppercase leading-relaxed tracking-normal text-zinc-400">
+          <div className="space-y-5 text-sm font-black uppercase leading-relaxed tracking-normal text-zinc-400">
             <div>
               <div className="mb-2 flex items-center gap-2 text-industrial-black"><MapPin size={14} className="text-brand-red" /> Head Office</div>
               <p>{contact.address}</p>
@@ -100,7 +100,7 @@ export const Footer: React.FC = () => {
                 onClick={() => {
                   void recordEmailClick('footer_email', contact.email);
                 }}
-                className="inline-flex min-h-11 items-center transition-colors hover:text-brand-red"
+                className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red"
               >
                 {contact.email}
               </a>

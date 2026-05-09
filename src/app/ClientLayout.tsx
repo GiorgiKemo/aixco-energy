@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
+import { ScrollTopButton } from '../components/ScrollTopButton';
 import { installGlideScroll, scrollToHash, scrollToPageTop } from '../lib/smooth-scroll';
 
 function ScrollManager() {
@@ -112,6 +113,7 @@ export function ClientLayout({ children }: { children: ReactNode }) {
         <Header />
         <div className="flex-grow">{children}</div>
         <Footer />
+        <ScrollTopButton />
       </div>
     </>
   );
