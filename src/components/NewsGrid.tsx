@@ -6,7 +6,7 @@ import { TrackedBlueRockLink } from './TrackedBlueRockLink';
 
 export const NewsGrid: React.FC = () => {
   return (
-    <section id="projects" className="scroll-mt-[65px] bg-industrial-white px-6 py-32 text-industrial-black border-t border-zinc-800 lg:scroll-mt-[98px]">
+    <section id="projects" data-nav-section="/projects" className="scroll-mt-[65px] bg-industrial-white px-6 py-32 text-industrial-black border-t border-zinc-800 lg:scroll-mt-[98px]">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <div>

@@ -10,6 +10,7 @@ export const NewsMarqueeBanner: React.FC = () => {
   return (
     <section
       id="press-banner"
+      data-nav-section="/news"
       aria-label="Latest AIXCO Energy press coverage"
       className="news-marquee border-y border-zinc-800 bg-industrial-white text-industrial-black"
     >

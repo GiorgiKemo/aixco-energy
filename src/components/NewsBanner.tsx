@@ -6,7 +6,7 @@ import { aixcoAssets, ctaCopy } from '../content/aixcoEnergy';
 
 export const NewsBanner: React.FC = () => {
   return (
-    <section className="relative overflow-hidden bg-zinc-950 text-industrial-black border-y border-zinc-800 px-6 py-28">
+    <section data-nav-section="/news" className="relative overflow-hidden bg-zinc-950 text-industrial-black border-y border-zinc-800 px-6 py-28">
       <Image
         src={aixcoAssets.windGridProject}
         alt=""

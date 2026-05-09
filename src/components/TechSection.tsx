@@ -6,7 +6,7 @@ const themeIcons = [Sun, Wind, BatteryCharging, Droplets];
 
 export const TechSection: React.FC = () => {
   return (
-    <section className="bg-zinc-950 text-industrial-black border-y border-zinc-800">
+    <section data-nav-section="/news" className="bg-zinc-950 text-industrial-black border-y border-zinc-800">
       <div className="max-w-7xl mx-auto px-6 py-32">
         <div className="max-w-3xl mx-auto text-center mb-20">
           <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">Investment Themes</div>
@@ -33,7 +33,7 @@ export const TechSection: React.FC = () => {
           })}
         </div>
 
-        <div id="news" className="grid scroll-mt-[65px] grid-cols-1 gap-px border border-zinc-800 bg-zinc-800 lg:grid-cols-2 lg:scroll-mt-[98px]">
+        <div id="news" data-nav-section="/news" className="grid scroll-mt-[65px] grid-cols-1 gap-px border border-zinc-800 bg-zinc-800 lg:grid-cols-2 lg:scroll-mt-[98px]">
           <div className="bg-industrial-white p-8 md:p-12">
             <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{futureGrowth.label}</div>
             <h2 className="text-[clamp(2.3rem,5vw,4.8rem)] mb-8">{futureGrowth.title}</h2>
@@ -48,7 +48,7 @@ export const TechSection: React.FC = () => {
             <p className="text-sm font-black uppercase leading-relaxed text-zinc-500">{futureGrowth.close}</p>
           </div>
 
-          <div id="faqs" className="scroll-mt-[65px] bg-industrial-white p-8 text-industrial-black md:p-12 lg:scroll-mt-[98px]">
+          <div id="faqs" data-nav-section="/#faqs" className="scroll-mt-[65px] bg-industrial-white p-8 text-industrial-black md:p-12 lg:scroll-mt-[98px]">
             <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{investorReasons.label}</div>
             <h2 className="text-[clamp(2.2rem,4vw,4rem)] mb-8">{investorReasons.title}</h2>
             <ul className="space-y-4">

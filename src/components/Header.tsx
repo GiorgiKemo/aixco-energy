@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, type MouseEvent } from 'react';
+import React, { useEffect, useRef, useState, type MouseEvent } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -12,6 +12,8 @@ import { scrollToHash, scrollToPageTop } from '../lib/smooth-scroll';
 export const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [currentHash, setCurrentHash] = useState('');
+  const [activeNavTarget, setActiveNavTarget] = useState('/');
+  const activeSectionFrame = useRef<number | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -31,6 +33,58 @@ export const Header: React.FC = () => {
     setCurrentHash(window.location.hash);
   }, [pathname]);
 
+  useEffect(() => {
+    if (pathname !== '/') {
+      setActiveNavTarget('');
+      return;
+    }
+
+    const updateActiveSection = () => {
+      const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-nav-section]'));
+      const headerBottom = document.querySelector('header.scroll-fixed-surface')?.getBoundingClientRect().bottom ?? 0;
+      const markerTop = headerBottom + Math.min(window.innerHeight * 0.32, 240);
+      let nextActiveTarget = '/';
+
+      sections.forEach((section) => {
+        const navTarget = section.dataset.navSection;
+        if (!navTarget) return;
+
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= markerTop && rect.bottom > headerBottom + 1) {
+          nextActiveTarget = navTarget;
+        }
+      });
+
+      setActiveNavTarget(nextActiveTarget);
+    };
+
+    const scheduleActiveSectionUpdate = () => {
+      if (activeSectionFrame.current !== null) {
+        window.cancelAnimationFrame(activeSectionFrame.current);
+      }
+
+      activeSectionFrame.current = window.requestAnimationFrame(() => {
+        activeSectionFrame.current = null;
+        updateActiveSection();
+      });
+    };
+
+    updateActiveSection();
+    window.addEventListener('scroll', scheduleActiveSectionUpdate, { passive: true });
+    window.addEventListener('resize', scheduleActiveSectionUpdate);
+    window.addEventListener('hashchange', scheduleActiveSectionUpdate);
+
+    return () => {
+      if (activeSectionFrame.current !== null) {
+        window.cancelAnimationFrame(activeSectionFrame.current);
+        activeSectionFrame.current = null;
+      }
+      window.removeEventListener('scroll', scheduleActiveSectionUpdate);
+      window.removeEventListener('resize', scheduleActiveSectionUpdate);
+      window.removeEventListener('hashchange', scheduleActiveSectionUpdate);
+    };
+  }, [pathname]);
+
   const handleInternalLinkClick = (event: MouseEvent<HTMLAnchorElement>, to: string) => {
     setOpen(false);
     const activePathname = pathname || '/';
@@ -43,6 +97,7 @@ export const Header: React.FC = () => {
         window.history.pushState(window.history.state, document.title, "/");
         setCurrentHash("");
       }
+      setActiveNavTarget("/");
       scrollToPageTop();
       return;
     }
@@ -59,18 +114,28 @@ export const Header: React.FC = () => {
       window.history.pushState(window.history.state, document.title, to);
       setCurrentHash(targetHash);
     }
+    setActiveNavTarget(to);
     scrollToHash(targetHash);
   };
 
   const isActive = (to: string) => {
     const activePathname = pathname || '/';
 
+    if (activePathname === "/") {
+      const homeActiveTarget = activeNavTarget || (currentHash ? `/${currentHash}` : "/");
+      return homeActiveTarget === to;
+    }
+
     if (to === "/") {
-      return activePathname === "/" && !currentHash;
+      return false;
     }
 
     if (to.startsWith("/#")) {
-      return activePathname === "/" && currentHash === to.slice(1);
+      if (to === "/#about") {
+        return activePathname === "/about" || activePathname === "/platform";
+      }
+
+      return false;
     }
 
     if (to === "/news") {

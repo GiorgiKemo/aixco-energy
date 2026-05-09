@@ -8,6 +8,7 @@ export const NewsTicker: React.FC = () => {
   return (
     <section
       id="energy-ticker"
+      data-nav-section="/news"
       aria-label="AIXCO Energy focus areas"
       className="energy-ticker bg-brand-red text-industrial-black overflow-hidden whitespace-nowrap border-y border-industrial-black shrink-0 font-black uppercase shadow-[0_0_24px_rgba(173,125,46,0.24)] z-20"
     >

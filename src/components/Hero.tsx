@@ -11,7 +11,7 @@ const verticalIcons = [Sun, Wind, BatteryCharging, Droplets, Network];
 
 export const Hero: React.FC = () => {
   return (
-    <section className="relative flex min-h-[100svh] flex-col overflow-hidden border-b border-zinc-800 pt-16 lg:h-[100svh] lg:min-h-0 lg:pt-24">
+    <section data-nav-section="/" className="relative flex min-h-[100svh] flex-col overflow-hidden border-b border-zinc-800 pt-16 lg:h-[100svh] lg:min-h-0 lg:pt-24">
       <div className="flex min-h-0 flex-1 flex-col divide-x divide-zinc-800 lg:flex-row">
         <div className="relative flex min-h-0 flex-col lg:w-2/3">
           <div className="group relative min-h-[720px] flex-1 overflow-hidden bg-zinc-900 lg:min-h-0">
