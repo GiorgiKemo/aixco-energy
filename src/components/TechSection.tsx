@@ -33,7 +33,7 @@ export const TechSection: React.FC = () => {
           })}
         </div>
 
-        <div id="news" className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-800 border border-zinc-800">
+        <div id="news" className="grid scroll-mt-[65px] grid-cols-1 gap-px border border-zinc-800 bg-zinc-800 lg:grid-cols-2 lg:scroll-mt-[98px]">
           <div className="bg-industrial-white p-8 md:p-12">
             <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{futureGrowth.label}</div>
             <h2 className="text-[clamp(2.3rem,5vw,4.8rem)] mb-8">{futureGrowth.title}</h2>
@@ -48,7 +48,7 @@ export const TechSection: React.FC = () => {
             <p className="text-sm font-black uppercase leading-relaxed text-zinc-500">{futureGrowth.close}</p>
           </div>
 
-          <div id="faqs" className="bg-industrial-white text-industrial-black p-8 md:p-12">
+          <div id="faqs" className="scroll-mt-[65px] bg-industrial-white p-8 text-industrial-black md:p-12 lg:scroll-mt-[98px]">
             <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{investorReasons.label}</div>
             <h2 className="text-[clamp(2.2rem,4vw,4rem)] mb-8">{investorReasons.title}</h2>
             <ul className="space-y-4">

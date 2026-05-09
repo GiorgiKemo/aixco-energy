@@ -37,7 +37,7 @@ export const StrategySection: React.FC = () => {
   });
 
   return (
-    <section id="about" className="bg-industrial-white text-industrial-black border-b border-zinc-800">
+    <section id="about" className="scroll-mt-[65px] bg-industrial-white text-industrial-black border-b border-zinc-800 lg:scroll-mt-[98px]">
       <div className="max-w-7xl mx-auto px-6 py-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-28">
           <motion.div

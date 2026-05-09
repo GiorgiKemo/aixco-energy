@@ -18,7 +18,7 @@ import { recordEmailClick } from '../lib/backend/energy-lead-capture';
 
 export const Footer: React.FC = () => {
   return (
-    <footer id="contact" className="relative overflow-hidden bg-industrial-white text-industrial-black border-t border-zinc-800 px-6 py-20">
+    <footer id="contact" className="relative scroll-mt-[65px] overflow-hidden bg-industrial-white text-industrial-black border-t border-zinc-800 px-6 py-20 lg:scroll-mt-[98px]">
       <Image
         src={aixcoAssets.footerShape}
         alt=""
