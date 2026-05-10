@@ -102,15 +102,27 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
 
   const tx = React.useCallback(
     (text: string) => {
-      if (!text || lang === DEFAULT_LANG) return text;
+      if (!text) return text;
 
       const normalized = normalizeText(text);
-      return (
+      const translated =
         textTranslations[text]?.[lang] ??
         normalizedTextTranslations[normalized]?.[lang] ??
-        normalizedTextTranslations[normalized.toLocaleLowerCase('en')]?.[lang] ??
-        text
-      );
+        normalizedTextTranslations[normalized.toLocaleLowerCase('en')]?.[lang];
+
+      if (translated) return translated;
+
+      // Fallback: if not found in current lang, try English if current is not English
+      if (lang !== DEFAULT_LANG) {
+        return (
+          textTranslations[text]?.[DEFAULT_LANG] ??
+          normalizedTextTranslations[normalized]?.[DEFAULT_LANG] ??
+          normalizedTextTranslations[normalized.toLocaleLowerCase('en')]?.[DEFAULT_LANG] ??
+          text
+        );
+      }
+
+      return text;
     },
     [lang],
   );

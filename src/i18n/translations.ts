@@ -130,6 +130,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'عبر قنوات الانضمام في AIXCO Global وBlueRock',
   },
   'Buy on BlueRock': {
+    en: 'Buy on BlueRock',
     de: 'Bei BlueRock kaufen',
     ru: 'Купить на BlueRock',
     ka: 'ყიდვა BlueRock-ზე',
@@ -515,11 +516,20 @@ export const textTranslations: TranslationCatalog = {
     ar: 'صمم نموذج AIXCO ليكمل هيكل رأس المال الأوسع بدلا من الاعتماد على فئة أصول واحدة فقط.',
   },
   'Featured focus areas': {
+    en: 'Featured focus areas',
     de: 'Ausgewählte Fokusbereiche',
     ru: 'Ключевые направления',
     ka: 'გამორჩეული ფოკუს სფეროები',
     tr: 'Öne çıkan odak alanları',
     ar: 'مجالات التركيز المختارة',
+  },
+  'Examples of project types': {
+    en: 'Examples of project types',
+    de: 'Beispiele für Projekttypen',
+    ru: 'Примеры типов проектов',
+    ka: 'პროექტების ტიპების მაგალითები',
+    tr: 'Proje türleri örnekleri',
+    ar: 'أمثلة على أنواع المشاريع',
   },
   'Examples of project types we may pursue': {
     de: 'Beispiele für Projekttypen, die wir verfolgen können',
@@ -536,6 +546,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'استكشف المشاريع',
   },
   'View on BlueRock': {
+    en: 'View on BlueRock',
     de: 'Auf BlueRock ansehen',
     ru: 'Смотреть на BlueRock',
     ka: 'BlueRock-ზე ნახვა',
@@ -669,6 +680,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'مجالات تركيز AIXCO Energy',
   },
   'Press archive': {
+    en: 'Press archive',
     de: 'Pressearchiv',
     ru: 'Архив прессы',
     ka: 'პრესის არქივი',
@@ -676,6 +688,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'أرشيف الصحافة',
   },
   'News & press': {
+    en: 'News & press',
     de: 'News & Presse',
     ru: 'Новости и пресса',
     ka: 'სიახლეები და პრესა',
@@ -690,6 +703,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'مختارات من مواد المجلات والإعلانات التحريرية والتغطيات الصحفية المتعلقة بتعاقدات الطاقة الشمسية والأصول الحقيقية والتنمية المستدامة وشبكة منصة AIXCO.',
   },
   'Read article': {
+    en: 'Read article',
     de: 'Artikel lesen',
     ru: 'Читать статью',
     ka: 'სტატიის წაკითხვა',
@@ -697,6 +711,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'اقرأ المقال',
   },
   'Original PDF': {
+    en: 'Original PDF',
     de: 'Original-PDF',
     ru: 'Оригинальный PDF',
     ka: 'ორიგინალი PDF',
@@ -704,6 +719,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'ملف PDF الأصلي',
   },
   'Featured article': {
+    en: 'Featured article',
     de: 'Ausgewählter Artikel',
     ru: 'Рекомендуемая статья',
     ka: 'გამორჩეული სტატია',
@@ -711,6 +727,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'مقال مميز',
   },
   'Read full article page': {
+    en: 'Read full article page',
     de: 'Vollständige Artikelseite lesen',
     ru: 'Читать полную страницу статьи',
     ka: 'სრული სტატიის გვერდის წაკითხვა',
@@ -1130,14 +1147,8 @@ export const textTranslations: TranslationCatalog = {
     tr: 'Gizlilikle ilgili sorular için info@aixco.global adresinden iletişime geçin.',
     ar: 'للاستفسارات المتعلقة بالخصوصية، تواصل عبر info@aixco.global.',
   },
-  'Examples of project types': {
-    de: 'Beispiele für Projekttypen',
-    ru: 'Примеры типов проектов',
-    ka: 'პროექტების ტიპების მაგალითები',
-    tr: 'Proje türleri örnekleri',
-    ar: 'أمثلة على أنواع المشاريع',
-  },
   'we may pursue': {
+    en: 'we may pursue',
     de: 'die wir verfolgen können',
     ru: 'которые мы можем развивать',
     ka: 'რომლებსაც შეიძლება მივყვეთ',
@@ -1145,6 +1156,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'التي قد نتابعها',
   },
   'News &': {
+    en: 'News &',
     de: 'News &',
     ru: 'Новости и',
     ka: 'სიახლეები და',
@@ -1215,6 +1227,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'تحسين بالذكاء الاصطناعي',
   },
   Energiewende: {
+    en: 'Energy Transition',
     de: 'Energiewende',
     ru: 'Энергетический переход',
     ka: 'ენერგეტიკული გარდაქმნა',
@@ -1257,6 +1270,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'تغطية صحفية',
   },
   'Solar-Energie neu gedacht': {
+    en: 'Solar Energy Rethought',
     de: 'Solar-Energie neu gedacht',
     ru: 'Новый взгляд на солнечную энергию',
     ka: 'მზის ენერგია ახალი ხედვით',
@@ -1264,6 +1278,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'إعادة تصور الطاقة الشمسية',
   },
   'Zukunftsanker Fotovoltaik': {
+    en: 'Photovoltaics: Anchor for the Future',
     de: 'Zukunftsanker Fotovoltaik',
     ru: 'Фотоэлектрика как якорь будущего',
     ka: 'ფოტოვოლტაიკა როგორც მომავლის საყრდენი',
@@ -1271,6 +1286,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'الفوتوفولتايك ركيزة للمستقبل',
   },
   'Investment mit gesellschaftlichem Mehrwert': {
+    en: 'Investment with Social Added Value',
     de: 'Investment mit gesellschaftlichem Mehrwert',
     ru: 'Инвестиции с общественной пользой',
     ka: 'ინვესტიცია საზოგადოებრივი ღირებულებით',
@@ -1278,6 +1294,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'استثمار بقيمة اجتماعية مضافة',
   },
   'Solide Veranlagung': {
+    en: 'Solid Investment',
     de: 'Solide Veranlagung',
     ru: 'Надежное вложение',
     ka: 'მყარი დაბანდება',
@@ -1285,6 +1302,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'استثمار متين',
   },
   'Kapitalanlage mit Mehrwert': {
+    en: 'Capital Investment with Added Value',
     de: 'Kapitalanlage mit Mehrwert',
     ru: 'Капиталовложение с добавленной ценностью',
     ka: 'კაპიტალის ინვესტიცია დამატებითი ღირებულებით',
@@ -1292,6 +1310,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'استثمار رأسمالي بقيمة مضافة',
   },
   'Mario Bruckner-Simon Pressespiegel': {
+    en: 'Mario Bruckner-Simon Press Review',
     de: 'Mario Bruckner-Simon Pressespiegel',
     ru: 'Пресс-обзор Mario Bruckner-Simon',
     ka: 'Mario Bruckner-Simon პრესის მიმოხილვა',
@@ -1404,6 +1423,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'إعلام',
   },
   'Wie Photovoltaik-Contracting Betriebe, Einrichtungen und Privathaushalte zu grünem Strom verhilft - und dabei die Energiewende vorantreibt.': {
+    en: 'How Photovoltaic Contracting helps companies, institutions and private households access green electricity - while driving the energy transition forward.',
     de: 'Wie Photovoltaik-Contracting Betriebe, Einrichtungen und Privathaushalte zu grünem Strom verhilft - und dabei die Energiewende vorantreibt.',
     ru: 'Как photovoltaic contracting помогает предприятиям, учреждениям и домохозяйствам получать зеленую электроэнергию и продвигает энергетический переход.',
     ka: 'როგორ ეხმარება ფოტოვოლტაიკის კონტრაქტინგი ბიზნესებს, დაწესებულებებსა და ოჯახებს მწვანე ელექტროენერგიაზე წვდომაში და ამავდროულად აჩქარებს ენერგეტიკულ გარდაქმნას.',
@@ -1411,6 +1431,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'كيف تساعد تعاقدات الفوتوفولتايك الشركات والمؤسسات والأسر في الحصول على كهرباء خضراء وتدفع تحول الطاقة.',
   },
   'AT&S Fehring: Beim Leiterplattenhersteller in der Steiermark wurden bereits zwei Dachanlagen in Betrieb genommen.': {
+    en: 'AT&S Fehring: Two rooftop systems have already been commissioned at the PCB manufacturer in Styria.',
     de: 'AT&S Fehring: Beim Leiterplattenhersteller in der Steiermark wurden bereits zwei Dachanlagen in Betrieb genommen.',
     ru: 'AT&S Fehring: у производителя печатных плат в Штирии уже введены в эксплуатацию две крышные установки.',
     ka: 'AT&S Fehring: შტირიაში ბეჭდური პლატების მწარმოებელთან უკვე ამოქმედდა ორი სახურავის სისტემა.',
@@ -1418,6 +1439,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'AT&S Fehring: لدى مصنع لوحات الدوائر في شتايرمارك تم بالفعل تشغيل نظامين على الأسطح.',
   },
   'Photovoltaik-Contracting liefert grünen Strom bei gleichzeitiger finanzieller und organisatorischer Entlastung.': {
+    en: 'Photovoltaic Contracting delivers green electricity with simultaneous financial and organizational relief.',
     de: 'Photovoltaik-Contracting liefert grünen Strom bei gleichzeitiger finanzieller und organisatorischer Entlastung.',
     ru: 'Photovoltaic contracting поставляет зеленую электроэнергию и одновременно снижает финансовую и организационную нагрузку.',
     ka: 'ფოტოვოლტაიკის კონტრაქტინგი აწვდის მწვანე ელექტროენერგიას ფინანსური და ორგანიზაციული ტვირთის შემცირებით.',
@@ -1425,6 +1447,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'توفر تعاقدات الفوتوفولتايك كهرباء خضراء مع تخفيف مالي وتنظيمي في الوقت نفسه.',
   },
   'Grüner Strom': {
+    en: 'Green Electricity',
     de: 'Grüner Strom',
     ru: 'Зеленая электроэнергия',
     ka: 'მწვანე ელექტროენერგია',
@@ -1432,6 +1455,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'كهرباء خضراء',
   },
   'Fixpreis statt Marktrisiko': {
+    en: 'Fixed Price instead of Market Risk',
     de: 'Fixpreis statt Marktrisiko',
     ru: 'Фиксированная цена вместо рыночного риска',
     ka: 'ფიქსირებული ფასი ბაზრის რისკის ნაცვლად',
@@ -1439,6 +1463,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'سعر ثابت بدلا من مخاطر السوق',
   },
   'Vom Konzept zur Umsetzung': {
+    en: 'From Concept to Implementation',
     de: 'Vom Konzept zur Umsetzung',
     ru: 'От концепции к реализации',
     ka: 'კონცეფციიდან განხორციელებამდე',
@@ -1446,6 +1471,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'من الفكرة إلى التنفيذ',
   },
   'Unterbrechungsfrei und zuverlässig': {
+    en: 'Uninterrupted and Reliable',
     de: 'Unterbrechungsfrei und zuverlässig',
     ru: 'Бесперебойно и надежно',
     ka: 'უწყვეტად და საიმედოდ',
@@ -1453,6 +1479,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'مستمر وموثوق',
   },
   'Batteriespeicher und Lastverschiebung': {
+    en: 'Battery Storage and Load Shifting',
     de: 'Batteriespeicher und Lastverschiebung',
     ru: 'Батареи и перенос нагрузки',
     ka: 'ბატარეის საცავი და დატვირთვის გადანაცვლება',
@@ -1460,6 +1487,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'تخزين البطاريات وتحويل الأحمال',
   },
   'Ökostrom statt Diesel': {
+    en: 'Eco-power instead of Diesel',
     de: 'Ökostrom statt Diesel',
     ru: 'Зеленая электроэнергия вместо дизеля',
     ka: 'მწვანე ელექტროენერგია დიზელის ნაცვლად',
@@ -1467,6 +1495,7 @@ export const textTranslations: TranslationCatalog = {
     ar: 'كهرباء خضراء بدلا من الديزل',
   },
   'Regionale Solarstromsysteme': {
+    en: 'Regional Solar Power Systems',
     de: 'Regionale Solarstromsysteme',
     ru: 'Региональные солнечные энергосистемы',
     ka: 'რეგიონული მზის ელექტროენერგიის სისტემები',
