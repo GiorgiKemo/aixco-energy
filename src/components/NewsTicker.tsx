@@ -1,15 +1,19 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import { aixcoAssets, marqueeItems } from '../content/aixcoEnergy';
+import { useI18n } from '../i18n/I18nProvider';
 
 export const NewsTicker: React.FC = () => {
+  const { tx } = useI18n();
   const tickerGroups = [0, 1];
 
   return (
     <section
       id="energy-ticker"
       data-nav-section="/news"
-      aria-label="AIXCO Energy focus areas"
+      aria-label={tx("AIXCO Energy focus areas")}
       className="energy-ticker bg-brand-red text-industrial-black overflow-hidden whitespace-nowrap border-y border-industrial-black shrink-0 font-black uppercase shadow-[0_0_24px_rgba(173,125,46,0.24)] z-20"
     >
       <div className="energy-ticker__track" aria-hidden="true">
@@ -17,7 +21,7 @@ export const NewsTicker: React.FC = () => {
           <div key={group} className="energy-ticker__group">
             {marqueeItems.map((item) => (
               <span key={`${group}-${item}`} className="energy-ticker__item">
-                {item}
+                {tx(item)}
                 <Image
                   src={aixcoAssets.markBlack}
                   alt=""

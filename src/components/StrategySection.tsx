@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { motion, type Transition } from 'motion/react';
 import { Check, MoveRight } from 'lucide-react';
 import { aixcoAssets, strategyCopy, whyCopy } from '../content/aixcoEnergy';
+import { useI18n } from '../i18n/I18nProvider';
 
 const premiumEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -27,6 +28,7 @@ function usePrefersReducedMotion() {
 }
 
 export const StrategySection: React.FC = () => {
+  const { tx } = useI18n();
   const shouldReduceMotion = usePrefersReducedMotion();
   const revealOffset = shouldReduceMotion ? 8 : 24;
   const horizontalOffset = shouldReduceMotion ? 0 : 24;
@@ -47,7 +49,7 @@ export const StrategySection: React.FC = () => {
             transition={revealTransition()}
             className="motion-reveal-surface lg:col-span-3"
           >
-            <div className="mb-4 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{whyCopy.label}</div>
+            <div className="mb-4 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx(whyCopy.label)}</div>
             <div className="h-1 w-20 bg-brand-red" />
           </motion.div>
           <motion.div
@@ -58,7 +60,7 @@ export const StrategySection: React.FC = () => {
             className="motion-reveal-surface lg:col-span-9"
           >
             <h2 className="text-[clamp(1.55rem,2.4vw,2.55rem)] leading-[1.14] max-w-5xl">
-              {whyCopy.body}
+              {tx(whyCopy.body)}
             </h2>
           </motion.div>
         </div>
@@ -74,7 +76,7 @@ export const StrategySection: React.FC = () => {
             <div className="absolute left-0 top-6 aspect-[4/3] w-[72%] overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 shadow-elegant">
               <Image
                 src={aixcoAssets.solarProject}
-                alt="Solar project"
+                alt={tx("Solar project")}
                 fill
                 sizes="(max-width: 1024px) 72vw, 36vw"
                 className="object-cover opacity-95"
@@ -83,7 +85,7 @@ export const StrategySection: React.FC = () => {
             <div className="absolute right-0 bottom-4 aspect-[4/3] w-[68%] overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 shadow-elegant">
               <Image
                 src={aixcoAssets.windGridProject}
-                alt="Wind and grid project"
+                alt={tx("Wind and grid project")}
                 fill
                 sizes="(max-width: 1024px) 68vw, 34vw"
                 className="object-cover opacity-95"
@@ -98,23 +100,23 @@ export const StrategySection: React.FC = () => {
             transition={revealTransition(0.08)}
             className="motion-reveal-surface lg:col-span-6"
           >
-            <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{strategyCopy.label}</div>
+            <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx(strategyCopy.label)}</div>
             <h2 className="text-[clamp(2.1rem,4vw,3.8rem)] leading-[1] mb-8">
-              {strategyCopy.title}
+              {tx(strategyCopy.title)}
             </h2>
             <p className="text-zinc-500 mb-10 uppercase text-sm font-bold leading-relaxed">
-              {strategyCopy.body}
+              {tx(strategyCopy.body)}
             </p>
             <ul className="space-y-4 mb-10">
               {strategyCopy.bullets.map((bullet) => (
                 <li key={bullet} className="flex gap-3 text-sm font-black uppercase leading-relaxed text-zinc-500">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
-                  {bullet}
+                  {tx(bullet)}
                 </li>
               ))}
             </ul>
             <Link href="/platform" className="brutal-btn inline-flex items-center gap-3 italic">
-              Learn More About AIXCO Energy <MoveRight size={18} />
+              {tx("Learn More About AIXCO Energy")} <MoveRight size={18} />
             </Link>
           </motion.div>
         </div>

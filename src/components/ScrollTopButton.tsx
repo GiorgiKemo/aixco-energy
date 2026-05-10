@@ -2,9 +2,11 @@
 
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
+import { useI18n } from '../i18n/I18nProvider';
 import { scrollToPageTop } from '../lib/smooth-scroll';
 
 export const ScrollTopButton: React.FC = () => {
+  const { tx } = useI18n();
   const [visible, setVisible] = React.useState(false);
   const frameRef = React.useRef<number | null>(null);
 
@@ -51,8 +53,8 @@ export const ScrollTopButton: React.FC = () => {
   return (
     <button
       type="button"
-      aria-label="Scroll to top"
-      title="Scroll to top"
+      aria-label={tx("Scroll to top")}
+      title={tx("Scroll to top")}
       onClick={handleClick}
       tabIndex={visible ? 0 : -1}
       data-visible={visible ? 'true' : 'false'}

@@ -5,6 +5,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { ScrollTopButton } from '../components/ScrollTopButton';
+import { I18nProvider } from '../i18n/I18nProvider';
 import { installGlideScroll, scrollToHash, scrollToPageTop } from '../lib/smooth-scroll';
 
 function ScrollManager() {
@@ -107,7 +108,7 @@ function ScrollManager() {
 
 export function ClientLayout({ children }: { children: ReactNode }) {
   return (
-    <>
+    <I18nProvider>
       <ScrollManager />
       <div className="flex min-h-screen flex-col">
         <Header />
@@ -115,6 +116,6 @@ export function ClientLayout({ children }: { children: ReactNode }) {
         <Footer />
         <ScrollTopButton />
       </div>
-    </>
+    </I18nProvider>
   );
 }
