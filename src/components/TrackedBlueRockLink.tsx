@@ -22,7 +22,7 @@ export function TrackedBlueRockLink({
     <a
       href="https://bluerock.cc"
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       aria-label={ariaLabel}
       onClick={() => {
         void recordBlueRockClick(label, metadata);

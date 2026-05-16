@@ -196,10 +196,10 @@ export const Header: React.FC = () => {
             </a>
           </div>
           <div className="flex items-center gap-3">
-            <a href={socialLinks.aixcoGlobal} target="_blank" rel="noreferrer" aria-label={tx("AIXCO Global")} className="inline-flex h-8 w-8 items-center justify-center transition-colors hover:text-brand-red">
+            <a href={socialLinks.aixcoGlobal} target="_blank" rel="noopener noreferrer" aria-label={tx("AIXCO Global")} className="inline-flex h-8 w-8 items-center justify-center transition-colors hover:text-brand-red">
               <Globe size={14} />
             </a>
-            <a href={socialLinks.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="inline-flex h-8 w-8 items-center justify-center transition-colors hover:text-brand-red">
+            <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="inline-flex h-8 w-8 items-center justify-center transition-colors hover:text-brand-red">
               <Linkedin size={14} />
             </a>
           </div>
@@ -282,7 +282,7 @@ export const Header: React.FC = () => {
           <a
             href="https://bluerock.cc"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             onClick={() => {
               void recordBlueRockClick('header_desktop_bluerock');
             }}
@@ -346,7 +346,7 @@ export const Header: React.FC = () => {
             <a
               href="https://bluerock.cc"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               onClick={() => {
                 setOpen(false);
                 void recordBlueRockClick('header_mobile_bluerock');

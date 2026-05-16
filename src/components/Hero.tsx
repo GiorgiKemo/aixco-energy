@@ -53,7 +53,7 @@ export const Hero: React.FC = () => {
                 <a
                   href="https://bluerock.cc"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   onClick={() => {
                     void recordBlueRockClick('hero_bluerock');
                   }}
@@ -66,8 +66,8 @@ export const Hero: React.FC = () => {
           </div>
           
           <div className="energy-hero__metrics grid grid-cols-2 divide-x divide-zinc-800 border-t border-zinc-800 bg-industrial-white text-industrial-black md:grid-cols-4 lg:h-32 xl:h-36">
-            {platformMetrics.map((stat, i) => (
-              <div key={i} className="energy-hero__metric flex min-h-40 flex-col justify-between p-6 lg:min-h-0 lg:p-4 xl:p-5">
+            {platformMetrics.map((stat) => (
+              <div key={stat.label} className="energy-hero__metric flex min-h-40 flex-col justify-between p-6 lg:min-h-0 lg:p-4 xl:p-5">
                 <span className="text-sm font-black uppercase leading-snug tracking-normal text-zinc-500">{tx(stat.label)}</span>
                 <span className="text-3xl font-black italic xl:text-4xl">{stat.value}</span>
                 <span className="text-sm font-black uppercase tracking-normal text-brand-red">{tx("AIXCO Energy")}</span>
@@ -79,23 +79,23 @@ export const Hero: React.FC = () => {
         <div className="flex min-h-0 flex-col bg-zinc-950 text-industrial-black lg:w-1/3">
           <div className="border-b border-zinc-800 bg-zinc-900/70 p-5 lg:flex lg:min-h-14 lg:items-center lg:p-4 xl:min-h-16 xl:p-5">
             <h2 className="flex items-center gap-2 text-sm font-black uppercase tracking-normal">
-              <div className="w-2 h-2 bg-brand-red animate-pulse"></div>
+              <span className="h-2 w-2 bg-brand-red animate-pulse" aria-hidden="true" />
               {tx("Core Technology Verticals")}
             </h2>
           </div>
           <div className="energy-hero__verticals flex min-h-0 flex-1 flex-col divide-y divide-zinc-800 overflow-hidden">
-            {heroVerticals.map((item, i) => {
-              const Icon = verticalIcons[i];
+            {heroVerticals.map((item, index) => {
+              const Icon = verticalIcons[index] ?? Network;
               return (
-              <div key={i} className="energy-hero__vertical flex min-h-0 flex-1 items-center gap-4 p-4 xl:p-5">
-                <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand-red/40 bg-brand-red/10 text-brand-red xl:h-12 xl:w-12">
-                  <Icon size={22} />
+                <div key={item.title} className="energy-hero__vertical flex min-h-0 flex-1 items-center gap-4 p-4 xl:p-5">
+                  <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand-red/40 bg-brand-red/10 text-brand-red xl:h-12 xl:w-12">
+                    <Icon size={22} aria-hidden="true" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-black uppercase leading-tight xl:text-lg">{tx(item.title)}</h3>
+                    <p className="mt-1 text-sm font-medium uppercase leading-snug text-zinc-500">{tx(item.body)}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-base font-black uppercase leading-tight xl:text-lg">{tx(item.title)}</h3>
-                  <p className="mt-1 text-sm font-medium uppercase leading-snug text-zinc-500">{tx(item.body)}</p>
-                </div>
-              </div>
               );
             })}
           </div>

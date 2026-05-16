@@ -137,10 +137,10 @@ export const Footer: React.FC = () => {
             {tx(footerIntro)}
           </p>
           <div className="flex gap-2">
-            <a href={socialLinks.aixcoGlobal} target="_blank" rel="noreferrer" aria-label={tx("AIXCO Global")} className="border border-zinc-800 p-3.5 text-zinc-500 transition-all hover:border-brand-red hover:bg-brand-red hover:text-industrial-white">
+            <a href={socialLinks.aixcoGlobal} target="_blank" rel="noopener noreferrer" aria-label={tx("AIXCO Global")} className="border border-zinc-800 p-3.5 text-zinc-500 transition-all hover:border-brand-red hover:bg-brand-red hover:text-industrial-white">
               <Globe size={18} />
             </a>
-            <a href={socialLinks.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="border border-zinc-800 p-3.5 text-zinc-500 transition-all hover:border-brand-red hover:bg-brand-red hover:text-industrial-white">
+            <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="border border-zinc-800 p-3.5 text-zinc-500 transition-all hover:border-brand-red hover:bg-brand-red hover:text-industrial-white">
               <Linkedin size={18} />
             </a>
           </div>

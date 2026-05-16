@@ -16,7 +16,7 @@ export function TrackedPdfLink({ children, className, href, label, metadata }: T
     <a
       href={href}
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       onClick={() => {
         void recordPdfOpen(label, href, metadata);
       }}
