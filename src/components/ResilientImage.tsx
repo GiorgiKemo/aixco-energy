@@ -45,25 +45,21 @@ export function ResilientImage({
   }, [srcKey]);
 
   React.useEffect(() => {
-    if (state !== 'loading') return undefined;
+    if (state === 'error') return undefined;
 
-    let timeoutId: number | undefined;
-
-    const checkLoaded = () => {
-      if (isLoadedImage(imageRef.current)) {
-        setState('loaded');
-        return;
-      }
-
-      timeoutId = window.setTimeout(checkLoaded, 250);
+    const syncLoadedState = () => {
+      setState((currentState) => {
+        if (currentState === 'error') return currentState;
+        return isLoadedImage(imageRef.current) ? 'loaded' : 'loading';
+      });
     };
 
-    checkLoaded();
+    syncLoadedState();
 
-    return () => {
-      if (timeoutId) window.clearTimeout(timeoutId);
-    };
-  }, [state, srcKey]);
+    const intervalId = window.setInterval(syncLoadedState, 250);
+
+    return () => window.clearInterval(intervalId);
+  }, [srcKey, state === 'error']);
 
   return (
     <>
