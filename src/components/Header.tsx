@@ -8,6 +8,7 @@ import { ChevronDown, ExternalLink, Globe, Linkedin, Menu, X } from 'lucide-reac
 import { aixcoAssets, contact, navItems, socialLinks } from '../content/aixcoEnergy';
 import { LANGS, useI18n } from '../i18n/I18nProvider';
 import { recordBlueRockClick, recordEmailClick } from '../lib/backend/energy-lead-capture';
+import { imageBlurDataUrl } from '../lib/image-loading';
 import { scrollToHash, scrollToPageTop } from '../lib/smooth-scroll';
 
 export const Header: React.FC = () => {
@@ -215,6 +216,9 @@ export const Header: React.FC = () => {
               aria-hidden
               width={779}
               height={705}
+              blurDataURL={imageBlurDataUrl}
+              decoding="async"
+              placeholder="blur"
               sizes="36px"
               className="h-8 w-8 object-contain md:h-9 md:w-9"
             />

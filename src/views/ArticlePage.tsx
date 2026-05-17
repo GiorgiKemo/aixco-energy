@@ -1,10 +1,10 @@
 'use client';
 
 import React from "react";
-import Image from "next/image";
 import { ArrowLeft, Check, ExternalLink, Quote } from "lucide-react";
 import Link from "next/link";
 import { getNewsArticleBySlug, newsArticles } from "../content/newsArticles";
+import { ResilientImage } from "../components/ResilientImage";
 import { TrackedPdfLink } from "../components/TrackedPdfLink";
 import { useI18n } from "../i18n/I18nProvider";
 
@@ -61,11 +61,12 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ slug }) => {
             <div className="overflow-hidden border border-zinc-800 bg-zinc-950 shadow-soft">
               <div className="border-b border-zinc-800 bg-industrial-white p-5">
                 <div className="relative h-80 w-full">
-                  <Image
+                  <ResilientImage
                     src={article.image}
                     alt={`${tx(article.title)} ${tx("source preview")}`}
+                    fallbackLabel={tx(article.publication)}
                     fill
-                    priority
+                    fetchPriority="high"
                     loading="eager"
                     sizes="(max-width: 1024px) 100vw, 40vw"
                     className="object-contain"

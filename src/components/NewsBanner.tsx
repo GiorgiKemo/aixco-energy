@@ -1,18 +1,18 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { aixcoAssets, ctaCopy } from '../content/aixcoEnergy';
 import { useI18n } from '../i18n/I18nProvider';
+import { ResilientImage } from './ResilientImage';
 
 export const NewsBanner: React.FC = () => {
   const { tx } = useI18n();
 
   return (
     <section data-nav-section="/news" className="relative overflow-hidden bg-zinc-950 text-industrial-black border-y border-zinc-800 px-6 py-28">
-      <Image
+      <ResilientImage
         src={aixcoAssets.windGridProject}
         alt=""
         aria-hidden

@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { aixcoAssets, marqueeItems } from '../content/aixcoEnergy';
 import { useI18n } from '../i18n/I18nProvider';
+import { imageBlurDataUrl } from '../lib/image-loading';
 
 export const NewsTicker: React.FC = () => {
   const { tx } = useI18n();
@@ -28,6 +29,9 @@ export const NewsTicker: React.FC = () => {
                   aria-hidden
                   width={779}
                   height={705}
+                  blurDataURL={imageBlurDataUrl}
+                  decoding="async"
+                  placeholder="blur"
                   sizes="40px"
                   className="energy-ticker__mark object-contain"
                 />

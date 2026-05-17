@@ -374,6 +374,69 @@
     will-change: opacity, transform;
   }
 
+  .resilient-image {
+    position: relative;
+    z-index: 1;
+  }
+
+  .resilient-image-fallback {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0.75rem;
+    background:
+      linear-gradient(135deg, rgba(249, 247, 243, 0.98), rgba(243, 238, 230, 0.96)),
+      radial-gradient(14rem 9rem at 20% 12%, rgba(215, 161, 63, 0.18), transparent 58%);
+    color: rgba(102, 93, 82, 0.72);
+    opacity: 1;
+    transition: opacity 240ms var(--ease-apple);
+  }
+
+  .resilient-image-fallback::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 28%, rgba(255, 255, 255, 0.52) 46%, transparent 64%);
+    transform: translateX(-100%);
+    animation: resilient-image-shimmer 1.9s ease-in-out infinite;
+  }
+
+  .resilient-image-fallback[data-load-state="loaded"] {
+    opacity: 0;
+  }
+
+  .resilient-image-fallback[data-load-state="error"] {
+    background:
+      linear-gradient(135deg, rgba(249, 247, 243, 0.98), rgba(243, 238, 230, 0.98)),
+      repeating-linear-gradient(-45deg, rgba(173, 122, 46, 0.08) 0 0.45rem, transparent 0.45rem 0.9rem);
+  }
+
+  .resilient-image-fallback[data-load-state="error"]::before {
+    animation: none;
+    opacity: 0;
+  }
+
+  .resilient-image-fallback__label {
+    position: relative;
+    z-index: 1;
+    display: -webkit-box;
+    overflow: hidden;
+    max-width: 100%;
+    color: rgba(102, 93, 82, 0.78);
+    font-size: clamp(0.72rem, 1.5vw, 0.82rem);
+    font-weight: 650;
+    line-height: 1.15;
+    text-align: center;
+    text-wrap: balance;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
   html[data-glide-scroll-state="active"] .scroll-fixed-surface,
   html[data-glide-scroll-state="active"] .icon-button-glass {
     -webkit-backdrop-filter: none !important;
@@ -996,6 +1059,11 @@
 @keyframes marquee {
   0% { transform: translate3d(0, 0, 0); }
   100% { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes resilient-image-shimmer {
+  0% { transform: translateX(-100%); }
+  58%, 100% { transform: translateX(100%); }
 }
 
 .news-marquee {

@@ -16,6 +16,7 @@ import {
 } from '../content/aixcoEnergy';
 import { useI18n } from '../i18n/I18nProvider';
 import { recordEmailClick } from '../lib/backend/energy-lead-capture';
+import { imageBlurDataUrl } from '../lib/image-loading';
 
 type LegalModalKey = 'terms' | 'privacy';
 
@@ -115,6 +116,9 @@ export const Footer: React.FC = () => {
         aria-hidden
         width={2240}
         height={2240}
+        blurDataURL={imageBlurDataUrl}
+        decoding="async"
+        placeholder="blur"
         sizes="(max-width: 768px) 50vw, 768px"
         className="pointer-events-none absolute bottom-0 right-0 h-auto w-1/2 max-w-3xl opacity-10"
       />
@@ -128,6 +132,9 @@ export const Footer: React.FC = () => {
               aria-hidden
               width={779}
               height={705}
+              blurDataURL={imageBlurDataUrl}
+              decoding="async"
+              placeholder="blur"
               sizes="40px"
               className="h-10 w-10 object-contain"
             />

@@ -6,6 +6,9 @@ const rootDir = dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  images: {
+    minimumCacheTTL: 86400,
+  },
   async headers() {
     const publicAssetHeaders = [
       {

@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion, type Transition } from 'motion/react';
 import { Check, MoveRight } from 'lucide-react';
 import { aixcoAssets, strategyCopy, whyCopy } from '../content/aixcoEnergy';
 import { useI18n } from '../i18n/I18nProvider';
+import { ResilientImage } from './ResilientImage';
 
 const premiumEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -74,18 +74,20 @@ export const StrategySection: React.FC = () => {
             className="motion-reveal-surface lg:col-span-6 relative min-h-[520px]"
           >
             <div className="absolute left-0 top-6 aspect-[4/3] w-[72%] overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 shadow-elegant">
-              <Image
+              <ResilientImage
                 src={aixcoAssets.solarProject}
                 alt={tx("Solar project")}
+                fallbackLabel={tx("Solar project")}
                 fill
                 sizes="(max-width: 1024px) 72vw, 36vw"
                 className="object-cover opacity-95"
               />
             </div>
             <div className="absolute right-0 bottom-4 aspect-[4/3] w-[68%] overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 shadow-elegant">
-              <Image
+              <ResilientImage
                 src={aixcoAssets.windGridProject}
                 alt={tx("Wind and grid project")}
+                fallbackLabel={tx("Wind and grid project")}
                 fill
                 sizes="(max-width: 1024px) 68vw, 34vw"
                 className="object-cover opacity-95"

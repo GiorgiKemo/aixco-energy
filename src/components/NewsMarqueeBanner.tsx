@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Newspaper } from 'lucide-react';
 import { pressArticles } from '../content/aixcoEnergy';
 import { useI18n } from '../i18n/I18nProvider';
+import { ResilientImage } from './ResilientImage';
 
 export const NewsMarqueeBanner: React.FC = () => {
   const { tx } = useI18n();
@@ -42,8 +42,8 @@ export const NewsMarqueeBanner: React.FC = () => {
           <div className="news-marquee__track">
             {groups.map((group) => (
               <div key={group} className="news-marquee__group" aria-hidden={group > 0}>
-                {pressArticles.map((article, articleIndex) => {
-                  const isPriorityImage = articleIndex === 0;
+                {pressArticles.map((article) => {
+                  const shouldWarmImage = group === 0;
 
                   return (
                   <Link
@@ -53,14 +53,14 @@ export const NewsMarqueeBanner: React.FC = () => {
                     className="news-marquee__card group"
                   >
                     <span className="news-marquee__image-wrap">
-                      <Image
+                      <ResilientImage
                         src={article.image}
                         alt=""
                         aria-hidden="true"
                         fill
-                        priority={isPriorityImage}
-                        loading={isPriorityImage ? "eager" : "lazy"}
-                        fetchPriority={isPriorityImage ? "high" : undefined}
+                        fallbackLabel={tx(article.publication)}
+                        fetchPriority={shouldWarmImage ? "low" : undefined}
+                        loading={shouldWarmImage ? "eager" : "lazy"}
                         sizes="(max-width: 768px) 100px, 144px"
                         className="news-marquee__image"
                       />

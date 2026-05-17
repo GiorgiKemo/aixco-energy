@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { ArrowRight, Check, ExternalLink, Quote } from 'lucide-react';
 import Link from 'next/link';
 import { aixcoAssets, ctaCopy, futureGrowth, investorReasons, pvArticle } from '../content/aixcoEnergy';
 import { newsArticles } from '../content/newsArticles';
+import { ResilientImage } from '../components/ResilientImage';
 import { TrackedPdfLink } from '../components/TrackedPdfLink';
 import { useI18n } from '../i18n/I18nProvider';
 
@@ -50,11 +50,12 @@ const NewsPage: React.FC = () => {
                     }`}
                   >
                     <span className={`relative block w-full ${isWideArticle ? "h-80" : "h-64"} ${isLgOrphan ? "lg:h-full lg:min-h-[24rem]" : ""}`}>
-                      <Image
+                      <ResilientImage
                         src={article.image}
                         alt={`${tx(article.title)} ${tx("article preview")}`}
+                        fallbackLabel={tx(article.publication)}
                         fill
-                        priority={index === 0}
+                        fetchPriority={index === 0 ? "high" : undefined}
                         loading={index === 0 ? "eager" : "lazy"}
                         sizes={isLgOrphan ? "(max-width: 1024px) 100vw, 33vw" : "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"}
                         className="object-contain"
@@ -131,9 +132,10 @@ const NewsPage: React.FC = () => {
               <div className="sticky top-32 space-y-6">
                 <div className="overflow-hidden border border-zinc-800 bg-zinc-950">
                   <div className="relative aspect-[4/3] w-full">
-                    <Image
+                    <ResilientImage
                       src={aixcoAssets.solarProject}
                       alt={tx("AT&S Fehring solar installation")}
+                      fallbackLabel={tx("AT&S Fehring solar installation")}
                       fill
                       sizes="(max-width: 1024px) 100vw, 33vw"
                       className="object-cover opacity-95"
