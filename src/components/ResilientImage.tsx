@@ -14,6 +14,10 @@ function getImageKey(src: ImageProps['src']) {
   return '';
 }
 
+function isLoadedImage(image: HTMLImageElement | null) {
+  return Boolean(image?.complete && image.naturalWidth > 0);
+}
+
 export function ResilientImage({
   alt,
   blurDataURL,
@@ -32,15 +36,34 @@ export function ResilientImage({
   const label = fallbackLabel || alt;
 
   React.useEffect(() => {
-    const image = imageRef.current;
-
-    if (image?.complete && image.naturalWidth > 0) {
+    if (isLoadedImage(imageRef.current)) {
       setState('loaded');
       return;
     }
 
     setState('loading');
   }, [srcKey]);
+
+  React.useEffect(() => {
+    if (state !== 'loading') return undefined;
+
+    let timeoutId: number | undefined;
+
+    const checkLoaded = () => {
+      if (isLoadedImage(imageRef.current)) {
+        setState('loaded');
+        return;
+      }
+
+      timeoutId = window.setTimeout(checkLoaded, 250);
+    };
+
+    checkLoaded();
+
+    return () => {
+      if (timeoutId) window.clearTimeout(timeoutId);
+    };
+  }, [state, srcKey]);
 
   return (
     <>
@@ -57,7 +80,7 @@ export function ResilientImage({
           onError?.(event);
         }}
         onLoad={(event) => {
-          setState('loaded');
+          setState(isLoadedImage(event.currentTarget) ? 'loaded' : 'loading');
           onLoad?.(event);
         }}
         placeholder={placeholder ?? 'blur'}
