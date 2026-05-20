@@ -1,14 +1,17 @@
 import type { Metadata } from 'next';
 import { Suspense, type ReactNode } from 'react';
+import { siteTitle, siteUrl } from '../lib/seo';
 import { ClientLayout } from './ClientLayout';
 import '../index.css';
 
 export const metadata: Metadata = {
-  title: 'AIXCO Energy | Renewable Energy Investment Platform',
-  description:
-    'AIXCO Energy focuses on scalable renewable infrastructure including solar, wind, hydrogen, battery storage and intelligent grid-connected projects.',
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  applicationName: 'AIXCO Energy',
   icons: {
     icon: '/aixco-energy/images/AIXB.png',
+    shortcut: '/aixco-energy/images/AIXB.png',
+    apple: '/aixco-energy/images/AIXB.png',
   },
 };
 

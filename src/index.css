@@ -2,7 +2,7 @@
 
 /* AIXCO Energy - aligned with AIXCO Global ivory/champagne system. */
 @theme {
-  --color-brand-red: #ad7a2e;
+  --color-brand-red: #8f5f1d;
   --color-brand-gold: #d7a13f;
   --color-brand-teal: #345f65;
   --color-industrial-black: #111318;
@@ -11,7 +11,7 @@
   --color-zinc-900: #f3eee6;
   --color-zinc-800: #ded4c5;
   --color-zinc-700: #c4b4a0;
-  --color-zinc-600: #8b7d6d;
+  --color-zinc-600: #756a5d;
   --color-zinc-500: #665d52;
   --color-zinc-400: #4c453d;
   
@@ -36,7 +36,7 @@
     --primary-glow: 41 65% 55%;
     --primary-deep: 32 60% 32%;
     --border: 36 18% 82%;
-    --gradient-gold: linear-gradient(135deg, #e4ba58 0%, #ad7a2e 54%, #7e5220 100%);
+    --gradient-gold: linear-gradient(135deg, #e4ba58 0%, #8f5f1d 54%, #6f4518 100%);
     --gradient-glow: radial-gradient(60% 60% at 50% 0%, hsl(36 58% 43% / 0.13) 0%, transparent 72%);
     --shadow-elegant: 0 24px 70px -34px hsl(220 28% 18% / 0.34), 0 1px 0 hsl(0 0% 100% / 0.7) inset;
     --shadow-gold: 0 18px 48px -24px hsl(36 58% 43% / 0.42), 0 1px 0 hsl(0 0% 100% / 0.55) inset;

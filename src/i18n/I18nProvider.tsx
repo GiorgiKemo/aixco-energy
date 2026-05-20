@@ -80,13 +80,6 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     body.classList.toggle('translated-ltr', lang !== DEFAULT_LANG && dir === 'ltr');
     body.classList.toggle('translated-rtl', lang !== DEFAULT_LANG && dir === 'rtl');
 
-    document.title = keyedTranslations['meta.title']?.[lang] ?? keyedTranslations['meta.title']?.en ?? document.title;
-    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    const translatedDescription = keyedTranslations['meta.description']?.[lang] ?? keyedTranslations['meta.description']?.en;
-    if (description && translatedDescription) {
-      description.content = translatedDescription;
-    }
-
     if (hasLoadedStoredLang) {
       try {
         window.localStorage.setItem(STORAGE_KEY, lang);

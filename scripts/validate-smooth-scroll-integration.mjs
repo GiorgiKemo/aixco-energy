@@ -14,11 +14,11 @@ const expectations = [
     pass: appShell.includes("installGlideScroll") && appShell.includes("<ScrollManager />"),
   },
   {
-    label: "Initial hash loads are normalized so refresh starts at the top",
+    label: "Initial hash loads are preserved and scrolled with the shared hash helper",
     pass:
-      appShell.includes("normalizeInitialHashNavigation") &&
-      appShell.includes("window.history.replaceState") &&
-      appShell.includes("scrollToPageTop('auto')"),
+      !appShell.includes("normalizeInitialHashNavigation") &&
+      !appShell.includes("window.history.replaceState") &&
+      appShell.includes("scrollToHash(hash, firstRender ? 'auto' : undefined)"),
   },
   {
     label: "First-render scroll state is consumed only when the scheduled scroll frame runs",

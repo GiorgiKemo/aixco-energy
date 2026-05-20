@@ -154,7 +154,7 @@ export const Footer: React.FC = () => {
         </div>
         
         <div className="md:col-span-3">
-          <h4 className="mb-6 text-sm font-black uppercase tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("Energy focus")}</h4>
+          <h2 className="mb-6 text-sm font-black uppercase tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("Energy focus")}</h2>
           <ul className="flex flex-col gap-2 text-sm font-bold uppercase tracking-normal text-zinc-400">
             {energyFocus.map((item) => (
               <li key={item}>
@@ -167,7 +167,7 @@ export const Footer: React.FC = () => {
         </div>
         
         <div className="md:col-span-2">
-          <h4 className="mb-6 text-sm font-black uppercase tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("Company")}</h4>
+          <h2 className="mb-6 text-sm font-black uppercase tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("Company")}</h2>
           <ul className="flex flex-col gap-2 text-sm font-bold uppercase tracking-normal text-zinc-400">
             {navItems.map((item) => (
               <li key={item.label}>
@@ -180,7 +180,7 @@ export const Footer: React.FC = () => {
         </div>
         
         <div className="md:col-span-3">
-          <h4 className="mb-6 text-sm font-black uppercase tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("Contact us")}</h4>
+          <h2 className="mb-6 text-sm font-black uppercase tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("Contact us")}</h2>
           <div className="space-y-5 text-sm font-black uppercase leading-relaxed tracking-normal text-zinc-400">
             <div>
               <div className="mb-2 flex items-center gap-2 text-industrial-black"><MapPin size={14} className="text-brand-red" /> {tx("Head Office")}</div>
@@ -209,7 +209,7 @@ export const Footer: React.FC = () => {
       <div className="relative max-w-7xl mx-auto mt-16 border-t border-zinc-900 pt-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <div>
-            <h4 className="mb-5 text-sm font-black uppercase tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("Investment focus")}</h4>
+            <h2 className="mb-5 text-sm font-black uppercase tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("Investment focus")}</h2>
             <ul className="grid grid-cols-1 gap-3 text-sm font-black uppercase tracking-normal text-zinc-500 sm:grid-cols-2">
               {investmentFocus.map((item) => (
                 <li key={item}>{tx(item)}</li>
@@ -217,7 +217,7 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
           <div>
-            <h4 className="mb-5 text-sm font-black uppercase tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("About AIXCO Energy")}</h4>
+            <h2 className="mb-5 text-sm font-black uppercase tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("About AIXCO Energy")}</h2>
             <p className="text-sm font-black uppercase leading-relaxed text-zinc-500">{tx(aboutEnergy)}</p>
           </div>
         </div>

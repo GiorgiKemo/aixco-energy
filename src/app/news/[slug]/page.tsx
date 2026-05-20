@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getNewsArticleBySlug, newsArticles } from '../../../content/newsArticles';
+import { createPageMetadata } from '../../../lib/seo';
 import ArticlePage from '../../../views/ArticlePage';
 
 type ArticleRouteParams = {
@@ -25,10 +26,13 @@ export async function generateMetadata({ params }: ArticleRouteParams): Promise<
     };
   }
 
-  return {
-    title: `${article.title} | AIXCO Energy`,
+  return createPageMetadata({
+    title: article.title,
     description: article.summary,
-  };
+    path: `/news/${article.slug}`,
+    image: article.image,
+    type: 'article',
+  });
 }
 
 export default async function NewsArticleRoute({ params }: ArticleRouteParams) {
