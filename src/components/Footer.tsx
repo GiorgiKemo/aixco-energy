@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Globe, Linkedin, Mail, MapPin, Phone, X } from 'lucide-react';
+import { Globe, Linkedin, Mail, MapPin, MessageCircle, X } from 'lucide-react';
 import {
   aboutEnergy,
   aixcoAssets,
@@ -24,6 +24,16 @@ type LegalSection = {
   heading: string;
   body: string;
   items?: string[];
+};
+
+const energyFocusHrefByItem: Record<string, string> = {
+  "Utility-Scale Solar": "/projects#utility-scale-solar",
+  "Onshore Wind": "/projects#onshore-offshore-wind",
+  "Battery Storage Systems": "/projects#battery-energy-storage",
+  "Hydrogen Infrastructure": "/projects#green-hydrogen-electrolysis",
+  "Hybrid Energy Assets": "/projects#solar-wind-storage",
+  "Grid & Digital Controls": "/projects#smart-grid-ai-optimisation",
+  "Technology News": "/news",
 };
 
 const legalContent: Record<LegalModalKey, { title: string; sections: LegalSection[] }> = {
@@ -87,15 +97,65 @@ export const Footer: React.FC = () => {
   const [activeLegal, setActiveLegal] = React.useState<LegalModalKey | null>(null);
   const activeLegalContent = activeLegal ? legalContent[activeLegal] : null;
   const legalTitleId = React.useId();
+  const legalDialogRef = React.useRef<HTMLDivElement>(null);
+  const lastLegalTriggerRef = React.useRef<HTMLButtonElement | null>(null);
   const { tx } = useI18n();
 
   React.useEffect(() => {
     if (!activeLegal) return;
 
     const previousOverflow = document.body.style.overflow;
+    const previouslyFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const focusableSelector = [
+      'a[href]',
+      'button:not([disabled])',
+      'textarea:not([disabled])',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(',');
+
+    const getFocusableElements = () => {
+      const dialog = legalDialogRef.current;
+      if (!dialog) return [];
+
+      return Array.from(dialog.querySelectorAll<HTMLElement>(focusableSelector)).filter(
+        (element) => element.offsetParent !== null,
+      );
+    };
+
+    const focusFrame = window.requestAnimationFrame(() => {
+      const focusTarget = getFocusableElements()[0] ?? legalDialogRef.current;
+      focusTarget?.focus();
+    });
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setActiveLegal(null);
+        return;
+      }
+
+      if (event.key !== 'Tab') {
+        return;
+      }
+
+      const focusableElements = getFocusableElements();
+      if (focusableElements.length === 0) {
+        event.preventDefault();
+        legalDialogRef.current?.focus();
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      const activeElement = document.activeElement;
+
+      if (event.shiftKey && activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
       }
     };
 
@@ -103,13 +163,24 @@ export const Footer: React.FC = () => {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
+      window.cancelAnimationFrame(focusFrame);
       document.body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', handleKeyDown);
+
+      const focusTarget = lastLegalTriggerRef.current ?? previouslyFocused;
+      if (focusTarget && document.contains(focusTarget)) {
+        window.requestAnimationFrame(() => focusTarget.focus());
+      }
     };
   }, [activeLegal]);
 
+  const openLegalModal = (key: LegalModalKey, trigger: HTMLButtonElement) => {
+    lastLegalTriggerRef.current = trigger;
+    setActiveLegal(key);
+  };
+
   return (
-    <footer id="contact" data-nav-section="/#contact" className="relative scroll-mt-[65px] overflow-hidden bg-industrial-white text-industrial-black border-t border-zinc-800 px-6 py-20 lg:scroll-mt-[98px]">
+    <footer id="contact" className="relative scroll-mt-[65px] overflow-hidden bg-industrial-white text-industrial-black border-t border-zinc-800 px-6 py-20 lg:scroll-mt-[98px]">
       <Image
         src={aixcoAssets.footerShape}
         alt=""
@@ -158,7 +229,7 @@ export const Footer: React.FC = () => {
           <ul className="flex flex-col gap-2 text-sm font-bold uppercase tracking-normal text-zinc-400">
             {energyFocus.map((item) => (
               <li key={item}>
-                <Link href={item === "Technology News" ? "/news" : "/projects"} className="inline-flex min-h-8 min-w-11 items-center transition-colors hover:text-brand-red">
+                <Link href={energyFocusHrefByItem[item] ?? "/projects"} className="inline-flex min-h-8 min-w-11 items-center transition-colors hover:text-brand-red">
                   {tx(item)}
                 </Link>
               </li>
@@ -187,7 +258,7 @@ export const Footer: React.FC = () => {
               <p>{contact.address}</p>
             </div>
             <div>
-              <div className="mb-2 flex items-center gap-2 text-industrial-black"><Phone size={14} className="text-brand-red" /> {tx("Investor Support")}</div>
+              <div className="mb-2 flex items-center gap-2 text-industrial-black"><MessageCircle size={14} className="text-brand-red" /> {tx("Investor Support")}</div>
               <p>{tx(contact.supportDetail)}</p>
             </div>
             <div>
@@ -227,22 +298,26 @@ export const Footer: React.FC = () => {
         <div className="text-sm font-black uppercase tracking-normal text-zinc-600">
           © 2026 AIXCO Energy.
         </div>
-        <div className="flex flex-wrap justify-center gap-6 border border-zinc-900 bg-zinc-950/50 px-4 py-2 text-sm font-black uppercase tracking-normal text-zinc-500">
-          <button
-            type="button"
-            onClick={() => setActiveLegal('terms')}
-            className="inline-flex min-h-8 cursor-pointer items-center transition-colors hover:text-brand-red focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red"
-          >
-            {tx("Terms & Conditions")}
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveLegal('privacy')}
-            className="inline-flex min-h-8 cursor-pointer items-center transition-colors hover:text-brand-red focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red"
-          >
-            {tx("Privacy Policy")}
-          </button>
-          <span>{tx(contact.hours)}</span>
+        <div className="flex flex-col items-center gap-3 md:items-end">
+          <div data-office-hours className="text-sm font-black uppercase tracking-normal text-zinc-600">
+            {tx(contact.hours)}
+          </div>
+          <div data-legal-actions className="flex flex-wrap justify-center gap-6 border border-zinc-900 bg-zinc-950/50 px-4 py-2 text-sm font-black uppercase tracking-normal text-zinc-500">
+            <button
+              type="button"
+              onClick={(event) => openLegalModal('terms', event.currentTarget)}
+              className="inline-flex min-h-8 cursor-pointer items-center transition-colors hover:text-brand-red focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red"
+            >
+              {tx("Terms & Conditions")}
+            </button>
+            <button
+              type="button"
+              onClick={(event) => openLegalModal('privacy', event.currentTarget)}
+              className="inline-flex min-h-8 cursor-pointer items-center transition-colors hover:text-brand-red focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red"
+            >
+              {tx("Privacy Policy")}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -255,9 +330,11 @@ export const Footer: React.FC = () => {
             onClick={() => setActiveLegal(null)}
           />
           <div
+            ref={legalDialogRef}
             role="dialog"
             aria-modal="true"
             aria-labelledby={legalTitleId}
+            tabIndex={-1}
             className="relative max-h-[84vh] w-full max-w-3xl overflow-y-auto rounded-lg border border-zinc-300 bg-industrial-white shadow-2xl"
           >
             <div className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-zinc-200 bg-industrial-white px-5 py-4 sm:px-7">

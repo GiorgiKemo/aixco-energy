@@ -66,8 +66,13 @@ export function ClientLayout({ children }: { children: ReactNode }) {
     <I18nProvider>
       <ScrollManager />
       <div className="flex min-h-screen flex-col">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <Header />
-        <div className="flex-grow">{children}</div>
+        <div id="main-content" tabIndex={-1} className="flex-grow">
+          {children}
+        </div>
         <Footer />
         <ScrollTopButton />
       </div>

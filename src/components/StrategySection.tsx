@@ -39,7 +39,7 @@ export const StrategySection: React.FC = () => {
   });
 
   return (
-    <section id="about" data-nav-section="/#about" className="scroll-mt-[65px] bg-industrial-white text-industrial-black border-b border-zinc-800 lg:scroll-mt-[98px]">
+    <section id="about" className="scroll-mt-[65px] bg-industrial-white text-industrial-black border-b border-zinc-800 lg:scroll-mt-[98px]">
       <div className="max-w-7xl mx-auto px-6 py-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-28">
           <motion.div
@@ -117,7 +117,7 @@ export const StrategySection: React.FC = () => {
                 </li>
               ))}
             </ul>
-            <Link href="/platform" className="brutal-btn inline-flex items-center gap-3 italic">
+            <Link href="/about" className="brutal-btn inline-flex items-center gap-3 italic">
               {tx("Learn More About AIXCO Energy")} <MoveRight size={18} />
             </Link>
           </motion.div>

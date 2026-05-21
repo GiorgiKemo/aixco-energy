@@ -8,6 +8,7 @@ export type NewsArticleSection = {
 type ArticleBody = {
   eyebrow: string;
   author?: string;
+  sourceLanguage: string;
   lead: string;
   sourceNote: string;
   pullQuote?: string;
@@ -21,6 +22,7 @@ const articleBodies: Record<string, ArticleBody> = {
   "solar-energy-new-thinking": {
     eyebrow: "Extracted from PV Asset",
     author: pvArticle.author,
+    sourceLanguage: "German source material",
     lead: pvArticle.summary,
     sourceNote: "Prepared from the PV Asset PDF and kept as an on-site readable article.",
     pullQuote: pvArticle.quote,
@@ -35,6 +37,7 @@ const articleBodies: Record<string, ArticleBody> = {
   "2morrow-solar-real-assets": {
     eyebrow: "Extracted from 2morrow Spezial",
     author: "Text: Rosi Dorudi",
+    sourceLanguage: "German source material",
     lead:
       "The 2morrow special places photovoltaic contracting and sustainable Bauherrenmodelle next to each other as two practical real-asset answers to energy transition, affordable housing and long-term value creation.",
     sourceNote: "Prepared from the 2morrow special issue PDF and summarized into web article sections.",
@@ -87,6 +90,7 @@ const articleBodies: Record<string, ArticleBody> = {
   "investment-mit-gesellschaftlichem-mehrwert": {
     eyebrow: "Extracted from assets 1/2025",
     author: "Text: Rosi Dorudi / assets",
+    sourceLanguage: "German source material",
     lead:
       "The assets 1/2025 coverage presents Bauherrenmodelle as a crisis-resilient investment structure that can mobilize private capital for affordable housing while integrating sustainability standards and long-term rental demand.",
     sourceNote: "Prepared from the assets 1/2025 PDF, including the Valuita and BSP Immobilien Invest promotion pages.",
@@ -140,6 +144,7 @@ const articleBodies: Record<string, ArticleBody> = {
   "solide-veranlagung": {
     eyebrow: "Extracted from assets 2/2025",
     author: "Moderation: Stefan Schatz",
+    sourceLanguage: "German source material",
     lead:
       "The assets real-estate round table describes a stabilizing Austrian property market, renewed investor interest in housing and the continued relevance of Bauherrenmodelle as a long-term, value-oriented investment structure.",
     sourceNote: "Prepared from the assets 2/2025 round-table PDF and the attached Valuita/BSP advertorial pages.",
@@ -198,6 +203,7 @@ const articleBodies: Record<string, ArticleBody> = {
   },
   "kapitalanlage-mit-mehrwert": {
     eyebrow: "Extracted from Das Stanglwirt-Magazin",
+    sourceLanguage: "German source material",
     lead:
       "The Stanglwirt advertorial presents Valuita and BSP Immobilien Invest as partners using Bauherrenmodelle to connect investor opportunity, affordable housing and sustainable residential development in Austria.",
     sourceNote: "Prepared from the Stanglwirt-Magazin PDF and rewritten as an on-site article.",
@@ -249,6 +255,7 @@ const articleBodies: Record<string, ArticleBody> = {
   },
   "bruckner-simon-pressespiegel": {
     eyebrow: "Extracted from Pressespiegel PDF",
+    sourceLanguage: "German and English source material",
     lead:
       "The press mirror collects magazine, online, newsletter and social placements connected to Mario Bruckner-Simon, Bauherrenmodelle, affordable housing and contracting coverage.",
     sourceNote:

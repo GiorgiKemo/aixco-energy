@@ -27,11 +27,11 @@ export const socialLinks = {
 
 export const navItems = [
   { label: "Home", to: "/" },
-  { label: "About", to: "/#about" },
+  { label: "About", to: "/about" },
   { label: "Projects", to: "/projects" },
   { label: "News", to: "/news" },
-  { label: "FAQs", to: "/#faqs" },
-  { label: "Contact", to: "/#contact" },
+  { label: "FAQs", to: "/faq" },
+  { label: "Contact", to: "/contact" },
 ];
 
 export const heroCopy = {
@@ -187,6 +187,23 @@ export const ctaCopy = {
   label: "AIXCO Energy",
   title: "Built to present a complete investment story, not a single technology headline.",
   body: "Explore our energy strategy, read the latest sector news, review the FAQs and learn how investors can access the 6% AIXCO bond through BlueRock.",
+};
+
+export const newsArchiveContext = {
+  label: "How to use this archive",
+  title: "Press PDFs and article summaries in one reference point",
+  body: "The archive keeps the original media files available while summarizing the topics on site, including solar contracting, real assets, affordable housing and AIXCO platform coverage.",
+  cardTitle: "Original sources stay available",
+  tags: ["Original PDFs", "Readable summaries", "Source-language notes", "Article archive"],
+  close: "Use the linked PDFs for the original publication context and the FAQ or contact page for investor process questions.",
+  notesLabel: "Archive reading notes",
+  notesTitle: "Media coverage supports context, but official documents remain the source of truth.",
+  bullets: [
+    "Review original PDFs when wording or source layout matters.",
+    "Use source-language labels to understand whether excerpts come from German or mixed-language material.",
+    "Treat press coverage as background context, not as financial advice.",
+    "Use the FAQ and contact page for bond, onboarding and eligibility questions.",
+  ],
 };
 
 export const pressArticles = [

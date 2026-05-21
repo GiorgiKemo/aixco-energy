@@ -40,6 +40,17 @@ export const Header: React.FC = () => {
   }, [pathname]);
 
   useEffect(() => {
+    if (!open) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
+
+  useEffect(() => {
     if (!langOpen) return;
 
     const closeOnOutsideInteraction = (event: Event) => {
@@ -165,11 +176,11 @@ export const Header: React.FC = () => {
     }
 
     if (to.startsWith("/#")) {
-      if (to === "/#about") {
-        return activePathname === "/about" || activePathname === "/platform";
-      }
-
       return false;
+    }
+
+    if (to === "/faq") {
+      return activePathname === "/faq" || activePathname === "/faqs";
     }
 
     if (to === "/news") {
@@ -184,8 +195,8 @@ export const Header: React.FC = () => {
       <div className="hidden border-b border-zinc-800/60 lg:block">
         <div className="site-topbar mx-auto flex h-8 max-w-7xl items-center justify-between px-6 text-sm font-medium tracking-wide text-zinc-500">
           <div className="site-topbar__links flex items-center gap-8">
-            <Link href="/#contact" onClick={(event) => handleInternalLinkClick(event, "/#contact")} className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red">{contact.address}</Link>
-            <Link href="/#contact" onClick={(event) => handleInternalLinkClick(event, "/#contact")} className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red">{tx(contact.support)}</Link>
+            <Link href="/contact" onClick={(event) => handleInternalLinkClick(event, "/contact")} className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red">{contact.address}</Link>
+            <Link href="/contact" onClick={(event) => handleInternalLinkClick(event, "/contact")} className="inline-flex min-h-8 items-center transition-colors hover:text-brand-red">{tx(contact.support)}</Link>
             <a
               href={`mailto:${contact.email}`}
               onClick={() => {
@@ -226,7 +237,7 @@ export const Header: React.FC = () => {
               AIXCO.ENERGY
             </span>
           </Link>
-          <nav className="site-nav hidden gap-2 text-sm font-medium tracking-normal text-zinc-600 xl:flex">
+          <nav className="site-nav hidden gap-1 text-sm font-medium tracking-normal text-zinc-600 lg:flex xl:gap-2">
             {navItems.map((item) => (
               <Link
                 key={item.label}
@@ -290,7 +301,7 @@ export const Header: React.FC = () => {
             onClick={() => {
               void recordBlueRockClick('header_desktop_bluerock');
             }}
-            className="btn-gold hidden min-h-11 px-4 py-2 text-sm font-bold !text-white sm:inline-flex"
+            className="btn-gold hidden min-h-11 px-4 py-2 text-sm font-bold !text-white xl:inline-flex"
           >
             {tx("Buy on BlueRock")} <ExternalLink size={13} />
           </a>
@@ -300,7 +311,7 @@ export const Header: React.FC = () => {
               setOpen((value) => !value);
               setLangOpen(false);
             }}
-            className="icon-button-glass h-11 w-11 xl:hidden text-zinc-600 hover:text-brand-red"
+            className="icon-button-glass h-11 w-11 lg:hidden text-zinc-600 hover:text-brand-red"
             aria-label={tx("Toggle navigation")}
             aria-expanded={open}
             aria-controls="mobile-navigation"
@@ -311,8 +322,26 @@ export const Header: React.FC = () => {
       </div>
 
       {open && (
-        <nav id="mobile-navigation" className="xl:hidden border-t border-zinc-800 bg-industrial-white/95 px-6 py-5 shadow-soft backdrop-blur-2xl">
+        <nav id="mobile-navigation" className="lg:hidden border-t border-zinc-800 bg-industrial-white/95 px-6 py-5 shadow-soft backdrop-blur-2xl">
           <div className="flex flex-col gap-3 text-sm font-medium text-zinc-600">
+            <div className="mb-2 rounded-lg border border-zinc-800 bg-zinc-950 p-4 text-xs font-bold leading-relaxed text-zinc-500">
+              <Link href="/contact" onClick={(event) => handleInternalLinkClick(event, "/contact")} className="block min-h-8 transition-colors hover:text-brand-red">
+                {contact.address}
+              </Link>
+              <Link href="/contact" onClick={(event) => handleInternalLinkClick(event, "/contact")} className="block min-h-8 transition-colors hover:text-brand-red">
+                {tx(contact.support)}
+              </Link>
+              <a
+                href={`mailto:${contact.email}`}
+                onClick={() => {
+                  setOpen(false);
+                  void recordEmailClick('mobile_menu_email', contact.email);
+                }}
+                className="block min-h-8 transition-colors hover:text-brand-red"
+              >
+                {contact.email}
+              </a>
+            </div>
             {navItems.map((item) => (
               <Link
                 key={item.label}

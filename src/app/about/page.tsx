@@ -1,5 +1,5 @@
 import { createPageMetadata } from '../../lib/seo';
-import PlatformPage from '../../views/PlatformPage';
+import AboutPage from '../../views/AboutPage';
 
 export const metadata = createPageMetadata({
   title: 'About AIXCO Energy',
@@ -9,5 +9,5 @@ export const metadata = createPageMetadata({
 });
 
 export default function AboutRoute() {
-  return <PlatformPage />;
+  return <AboutPage />;
 }

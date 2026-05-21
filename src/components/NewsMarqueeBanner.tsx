@@ -2,19 +2,21 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Newspaper } from 'lucide-react';
+import { ArrowRight, Newspaper, Pause, Play } from 'lucide-react';
 import { pressArticles } from '../content/aixcoEnergy';
 import { useI18n } from '../i18n/I18nProvider';
 import { ResilientImage } from './ResilientImage';
 
 export const NewsMarqueeBanner: React.FC = () => {
   const { tx } = useI18n();
+  const [isPaused, setIsPaused] = React.useState(false);
   const groups = [0, 1];
 
   return (
     <section
       id="news"
       data-nav-section="/news"
+      data-paused={isPaused}
       aria-label={tx("Latest AIXCO Energy press coverage")}
       className="news-marquee scroll-mt-[65px] border-y border-zinc-800 bg-industrial-white text-industrial-black lg:scroll-mt-[98px]"
     >
@@ -29,19 +31,35 @@ export const NewsMarqueeBanner: React.FC = () => {
               {tx("Market notes and media coverage")}
             </h2>
           </div>
-          <Link
-            href="/news"
-            className="group inline-flex min-h-11 shrink-0 items-center gap-2 text-sm font-semibold text-zinc-500 transition-colors hover:text-brand-red"
-          >
-            {tx("View all news")}
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-          </Link>
+          <div className="flex shrink-0 items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setIsPaused((value) => !value)}
+              className="icon-button-glass h-11 w-11 text-zinc-500 hover:text-brand-red"
+              aria-label={isPaused ? tx('Play news marquee') : tx('Pause news marquee')}
+              aria-pressed={isPaused}
+            >
+              {isPaused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
+            </button>
+            <Link
+              href="/news"
+              className="group inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-zinc-500 transition-colors hover:text-brand-red"
+            >
+              {tx("View all news")}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+            </Link>
+          </div>
         </div>
 
         <div className="news-marquee__viewport" aria-live="off">
           <div className="news-marquee__track">
             {groups.map((group) => (
-              <div key={group} className="news-marquee__group" aria-hidden={group > 0}>
+              <div
+                key={group}
+                className="news-marquee__group"
+                aria-hidden={group > 0 ? true : undefined}
+                inert={group > 0 ? true : undefined}
+              >
                 {pressArticles.map((article) => {
                   const shouldWarmImage = group === 0;
 

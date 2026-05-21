@@ -33,8 +33,11 @@ const expectations = [
     pass: header.includes("window.history.pushState") && header.includes("handleInternalLinkClick"),
   },
   {
-    label: "Contact header links route through Next instead of native hash-only anchors",
-    pass: header.includes('href="/#contact"') && !header.includes('href="#contact"'),
+    label: "Contact header links route to the contact page instead of footer hash anchors",
+    pass:
+      header.includes('href="/contact"') &&
+      !header.includes('href="#contact"') &&
+      !header.includes('handleInternalLinkClick(event, "/#contact")'),
   },
   {
     label: "Header logo/home clicks trigger the custom page-top glide",

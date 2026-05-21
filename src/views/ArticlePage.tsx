@@ -84,6 +84,8 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ slug }) => {
                       <span>{tx(article.author)}</span>
                     </>
                   ) : null}
+                  <span>/</span>
+                  <span>{tx("Source language")}: {tx(article.sourceLanguage)}</span>
                 </div>
                 <p className="text-sm leading-7 text-zinc-500">{tx(article.sourceNote)}</p>
                 <div className="flex flex-wrap gap-2">

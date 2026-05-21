@@ -11,7 +11,7 @@ export const TechSection: React.FC = () => {
   const { tx } = useI18n();
 
   return (
-    <section data-nav-section="/projects" className="bg-zinc-950 text-industrial-black border-y border-zinc-800">
+    <section className="bg-zinc-950 text-industrial-black border-y border-zinc-800">
       <div className="max-w-7xl mx-auto px-6 py-32">
         <div className="max-w-3xl mx-auto text-center mb-20">
           <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx("Investment Themes")}</div>

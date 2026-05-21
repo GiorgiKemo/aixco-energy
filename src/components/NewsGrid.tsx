@@ -5,13 +5,12 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { focusAreas } from '../content/aixcoEnergy';
 import { useI18n } from '../i18n/I18nProvider';
-import { TrackedBlueRockLink } from './TrackedBlueRockLink';
 
 export const NewsGrid: React.FC = () => {
   const { tx } = useI18n();
 
   return (
-    <section id="projects" data-nav-section="/projects" className="scroll-mt-[65px] bg-industrial-white px-6 py-32 text-industrial-black border-t border-zinc-800 lg:scroll-mt-[98px]">
+    <section id="focus-areas" className="scroll-mt-[65px] bg-industrial-white px-6 py-32 text-industrial-black border-t border-zinc-800 lg:scroll-mt-[98px]">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <div>
@@ -20,12 +19,12 @@ export const NewsGrid: React.FC = () => {
               {tx("Examples of project types we may pursue")}
             </h2>
           </div>
-          <TrackedBlueRockLink
-            label="focus_areas_bluerock"
+          <Link
+            href="/projects"
             className="group inline-flex min-h-11 items-center gap-2 text-sm font-black uppercase tracking-normal text-zinc-500 transition-colors hover:text-brand-red"
           >
-            {tx("Buy on BlueRock")} <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-          </TrackedBlueRockLink>
+            {tx("View Projects")} <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800 border border-zinc-800">

@@ -1,68 +1,93 @@
 'use client';
 
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import { focusAreas, investmentThemes } from '../content/aixcoEnergy';
-import { TrackedBlueRockLink } from '../components/TrackedBlueRockLink';
+import Link from 'next/link';
+import { ArrowRight, Check } from 'lucide-react';
+import { PageIntro } from '../components/PageIntro';
+import { aixcoAssets } from '../content/aixcoEnergy';
+import { projectsPageCopy } from '../content/sitePages';
 import { useI18n } from '../i18n/I18nProvider';
+import { ResilientImage } from '../components/ResilientImage';
+
+const projectImages = [aixcoAssets.solarProject, aixcoAssets.windGridProject, aixcoAssets.solarProject, aixcoAssets.windGridProject, aixcoAssets.solarProject, aixcoAssets.windGridProject];
 
 const ProjectsPage: React.FC = () => {
   const { tx } = useI18n();
 
   return (
-    <main className="pt-24 lg:pt-32 min-h-screen bg-industrial-white text-industrial-black">
-      <section className="px-6 pb-24 pt-16 md:py-28 max-w-7xl mx-auto">
-        <div className="mb-20">
-          <div className="mb-6 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx("Featured focus areas")}</div>
-          <h1 className="mb-10 break-words text-[clamp(3rem,9vw,8rem)] italic">
-            {tx("Examples of project types")} <br /> <span className="text-brand-red">{tx("we may pursue")}</span>
-          </h1>
-          <p className="max-w-3xl text-sm font-black uppercase text-zinc-500 leading-relaxed">
-            {tx("AIXCO Energy evaluates renewable generation, hydrogen, storage and supporting systems together to improve resilience, flexibility and long-term infrastructure value.")}
-          </p>
+    <main className="min-h-screen bg-industrial-white pt-24 text-industrial-black lg:pt-32">
+      <section className="mx-auto max-w-7xl px-6 pb-24 pt-12 md:pt-16">
+        <PageIntro eyebrow={tx(projectsPageCopy.eyebrow)} title={tx(projectsPageCopy.title)} />
+
+        <div className="mb-16 text-center">
+          <p className="mb-4 text-sm font-black uppercase tracking-[0.18em] text-brand-red">{tx(projectsPageCopy.sectionLabel)}</p>
+          <h2 className="mx-auto mb-6 max-w-4xl text-[clamp(2rem,4vw,3.6rem)] leading-tight">{tx(projectsPageCopy.sectionTitle)}</h2>
+          <p className="mx-auto max-w-3xl text-sm font-bold leading-7 text-zinc-500">{tx(projectsPageCopy.sectionLead)}</p>
         </div>
-        
-        <div className="flex flex-col gap-4 mb-24">
-          {focusAreas.map((project, index) => (
-            <TrackedBlueRockLink
-              key={project.title}
-              label="projects_page_focus_area"
-              metadata={{
-                focus_area: project.title,
-                position: index + 1,
-              }}
-              ariaLabel={`${tx("View on BlueRock")}: ${tx(project.title)}`}
-              className="group grid min-w-0 grid-cols-1 items-center border border-zinc-800 bg-zinc-950 p-6 text-industrial-black transition-all hover:border-brand-red hover:bg-brand-red/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red sm:p-8 md:grid-cols-12"
+
+        <div className="mb-24 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {projectsPageCopy.themes.map((theme, index) => (
+            <article
+              key={theme.title}
+              id={theme.anchor}
+              className="group relative min-h-[22rem] scroll-mt-[65px] overflow-hidden rounded-lg border border-zinc-800 bg-industrial-black text-industrial-white lg:scroll-mt-[98px]"
             >
-              <div className="text-sm font-black text-brand-red md:col-span-1">
-                0{index + 1}
-              </div>
-              <div className="min-w-0 py-4 md:col-span-4">
-                <h3 className="break-words text-3xl font-black italic tracking-normal transition-colors group-hover:text-brand-red">{tx(project.title)}</h3>
-              </div>
-              <div className="min-w-0 py-4 md:col-span-5">
-                <p className="text-sm font-black uppercase leading-relaxed text-zinc-500">{tx(project.body)}</p>
-              </div>
-              <div className="flex items-center justify-end gap-3 md:col-span-2">
-                <span className="hidden text-sm font-black uppercase text-brand-red lg:inline">{tx("View on BlueRock")}</span>
-                <span className="inline-flex h-12 w-12 items-center justify-center bg-zinc-900 text-industrial-black transition-colors group-hover:bg-brand-red group-hover:text-industrial-white">
-                  <ArrowRight aria-hidden />
+              <ResilientImage
+                src={projectImages[index] ?? aixcoAssets.solarProject}
+                alt=""
+                aria-hidden
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover opacity-55 transition-opacity duration-300 group-hover:opacity-70"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-industrial-black via-industrial-black/70 to-industrial-black/20" />
+              <div className="relative flex h-full flex-col justify-end p-8">
+                <span className="mb-3 inline-flex w-fit rounded-full border border-brand-red/40 bg-brand-red/15 px-3 py-1 text-xs font-black uppercase tracking-normal text-brand-gold">
+                  {tx(theme.tag)}
                 </span>
+                <h3 className="mb-3 text-2xl font-black italic">{tx(theme.title)}</h3>
+                <p className="text-sm font-bold leading-relaxed text-zinc-200">{tx(theme.body)}</p>
               </div>
-            </TrackedBlueRockLink>
+            </article>
           ))}
         </div>
-        
-        <div className="p-10 md:p-16 border border-zinc-800 bg-zinc-950">
-          <div className="mb-8 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx("Investment Themes")}</div>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {investmentThemes.map((theme) => (
-              <div key={theme.title} className="min-w-0 border-l-2 border-brand-red pl-6">
-                <h4 className="mb-4 break-words text-2xl font-black italic uppercase tracking-normal">{tx(theme.title)}</h4>
-                <p className="text-sm font-black uppercase leading-relaxed text-zinc-500">{tx(theme.body)}</p>
-              </div>
+
+        <div className="mb-24 grid grid-cols-1 gap-10 lg:grid-cols-12">
+          <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-8 lg:col-span-7">
+            <p className="mb-3 text-sm font-black uppercase tracking-[0.18em] text-brand-red">{tx(projectsPageCopy.whyLabel)}</p>
+            <h3 className="mb-6 text-[clamp(1.6rem,3vw,2.3rem)] leading-tight">{tx(projectsPageCopy.whyTitle)}</h3>
+            {projectsPageCopy.whyParagraphs.map((paragraph) => (
+              <p key={paragraph} className="mb-5 text-sm font-bold leading-7 text-zinc-500">
+                {tx(paragraph)}
+              </p>
             ))}
           </div>
+          <div className="rounded-lg border border-zinc-800 bg-industrial-white p-8 lg:col-span-5">
+            <p className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red">{tx(projectsPageCopy.characteristicsLabel)}</p>
+            <ul className="space-y-4">
+              {projectsPageCopy.characteristics.map((item) => (
+                <li key={item} className="flex gap-3 text-sm font-bold leading-relaxed text-zinc-500">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
+                  {tx(item)}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-px border border-zinc-800 bg-zinc-800 md:grid-cols-3">
+          {projectsPageCopy.highlights.map((item) => (
+            <div key={item.title} className="bg-zinc-950 p-8 text-center">
+              <h4 className="mb-3 text-lg font-black uppercase tracking-normal">{tx(item.title)}</h4>
+              <p className="text-sm font-bold leading-relaxed text-zinc-500">{tx(item.body)}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link href="/contact" className="btn-gold inline-flex min-h-11 items-center gap-2">
+            {tx("Speak With Us")} <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
     </main>

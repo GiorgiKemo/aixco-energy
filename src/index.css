@@ -43,13 +43,22 @@
     --shadow-soft: 0 14px 42px -28px hsl(220 28% 18% / 0.28);
     --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
     --ease-apple: cubic-bezier(0.22, 1, 0.36, 1);
+    --site-anchor-offset: 65px;
+  }
+}
+
+@media (min-width: 1024px) {
+  @layer base {
+    :root {
+      --site-anchor-offset: 98px;
+    }
   }
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: var(--site-anchor-offset);
   }
 
   body {
@@ -59,6 +68,29 @@
     font-feature-settings: "kern";
     font-size: 16.5px;
     line-height: 1.6;
+  }
+
+  .skip-link {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    z-index: 120;
+    transform: translateY(-200%);
+    border: 1px solid var(--color-brand-red);
+    border-radius: 0.5rem;
+    background: var(--color-industrial-white);
+    color: var(--color-industrial-black);
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    box-shadow: var(--shadow-elegant);
+    transition: transform 160ms var(--ease-apple);
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+    outline: 2px solid var(--color-brand-red);
+    outline-offset: 4px;
   }
 
   a,
@@ -445,14 +477,6 @@
 }
 
 @layer utilities {
-  .font-black {
-    font-weight: 600;
-  }
-
-  .italic {
-    font-style: normal;
-  }
-
   .tracking-tighter,
   .tracking-tight {
     letter-spacing: 0;
@@ -460,10 +484,6 @@
 
   .tracking-widest {
     letter-spacing: 0.08em;
-  }
-
-  .uppercase {
-    text-transform: none;
   }
 
   :is(:lang(ka), .translated-ltr, .translated-rtl) .hero-reference-font {
@@ -1115,7 +1135,8 @@
 }
 
 .news-marquee__viewport:hover .news-marquee__track,
-.news-marquee__viewport:focus-within .news-marquee__track {
+.news-marquee__viewport:focus-within .news-marquee__track,
+.news-marquee[data-paused="true"] .news-marquee__track {
   animation-play-state: paused;
 }
 
@@ -1230,6 +1251,12 @@
   will-change: transform;
 }
 
+.energy-ticker:hover .energy-ticker__track,
+.energy-ticker:focus-within .energy-ticker__track,
+.energy-ticker[data-paused="true"] .energy-ticker__track {
+  animation-play-state: paused;
+}
+
 .energy-ticker__group {
   display: flex;
   flex: 0 0 auto;
@@ -1316,11 +1343,9 @@
     scroll-behavior: auto !important;
   }
 
-  .news-marquee {
-    --news-marquee-duration: 72s;
-  }
-
-  .energy-ticker {
-    --ticker-duration: 60s;
+  .news-marquee__track,
+  .energy-ticker__track {
+    animation: none !important;
+    transform: none !important;
   }
 }

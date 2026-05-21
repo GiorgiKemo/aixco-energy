@@ -1,13 +1,13 @@
 import { createPageMetadata } from '../../lib/seo';
-import { FaqRedirect } from './FaqRedirect';
+import FaqPage from '../../views/FaqPage';
 
 export const metadata = createPageMetadata({
   title: 'Investor FAQs',
   description:
-    'Open the AIXCO Energy investor FAQ section with answers about the renewable infrastructure strategy and platform access.',
-  path: '/#faqs',
+    'Frequently asked questions about AIXCO Energy, AIXCO Global, the 6% bond, BlueRock onboarding and AIXCO energy investment approach.',
+  path: '/faq',
 });
 
 export default function FaqRoute() {
-  return <FaqRedirect />;
+  return <FaqPage />;
 }

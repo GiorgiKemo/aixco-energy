@@ -3,7 +3,7 @@
 import React from 'react';
 import { ArrowRight, Check, ExternalLink, Quote } from 'lucide-react';
 import Link from 'next/link';
-import { aixcoAssets, ctaCopy, futureGrowth, investorReasons, pvArticle } from '../content/aixcoEnergy';
+import { aixcoAssets, ctaCopy, newsArchiveContext, pvArticle } from '../content/aixcoEnergy';
 import { newsArticles } from '../content/newsArticles';
 import { ResilientImage } from '../components/ResilientImage';
 import { TrackedPdfLink } from '../components/TrackedPdfLink';
@@ -45,6 +45,7 @@ const NewsPage: React.FC = () => {
                 <div className={`flex h-full min-w-0 flex-col ${isLgOrphan ? "lg:grid lg:grid-cols-12" : ""}`}>
                   <Link
                     href={`/news/${article.slug}`}
+                    aria-label={`${tx("Read article")} ${tx(article.title)}`}
                     className={`group block border-b border-zinc-800 bg-industrial-white p-4 ${
                       isLgOrphan ? "lg:col-span-4 lg:border-b-0 lg:border-r lg:p-8" : ""
                     }`}
@@ -68,15 +69,23 @@ const NewsPage: React.FC = () => {
                       <span className="text-zinc-600">/</span>
                       <span className="text-zinc-500">{article.date}</span>
                     </div>
-                    <h2 className={`mb-5 break-words leading-none ${isWideArticle ? "text-[clamp(2.4rem,5vw,4.6rem)]" : "text-[clamp(1.9rem,3vw,3rem)]"}`}>
-                      {tx(article.title)}
-                    </h2>
-                    <div className="mb-6 text-sm font-black uppercase tracking-normal text-zinc-500">
-                      {tx(article.publication)}
-                    </div>
-                    <p className="mb-8 text-sm leading-7 text-zinc-500">
-                      {tx(article.summary)}
-                    </p>
+                    <Link
+                      href={`/news/${article.slug}`}
+                      className="group/article-link mb-8 block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red"
+                    >
+                      <h2 className={`mb-5 break-words leading-none transition-colors group-hover/article-link:text-brand-red ${isWideArticle ? "text-[clamp(2.4rem,5vw,4.6rem)]" : "text-[clamp(1.9rem,3vw,3rem)]"}`}>
+                        {tx(article.title)}
+                      </h2>
+                      <div className="mb-6 text-sm font-black uppercase tracking-normal text-zinc-500">
+                        {tx(article.publication)}
+                      </div>
+                      <div className="mb-6 text-xs font-black uppercase tracking-[0.14em] text-zinc-600">
+                        {tx("Source language")} / {tx(article.sourceLanguage)}
+                      </div>
+                      <p className="text-sm leading-7 text-zinc-500">
+                        {tx(article.summary)}
+                      </p>
+                    </Link>
                     <div className="mt-auto">
                       <div className="mb-8 flex flex-wrap gap-2">
                         {article.tags.map((tag) => (
@@ -85,10 +94,10 @@ const NewsPage: React.FC = () => {
                           </span>
                         ))}
                       </div>
-                      <div className="flex flex-wrap gap-3">
+                      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                         <Link
                           href={`/news/${article.slug}`}
-                          className="btn-gold min-h-11 px-4 py-2 text-sm"
+                          className="btn-gold min-h-11 w-full justify-center px-4 py-2 text-sm sm:w-auto"
                         >
                           {tx("Read article")} <ArrowRight className="h-4 w-4" />
                         </Link>
@@ -99,7 +108,7 @@ const NewsPage: React.FC = () => {
                             article_slug: article.slug,
                             article_title: article.title,
                           }}
-                          className="btn-ghost-gold min-h-11 px-4 py-2 text-sm"
+                          className="btn-ghost-gold min-h-11 w-full justify-center px-4 py-2 text-sm sm:w-auto"
                         >
                           {tx("Original PDF")} <ExternalLink className="h-4 w-4" />
                         </TrackedPdfLink>
@@ -185,33 +194,33 @@ const NewsPage: React.FC = () => {
         </article>
 
         <div className="mb-20 text-center border-t border-zinc-800 pt-28">
-          <div className="mb-6 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx(futureGrowth.label)}</div>
+          <div className="mb-6 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx(newsArchiveContext.label)}</div>
           <h2 className="mb-8 break-words text-[clamp(3.2rem,9vw,8rem)] italic">
-            {tx("Where future growth")} <br /> <span className="text-brand-red">{tx("may come from")}</span>
+            {tx("Press PDFs")} <br /> <span className="text-brand-red">{tx("and summaries")}</span>
           </h2>
           <p className="mx-auto max-w-3xl text-sm font-black uppercase leading-relaxed text-zinc-500">
-            {tx(futureGrowth.body)}
+            {tx(newsArchiveContext.body)}
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-800 border border-zinc-800 mb-20">
           <div className="min-w-0 bg-zinc-950 p-6 sm:p-8 md:p-12">
-            <h2 className="mb-8 break-words text-[clamp(2.2rem,4vw,4rem)]">{tx(futureGrowth.title)}</h2>
+            <h2 className="mb-8 break-words text-[clamp(2.2rem,4vw,4rem)]">{tx(newsArchiveContext.cardTitle)}</h2>
             <div className="flex flex-wrap gap-3 mb-10">
-              {futureGrowth.tags.map((tag) => (
+              {newsArchiveContext.tags.map((tag) => (
                 <span key={tag} className="border border-brand-red/40 bg-brand-red/10 px-3 py-2 text-sm font-black uppercase text-brand-red">
                   {tx(tag)}
                 </span>
               ))}
             </div>
-            <p className="text-sm font-black uppercase leading-relaxed text-zinc-500">{tx(futureGrowth.close)}</p>
+            <p className="text-sm font-black uppercase leading-relaxed text-zinc-500">{tx(newsArchiveContext.close)}</p>
           </div>
 
           <div className="min-w-0 bg-industrial-white text-industrial-black p-6 sm:p-8 md:p-12">
-            <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx(investorReasons.label)}</div>
-            <h2 className="mb-8 break-words text-[clamp(2rem,4vw,3.6rem)]">{tx(investorReasons.title)}</h2>
+            <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx(newsArchiveContext.notesLabel)}</div>
+            <h2 className="mb-8 break-words text-[clamp(2rem,4vw,3.6rem)]">{tx(newsArchiveContext.notesTitle)}</h2>
             <ul className="space-y-4">
-              {investorReasons.bullets.map((bullet) => (
+              {newsArchiveContext.bullets.map((bullet) => (
                 <li key={bullet} className="flex gap-3 text-sm font-black uppercase leading-relaxed text-zinc-500">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
                   {tx(bullet)}

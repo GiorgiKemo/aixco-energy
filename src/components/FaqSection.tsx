@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Check, Network } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, Check, Network } from 'lucide-react';
 import { investorReasons } from '../content/aixcoEnergy';
 import { useI18n } from '../i18n/I18nProvider';
 
@@ -11,7 +12,6 @@ export const FaqSection: React.FC = () => {
   return (
     <section
       id="faqs"
-      data-nav-section="/#faqs"
       className="scroll-mt-[65px] border-y border-zinc-800 bg-industrial-white px-6 py-24 text-industrial-black lg:scroll-mt-[98px]"
     >
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-12 lg:items-start">
@@ -33,6 +33,9 @@ export const FaqSection: React.FC = () => {
               </li>
             ))}
           </ul>
+          <Link href="/faq" className="btn-ghost-gold mt-8 inline-flex min-h-11 items-center gap-2">
+            {tx("View all FAQs")} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
         </div>
       </div>
     </section>

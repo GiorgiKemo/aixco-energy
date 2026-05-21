@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'motion/react';
-import { BatteryCharging, Droplets, ExternalLink, Network, Sun, Wind } from 'lucide-react';
+import { BatteryCharging, Droplets, ExternalLink, Network, Pause, Play, Sun, Wind } from 'lucide-react';
 import { aixcoAssets, heroCopy, heroVerticals, platformMetrics } from '../content/aixcoEnergy';
 import { useI18n } from '../i18n/I18nProvider';
 import { recordBlueRockClick } from '../lib/backend/energy-lead-capture';
@@ -12,24 +12,73 @@ const verticalIcons = [Sun, Wind, BatteryCharging, Droplets, Network];
 
 export const Hero: React.FC = () => {
   const { tx } = useI18n();
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(() =>
+    typeof window === 'undefined' ? false : window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  );
+  const [isVideoPaused, setIsVideoPaused] = React.useState(prefersReducedMotion);
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const syncPreference = () => {
+      const shouldReduce = mediaQuery.matches;
+      setPrefersReducedMotion(shouldReduce);
+      if (shouldReduce) {
+        videoRef.current?.pause();
+        setIsVideoPaused(true);
+      }
+    };
+
+    syncPreference();
+    mediaQuery.addEventListener('change', syncPreference);
+    return () => mediaQuery.removeEventListener('change', syncPreference);
+  }, []);
+
+  const toggleVideoPlayback = async () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      await video.play();
+      setIsVideoPaused(false);
+      return;
+    }
+
+    video.pause();
+    setIsVideoPaused(true);
+  };
 
   return (
     <section data-nav-section="/" className="energy-hero relative flex min-h-[100svh] flex-col overflow-hidden border-b border-zinc-800 pt-16 lg:h-[100svh] lg:min-h-0 lg:pt-24">
       <div className="energy-hero__body flex min-h-0 flex-1 flex-col divide-x divide-zinc-800 lg:flex-row">
         <div className="relative flex min-h-0 flex-col lg:w-2/3">
-          <div className="group relative min-h-[720px] flex-1 overflow-hidden bg-zinc-900 lg:min-h-0">
+          <div className="group relative min-h-[clamp(34rem,72svh,42rem)] flex-1 overflow-hidden bg-zinc-900 md:min-h-[40rem] lg:min-h-0">
             <motion.video
+               ref={videoRef}
                initial={{ scale: 1.1, opacity: 0 }}
                animate={{ scale: 1, opacity: 0.48 }}
                transition={{ duration: 1.5 }}
                className="absolute inset-0 h-full w-full object-cover"
                src={aixcoAssets.heroVideo}
-               autoPlay
+               autoPlay={!prefersReducedMotion}
                muted
                loop
                playsInline
                poster={aixcoAssets.solarProject}
+               onPlay={() => setIsVideoPaused(false)}
+               onPause={() => setIsVideoPaused(true)}
             />
+            <button
+              type="button"
+              onClick={() => {
+                void toggleVideoPlayback();
+              }}
+              className="absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-industrial-white/30 bg-industrial-black/70 text-industrial-white shadow-soft backdrop-blur transition-colors hover:bg-brand-red focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-industrial-white"
+              aria-label={isVideoPaused ? tx('Play hero video') : tx('Pause hero video')}
+              aria-pressed={!isVideoPaused}
+            >
+              {isVideoPaused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
+            </button>
             <div className="absolute inset-0 bg-gradient-to-t from-industrial-black/90 via-industrial-black/48 to-industrial-black/24"></div>
             
             <div className="absolute bottom-8 left-6 right-6 text-industrial-white md:left-10 md:right-10 lg:bottom-6 xl:bottom-8">
@@ -40,7 +89,7 @@ export const Hero: React.FC = () => {
               <h1 className="hero-reference-font mb-4 text-[clamp(2.8rem,6.8vw,5.55rem)] font-semibold leading-[0.86] tracking-normal drop-shadow-[0_18px_42px_rgba(0,0,0,0.38)]">
                 {tx(heroCopy.title)}
               </h1>
-              <h2 className="hero-reference-font mb-5 text-[clamp(1.25rem,3.2vw,3.2rem)] font-light leading-none tracking-normal text-brand-red [text-transform:uppercase] sm:whitespace-nowrap">
+              <h2 className="hero-reference-font mb-5 max-w-3xl text-[clamp(1.25rem,3.2vw,3.2rem)] font-light leading-[1.05] tracking-normal text-brand-red [text-transform:uppercase]">
                 {tx(heroCopy.subtitle)}
               </h2>
               <p className="hero-reference-font max-w-3xl text-[clamp(0.98rem,1.12vw,1.1rem)] font-normal leading-[1.45] text-zinc-200/90">
@@ -99,7 +148,7 @@ export const Hero: React.FC = () => {
               );
             })}
           </div>
-          <Link href="/#faqs" className="-mb-px flex h-16 shrink-0 cursor-pointer items-center justify-center bg-brand-red px-6 text-center text-lg font-black uppercase italic leading-none tracking-normal text-industrial-white transition-all hover:bg-industrial-black xl:h-20 xl:text-xl">
+          <Link href="/faq" className="-mb-px flex h-16 shrink-0 cursor-pointer items-center justify-center bg-brand-red px-6 text-center text-lg font-black uppercase italic leading-none tracking-normal text-industrial-white transition-all hover:bg-industrial-black xl:h-20 xl:text-xl">
             {tx("Investor FAQs")}
           </Link>
         </div>
