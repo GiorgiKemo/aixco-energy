@@ -66,7 +66,10 @@ export function ClientLayout({ children }: { children: ReactNode }) {
     <I18nProvider>
       <ScrollManager />
       <div className="flex min-h-screen flex-col">
-        <a href="#main-content" className="skip-link">
+        <a
+          href="#main-content"
+          className="skip-link fixed left-4 top-4 z-[120] -translate-y-[200%] rounded-lg border border-brand-red bg-industrial-white px-4 py-3 text-sm font-bold text-industrial-black shadow-elegant transition-transform duration-150 focus:translate-y-0 focus:outline focus:outline-2 focus:outline-offset-4 focus:outline-brand-red"
+        >
           Skip to main content
         </a>
         <Header />

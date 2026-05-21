@@ -14,7 +14,7 @@ export const Hero: React.FC = () => {
   const { tx } = useI18n();
 
   return (
-    <section data-nav-section="/" className="energy-hero relative flex min-h-[100svh] flex-col overflow-hidden border-b border-zinc-800 pt-16 lg:h-[100svh] lg:min-h-0 lg:pt-24">
+    <section data-nav-section="/" className="energy-hero relative flex min-h-[100svh] flex-col overflow-hidden border-b border-zinc-800 pt-16 lg:h-[100svh] lg:min-h-0 lg:pt-[98px]">
       <div className="energy-hero__body flex min-h-0 flex-1 flex-col divide-x divide-zinc-800 lg:flex-row">
         <div className="relative flex min-h-0 flex-col lg:w-2/3">
           <div className="group relative min-h-[clamp(34rem,72svh,42rem)] flex-1 overflow-hidden bg-zinc-900 md:min-h-[40rem] lg:min-h-0">

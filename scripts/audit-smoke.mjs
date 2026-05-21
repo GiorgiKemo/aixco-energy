@@ -133,6 +133,74 @@ async function runHeroVideoAssetCheck(browser) {
   await context.close();
 }
 
+async function runHeroViewportFitCheck(browser) {
+  const viewports = [
+    { width: 1584, height: 825 },
+    { width: 1366, height: 768 },
+    { width: 1024, height: 768 },
+    { width: 768, height: 1024 },
+  ];
+
+  for (const viewport of viewports) {
+    const context = await browser.newContext({ viewport });
+    const page = await context.newPage();
+
+    await page.goto(`${baseUrl}/`, { waitUntil: 'networkidle' });
+    const heroState = await page.evaluate(() => {
+      const rect = (selector) => {
+        const element = document.querySelector(selector);
+        if (!element) return null;
+        const box = element.getBoundingClientRect();
+        return {
+          top: box.top,
+          bottom: box.bottom,
+          height: box.height,
+        };
+      };
+
+      const investorFaq = Array.from(document.querySelectorAll('.energy-hero a')).find(
+        (element) => element.textContent?.replace(/\s+/g, ' ').trim() === 'Investor FAQs',
+      );
+      const investorFaqRect = investorFaq?.getBoundingClientRect();
+      const skipLink = document.querySelector('.skip-link');
+
+      return {
+        viewportHeight: window.innerHeight,
+        skipLinkPosition: skipLink ? window.getComputedStyle(skipLink).position : null,
+        mainTop: document.querySelector('#main-content')?.getBoundingClientRect().top ?? null,
+        hero: rect('.energy-hero'),
+        metrics: rect('.energy-hero__metrics'),
+        investorFaq: investorFaqRect
+          ? {
+              top: investorFaqRect.top,
+              bottom: investorFaqRect.bottom,
+              height: investorFaqRect.height,
+            }
+          : null,
+      };
+    });
+
+    if (heroState.skipLinkPosition !== 'fixed' || heroState.mainTop !== 0) {
+      throw new Error(`Skip link is affecting document layout at ${viewport.width}x${viewport.height}: ${JSON.stringify(heroState)}`);
+    }
+
+    if (viewport.width >= 1024) {
+      for (const [label, box] of [
+        ['hero', heroState.hero],
+        ['metrics', heroState.metrics],
+        ['investorFaq', heroState.investorFaq],
+      ]) {
+        if (!box || box.bottom > heroState.viewportHeight + 1) {
+          throw new Error(`${label} does not fit in first viewport at ${viewport.width}x${viewport.height}: ${JSON.stringify(heroState)}`);
+        }
+      }
+    }
+
+    await assertNoHorizontalOverflow(page);
+    await context.close();
+  }
+}
+
 async function runNewsLanguageCheck(browser) {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
   await context.addInitScript(() => {
@@ -415,6 +483,7 @@ async function runNewsMarqueeA11yCheck(browser) {
 
 const checks = {
   'hero-video-asset': runHeroVideoAssetCheck,
+  'hero-viewport-fit': runHeroViewportFitCheck,
   'not-found': runNotFoundCheck,
   'news-language': runNewsLanguageCheck,
   'news-repetition': runNewsRepetitionCheck,
