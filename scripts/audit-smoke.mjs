@@ -89,6 +89,50 @@ async function runNotFoundCheck(browser) {
   await context.close();
 }
 
+async function runHeroVideoAssetCheck(browser) {
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  const page = await context.newPage();
+
+  await page.goto(`${baseUrl}/`, { waitUntil: 'networkidle' });
+  const heroVideoState = await page.evaluate(() => {
+    const video = document.querySelector('video');
+    const hero = document.querySelector('.energy-hero');
+    return {
+      src: video?.currentSrc || video?.getAttribute('src') || '',
+      autoPlay: video?.autoplay ?? false,
+      muted: video?.muted ?? false,
+      loop: video?.loop ?? false,
+      playsInline: video?.playsInline ?? false,
+      paused: video?.paused ?? true,
+      readyState: video?.readyState ?? 0,
+      hasHeroVideoControl: Boolean(hero?.querySelector('button[aria-label*="hero video" i]')),
+      bodyHasBadMediaText: /DSCR|Solence|minimum DSCR/i.test(document.body.textContent ?? ''),
+    };
+  });
+
+  if (!heroVideoState.src.includes('/aixco-energy/video/hero-solar-panels.mp4')) {
+    throw new Error(`Unexpected hero video source: ${heroVideoState.src}`);
+  }
+
+  if (heroVideoState.src.includes('/aixco-energy/video/1.mp4') || heroVideoState.bodyHasBadMediaText) {
+    throw new Error(`Hero media guard failed: ${JSON.stringify(heroVideoState)}`);
+  }
+
+  if (
+    !heroVideoState.autoPlay ||
+    !heroVideoState.muted ||
+    !heroVideoState.loop ||
+    !heroVideoState.playsInline ||
+    heroVideoState.paused ||
+    heroVideoState.hasHeroVideoControl
+  ) {
+    throw new Error(`Hero autoplay guard failed: ${JSON.stringify(heroVideoState)}`);
+  }
+
+  await assertNoHorizontalOverflow(page);
+  await context.close();
+}
+
 async function runNewsLanguageCheck(browser) {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
   await context.addInitScript(() => {
@@ -370,6 +414,7 @@ async function runNewsMarqueeA11yCheck(browser) {
 }
 
 const checks = {
+  'hero-video-asset': runHeroVideoAssetCheck,
   'not-found': runNotFoundCheck,
   'news-language': runNewsLanguageCheck,
   'news-repetition': runNewsRepetitionCheck,

@@ -5,7 +5,7 @@ export const aixcoAssets = {
   logoSquare: publicAsset("aixco-energy/images/AIXCOGlobalWSq.png"),
   markWhite: publicAsset("aixco-energy/images/AIXW.png"),
   markBlack: publicAsset("aixco-energy/images/AIXB.png"),
-  heroVideo: publicAsset("aixco-energy/video/1.mp4"),
+  heroVideo: publicAsset("aixco-energy/video/hero-solar-panels.mp4"),
   solarProject: publicAsset("aixco-energy/images/misc/p1.webp"),
   windGridProject: publicAsset("aixco-energy/images/misc/p2.webp"),
   footerShape: publicAsset("aixco-energy/images/misc/c1.webp"),
