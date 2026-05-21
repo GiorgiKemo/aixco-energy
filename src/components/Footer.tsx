@@ -211,7 +211,7 @@ export const Footer: React.FC = () => {
             />
             <span className="text-lg font-medium tracking-normal">AIXCO.ENERGY</span>
           </div>
-          <p className="mb-8 max-w-xs text-sm font-black uppercase leading-relaxed text-zinc-500">
+          <p className="mb-8 max-w-xs text-sm font-black leading-relaxed text-zinc-500">
             {tx(footerIntro)}
           </p>
           <div className="flex gap-2">
@@ -225,8 +225,8 @@ export const Footer: React.FC = () => {
         </div>
         
         <div className="md:col-span-3">
-          <h2 className="mb-6 text-sm font-black uppercase tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("Energy focus")}</h2>
-          <ul className="flex flex-col gap-2 text-sm font-bold uppercase tracking-normal text-zinc-400">
+          <h2 className="mb-6 text-sm font-black tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("Energy focus")}</h2>
+          <ul className="flex flex-col gap-2 text-sm font-bold tracking-normal text-zinc-400">
             {energyFocus.map((item) => (
               <li key={item}>
                 <Link href={energyFocusHrefByItem[item] ?? "/projects"} className="inline-flex min-h-8 min-w-11 items-center transition-colors hover:text-brand-red">
@@ -238,8 +238,8 @@ export const Footer: React.FC = () => {
         </div>
         
         <div className="md:col-span-2">
-          <h2 className="mb-6 text-sm font-black uppercase tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("Company")}</h2>
-          <ul className="flex flex-col gap-2 text-sm font-bold uppercase tracking-normal text-zinc-400">
+          <h2 className="mb-6 text-sm font-black tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("Company")}</h2>
+          <ul className="flex flex-col gap-2 text-sm font-bold tracking-normal text-zinc-400">
             {navItems.map((item) => (
               <li key={item.label}>
                 <Link href={item.to} className="inline-flex min-h-8 min-w-11 items-center transition-colors hover:text-brand-red">
@@ -251,8 +251,8 @@ export const Footer: React.FC = () => {
         </div>
         
         <div className="md:col-span-3">
-          <h2 className="mb-6 text-sm font-black uppercase tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("Contact us")}</h2>
-          <div className="space-y-5 text-sm font-black uppercase leading-relaxed tracking-normal text-zinc-400">
+          <h2 className="mb-6 text-sm font-black tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("Contact us")}</h2>
+          <div className="space-y-5 text-sm font-black leading-relaxed tracking-normal text-zinc-400">
             <div>
               <div className="mb-2 flex items-center gap-2 text-industrial-black"><MapPin size={14} className="text-brand-red" /> {tx("Head Office")}</div>
               <p>{contact.address}</p>
@@ -280,29 +280,29 @@ export const Footer: React.FC = () => {
       <div className="relative max-w-7xl mx-auto mt-16 border-t border-zinc-900 pt-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <div>
-            <h2 className="mb-5 text-sm font-black uppercase tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("Investment focus")}</h2>
-            <ul className="grid grid-cols-1 gap-3 text-sm font-black uppercase tracking-normal text-zinc-500 sm:grid-cols-2">
+            <h2 className="mb-5 text-sm font-black tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("Investment focus")}</h2>
+            <ul className="grid grid-cols-1 gap-3 text-sm font-black tracking-normal text-zinc-500 sm:grid-cols-2">
               {investmentFocus.map((item) => (
                 <li key={item}>{tx(item)}</li>
               ))}
             </ul>
           </div>
           <div>
-            <h2 className="mb-5 text-sm font-black uppercase tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("About AIXCO Energy")}</h2>
-            <p className="text-sm font-black uppercase leading-relaxed text-zinc-500">{tx(aboutEnergy)}</p>
+            <h2 className="mb-5 text-sm font-black tracking-[0.14em] text-brand-red underline decoration-2 underline-offset-4">{tx("About AIXCO Energy")}</h2>
+            <p className="text-sm font-black leading-relaxed text-zinc-500">{tx(aboutEnergy)}</p>
           </div>
         </div>
       </div>
       
       <div className="relative max-w-7xl mx-auto mt-16 pt-10 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="text-sm font-black uppercase tracking-normal text-zinc-600">
+        <div className="text-sm font-black tracking-normal text-zinc-600">
           © 2026 AIXCO Energy.
         </div>
         <div className="flex flex-col items-center gap-3 md:items-end">
-          <div data-office-hours className="text-sm font-black uppercase tracking-normal text-zinc-600">
+          <div data-office-hours className="text-sm font-black tracking-normal text-zinc-600">
             {tx(contact.hours)}
           </div>
-          <div data-legal-actions className="flex flex-wrap justify-center gap-6 border border-zinc-900 bg-zinc-950/50 px-4 py-2 text-sm font-black uppercase tracking-normal text-zinc-500">
+          <div data-legal-actions className="flex flex-wrap justify-center gap-6 border border-zinc-900 bg-zinc-950/50 px-4 py-2 text-sm font-black tracking-normal text-zinc-500">
             <button
               type="button"
               onClick={(event) => openLegalModal('terms', event.currentTarget)}
@@ -339,8 +339,8 @@ export const Footer: React.FC = () => {
           >
             <div className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-zinc-200 bg-industrial-white px-5 py-4 sm:px-7">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-red">{tx("Legal")}</p>
-                <h3 id={legalTitleId} className="mt-1 text-2xl font-black uppercase tracking-normal text-industrial-black">
+                <p className="text-xs font-black tracking-[0.18em] text-brand-red">{tx("Legal")}</p>
+                <h3 id={legalTitleId} className="mt-1 text-2xl font-black tracking-normal text-industrial-black">
                   {tx(activeLegalContent.title)}
                 </h3>
               </div>
@@ -356,10 +356,10 @@ export const Footer: React.FC = () => {
             <div className="space-y-6 px-5 py-6 sm:px-7">
               {activeLegalContent.sections.map((section) => (
                 <section key={section.heading}>
-                  <h4 className="text-base font-black uppercase tracking-normal text-industrial-black">{tx(section.heading)}</h4>
-                  <p className="mt-2 text-sm font-black uppercase leading-relaxed text-zinc-500">{tx(section.body)}</p>
+                  <h4 className="text-base font-black tracking-normal text-industrial-black">{tx(section.heading)}</h4>
+                  <p className="mt-2 text-sm font-black leading-relaxed text-zinc-500">{tx(section.body)}</p>
                   {section.items && (
-                    <ul className="mt-3 list-disc space-y-1 pl-5 text-sm font-black uppercase leading-relaxed text-zinc-500">
+                    <ul className="mt-3 list-disc space-y-1 pl-5 text-sm font-black leading-relaxed text-zinc-500">
                       {section.items.map((item) => (
                         <li key={item}>{tx(item)}</li>
                       ))}

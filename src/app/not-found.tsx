@@ -9,7 +9,7 @@ export default function NotFound() {
   return (
     <main className="min-h-screen bg-industrial-white px-6 pt-32 text-industrial-black">
       <section className="mx-auto max-w-3xl border border-zinc-800 bg-zinc-950 p-8 shadow-soft md:p-12">
-        <p className="mb-5 text-sm font-black uppercase tracking-[0.14em] text-brand-red">
+        <p className="mb-5 text-sm font-black tracking-[0.14em] text-brand-red">
           404
         </p>
         <h1 className="mb-6 text-[clamp(2.5rem,8vw,5rem)] font-black leading-none">

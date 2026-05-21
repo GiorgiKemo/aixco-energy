@@ -20,7 +20,7 @@ const ProjectsPage: React.FC = () => {
         <PageIntro eyebrow={tx(projectsPageCopy.eyebrow)} title={tx(projectsPageCopy.title)} />
 
         <div className="mb-16 text-center">
-          <p className="mb-4 text-sm font-black uppercase tracking-[0.18em] text-brand-red">{tx(projectsPageCopy.sectionLabel)}</p>
+          <p className="mb-4 text-sm font-black tracking-[0.18em] text-brand-red">{tx(projectsPageCopy.sectionLabel)}</p>
           <h2 className="mx-auto mb-6 max-w-4xl text-[clamp(2rem,4vw,3.6rem)] leading-tight">{tx(projectsPageCopy.sectionTitle)}</h2>
           <p className="mx-auto max-w-3xl text-sm font-bold leading-7 text-zinc-500">{tx(projectsPageCopy.sectionLead)}</p>
         </div>
@@ -42,10 +42,10 @@ const ProjectsPage: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-industrial-black via-industrial-black/70 to-industrial-black/20" />
               <div className="relative flex h-full flex-col justify-end p-8">
-                <span className="mb-3 inline-flex w-fit rounded-full border border-brand-red/40 bg-brand-red/15 px-3 py-1 text-xs font-black uppercase tracking-normal text-brand-gold">
+                <span className="mb-3 inline-flex w-fit rounded-full border border-brand-red/40 bg-brand-red/15 px-3 py-1 text-xs font-black tracking-normal text-brand-gold">
                   {tx(theme.tag)}
                 </span>
-                <h3 className="mb-3 text-2xl font-black italic">{tx(theme.title)}</h3>
+                <h3 className="mb-3 text-2xl font-black">{tx(theme.title)}</h3>
                 <p className="text-sm font-bold leading-relaxed text-zinc-200">{tx(theme.body)}</p>
               </div>
             </article>
@@ -54,7 +54,7 @@ const ProjectsPage: React.FC = () => {
 
         <div className="mb-24 grid grid-cols-1 gap-10 lg:grid-cols-12">
           <div className="rounded-lg border border-zinc-800 bg-zinc-950 p-8 lg:col-span-7">
-            <p className="mb-3 text-sm font-black uppercase tracking-[0.18em] text-brand-red">{tx(projectsPageCopy.whyLabel)}</p>
+            <p className="mb-3 text-sm font-black tracking-[0.18em] text-brand-red">{tx(projectsPageCopy.whyLabel)}</p>
             <h3 className="mb-6 text-[clamp(1.6rem,3vw,2.3rem)] leading-tight">{tx(projectsPageCopy.whyTitle)}</h3>
             {projectsPageCopy.whyParagraphs.map((paragraph) => (
               <p key={paragraph} className="mb-5 text-sm font-bold leading-7 text-zinc-500">
@@ -63,7 +63,7 @@ const ProjectsPage: React.FC = () => {
             ))}
           </div>
           <div className="rounded-lg border border-zinc-800 bg-industrial-white p-8 lg:col-span-5">
-            <p className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red">{tx(projectsPageCopy.characteristicsLabel)}</p>
+            <p className="mb-5 text-sm font-black tracking-[0.18em] text-brand-red">{tx(projectsPageCopy.characteristicsLabel)}</p>
             <ul className="space-y-4">
               {projectsPageCopy.characteristics.map((item) => (
                 <li key={item} className="flex gap-3 text-sm font-bold leading-relaxed text-zinc-500">
@@ -78,7 +78,7 @@ const ProjectsPage: React.FC = () => {
         <div className="grid grid-cols-1 gap-px border border-zinc-800 bg-zinc-800 md:grid-cols-3">
           {projectsPageCopy.highlights.map((item) => (
             <div key={item.title} className="bg-zinc-950 p-8 text-center">
-              <h4 className="mb-3 text-lg font-black uppercase tracking-normal">{tx(item.title)}</h4>
+              <h4 className="mb-3 text-lg font-black tracking-normal">{tx(item.title)}</h4>
               <p className="text-sm font-bold leading-relaxed text-zinc-500">{tx(item.body)}</p>
             </div>
           ))}

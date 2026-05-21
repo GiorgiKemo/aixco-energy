@@ -17,11 +17,11 @@ const NewsPage: React.FC = () => {
     <main className="pt-24 lg:pt-32 min-h-screen bg-industrial-white text-industrial-black">
       <section className="px-6 pb-24 pt-16 md:py-28 max-w-7xl mx-auto">
         <div className="mb-20">
-          <div className="mb-6 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx("Press archive")}</div>
-          <h1 className="mb-10 break-words text-[clamp(3rem,9vw,8rem)] italic">
+          <div className="mb-6 text-sm font-black tracking-[0.18em] text-brand-red md:text-base">{tx("Press archive")}</div>
+          <h1 className="mb-10 break-words text-[clamp(3rem,9vw,8rem)]">
             {tx("News &")} <span className="text-brand-red">{tx("press")}</span>
           </h1>
-          <p className="max-w-4xl text-sm font-black uppercase text-zinc-500 leading-relaxed">
+          <p className="max-w-4xl text-sm font-black text-zinc-500 leading-relaxed">
             {tx("Selected magazine features, advertorials and press coverage related to solar contracting, real assets, sustainable development and the AIXCO platform network.")}
           </p>
         </div>
@@ -64,7 +64,7 @@ const NewsPage: React.FC = () => {
                     </span>
                   </Link>
                   <div className={`flex min-w-0 flex-1 flex-col p-6 sm:p-7 md:p-8 ${isLgOrphan ? "lg:col-span-8 lg:p-10 xl:p-12" : ""}`}>
-                    <div className="mb-6 flex flex-wrap items-center gap-3 text-sm font-black uppercase tracking-normal">
+                    <div className="mb-6 flex flex-wrap items-center gap-3 text-sm font-black tracking-normal">
                       <span className="text-brand-red">{tx(article.category)}</span>
                       <span className="text-zinc-600">/</span>
                       <span className="text-zinc-500">{article.date}</span>
@@ -76,10 +76,10 @@ const NewsPage: React.FC = () => {
                       <h2 className={`mb-5 break-words leading-none transition-colors group-hover/article-link:text-brand-red ${isWideArticle ? "text-[clamp(2.4rem,5vw,4.6rem)]" : "text-[clamp(1.9rem,3vw,3rem)]"}`}>
                         {tx(article.title)}
                       </h2>
-                      <div className="mb-6 text-sm font-black uppercase tracking-normal text-zinc-500">
+                      <div className="mb-6 text-sm font-black tracking-normal text-zinc-500">
                         {tx(article.publication)}
                       </div>
-                      <div className="mb-6 text-xs font-black uppercase tracking-[0.14em] text-zinc-600">
+                      <div className="mb-6 text-xs font-black tracking-[0.14em] text-zinc-600">
                         {tx("Source language")} / {tx(article.sourceLanguage)}
                       </div>
                       <p className="text-sm leading-7 text-zinc-500">
@@ -89,7 +89,7 @@ const NewsPage: React.FC = () => {
                     <div className="mt-auto">
                       <div className="mb-8 flex flex-wrap gap-2">
                         {article.tags.map((tag) => (
-                          <span key={tag} className="border border-brand-red/35 bg-brand-red/10 px-3 py-2 text-sm font-black uppercase text-brand-red">
+                          <span key={tag} className="border border-brand-red/35 bg-brand-red/10 px-3 py-2 text-sm font-black text-brand-red">
                             {tx(tag)}
                           </span>
                         ))}
@@ -123,13 +123,13 @@ const NewsPage: React.FC = () => {
 
         <article className="mb-28">
           <div className="mb-16">
-            <div className="mb-6 flex items-center gap-3 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">
+            <div className="mb-6 flex items-center gap-3 text-sm font-black tracking-[0.18em] text-brand-red md:text-base">
               {tx("Featured article")} <ArrowRight className="h-4 w-4" /> {tx(pvArticle.category)}
             </div>
-            <h2 className="mb-8 break-words text-[clamp(3rem,8vw,7.8rem)] italic">
+            <h2 className="mb-8 break-words text-[clamp(3rem,8vw,7.8rem)]">
               {tx(pvArticle.title)}
             </h2>
-            <div className="flex flex-wrap gap-4 text-sm font-black uppercase tracking-normal text-zinc-500">
+            <div className="flex flex-wrap gap-4 text-sm font-black tracking-normal text-zinc-500">
               <span>{tx(pvArticle.author)}</span>
               <span>PV-Contracting</span>
               <span>Green PV Gruppe</span>
@@ -150,13 +150,13 @@ const NewsPage: React.FC = () => {
                       className="object-cover opacity-95"
                     />
                   </div>
-                  <p className="p-5 text-sm font-black uppercase leading-relaxed text-zinc-500">
+                  <p className="p-5 text-sm font-black leading-relaxed text-zinc-500">
                     {tx(pvArticle.imageCaption)}
                   </p>
                 </div>
                 <div className="border border-brand-red/40 bg-brand-red/10 p-6 text-brand-red">
                   <Quote className="mb-5 h-7 w-7" />
-                  <p className="text-xl font-black italic leading-tight">
+                  <p className="text-xl font-black leading-tight">
                     {tx(pvArticle.quote)}
                   </p>
                 </div>
@@ -179,7 +179,7 @@ const NewsPage: React.FC = () => {
               <div className="grid grid-cols-1 gap-px bg-zinc-800 border border-zinc-800">
                 {pvArticle.sections.map((section, index) => (
                   <section key={section.title} className="min-w-0 bg-zinc-950 p-6 sm:p-7 md:p-10">
-                    <div className="mb-6 text-sm font-black uppercase tracking-normal text-brand-red">0{index + 1}</div>
+                    <div className="mb-6 text-sm font-black tracking-normal text-brand-red">0{index + 1}</div>
                     <h2 className="mb-6 break-words text-[clamp(1.9rem,4vw,3.4rem)]">{tx(section.title)}</h2>
                     <div className="space-y-5 text-base leading-8 text-zinc-500">
                       {section.paragraphs.map((paragraph) => (
@@ -194,11 +194,11 @@ const NewsPage: React.FC = () => {
         </article>
 
         <div className="mb-20 text-center border-t border-zinc-800 pt-28">
-          <div className="mb-6 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx(newsArchiveContext.label)}</div>
-          <h2 className="mb-8 break-words text-[clamp(3.2rem,9vw,8rem)] italic">
+          <div className="mb-6 text-sm font-black tracking-[0.18em] text-brand-red md:text-base">{tx(newsArchiveContext.label)}</div>
+          <h2 className="mb-8 break-words text-[clamp(3.2rem,9vw,8rem)]">
             {tx("Press PDFs")} <br /> <span className="text-brand-red">{tx("and summaries")}</span>
           </h2>
-          <p className="mx-auto max-w-3xl text-sm font-black uppercase leading-relaxed text-zinc-500">
+          <p className="mx-auto max-w-3xl text-sm font-black leading-relaxed text-zinc-500">
             {tx(newsArchiveContext.body)}
           </p>
         </div>
@@ -208,20 +208,20 @@ const NewsPage: React.FC = () => {
             <h2 className="mb-8 break-words text-[clamp(2.2rem,4vw,4rem)]">{tx(newsArchiveContext.cardTitle)}</h2>
             <div className="flex flex-wrap gap-3 mb-10">
               {newsArchiveContext.tags.map((tag) => (
-                <span key={tag} className="border border-brand-red/40 bg-brand-red/10 px-3 py-2 text-sm font-black uppercase text-brand-red">
+                <span key={tag} className="border border-brand-red/40 bg-brand-red/10 px-3 py-2 text-sm font-black text-brand-red">
                   {tx(tag)}
                 </span>
               ))}
             </div>
-            <p className="text-sm font-black uppercase leading-relaxed text-zinc-500">{tx(newsArchiveContext.close)}</p>
+            <p className="text-sm font-black leading-relaxed text-zinc-500">{tx(newsArchiveContext.close)}</p>
           </div>
 
           <div className="min-w-0 bg-industrial-white text-industrial-black p-6 sm:p-8 md:p-12">
-            <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx(newsArchiveContext.notesLabel)}</div>
+            <div className="mb-5 text-sm font-black tracking-[0.18em] text-brand-red md:text-base">{tx(newsArchiveContext.notesLabel)}</div>
             <h2 className="mb-8 break-words text-[clamp(2rem,4vw,3.6rem)]">{tx(newsArchiveContext.notesTitle)}</h2>
             <ul className="space-y-4">
               {newsArchiveContext.bullets.map((bullet) => (
-                <li key={bullet} className="flex gap-3 text-sm font-black uppercase leading-relaxed text-zinc-500">
+                <li key={bullet} className="flex gap-3 text-sm font-black leading-relaxed text-zinc-500">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
                   {tx(bullet)}
                 </li>
@@ -231,9 +231,9 @@ const NewsPage: React.FC = () => {
         </div>
 
         <div className="bg-brand-red text-industrial-white p-8 sm:p-10 md:p-16">
-          <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] md:text-base">{tx(ctaCopy.label)}</div>
+          <div className="mb-5 text-sm font-black tracking-[0.18em] md:text-base">{tx(ctaCopy.label)}</div>
           <h2 className="mb-8 break-words text-[clamp(2.4rem,5vw,5rem)]">{tx(ctaCopy.title)}</h2>
-          <p className="max-w-3xl text-sm font-black uppercase leading-relaxed">{tx(ctaCopy.body)}</p>
+          <p className="max-w-3xl text-sm font-black leading-relaxed">{tx(ctaCopy.body)}</p>
         </div>
       </section>
     </main>

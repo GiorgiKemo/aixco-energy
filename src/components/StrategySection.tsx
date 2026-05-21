@@ -49,7 +49,7 @@ export const StrategySection: React.FC = () => {
             transition={revealTransition()}
             className="motion-reveal-surface lg:col-span-3"
           >
-            <div className="mb-4 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx(whyCopy.label)}</div>
+            <div className="mb-4 text-sm font-black tracking-[0.18em] text-brand-red md:text-base">{tx(whyCopy.label)}</div>
             <div className="h-1 w-20 bg-brand-red" />
           </motion.div>
           <motion.div
@@ -102,22 +102,22 @@ export const StrategySection: React.FC = () => {
             transition={revealTransition(0.08)}
             className="motion-reveal-surface lg:col-span-6"
           >
-            <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx(strategyCopy.label)}</div>
+            <div className="mb-5 text-sm font-black tracking-[0.18em] text-brand-red md:text-base">{tx(strategyCopy.label)}</div>
             <h2 className="text-[clamp(2.1rem,4vw,3.8rem)] leading-[1] mb-8">
               {tx(strategyCopy.title)}
             </h2>
-            <p className="text-zinc-500 mb-10 uppercase text-sm font-bold leading-relaxed">
+            <p className="text-zinc-500 mb-10 text-sm font-bold leading-relaxed">
               {tx(strategyCopy.body)}
             </p>
             <ul className="space-y-4 mb-10">
               {strategyCopy.bullets.map((bullet) => (
-                <li key={bullet} className="flex gap-3 text-sm font-black uppercase leading-relaxed text-zinc-500">
+                <li key={bullet} className="flex gap-3 text-sm font-black leading-relaxed text-zinc-500">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-red" />
                   {tx(bullet)}
                 </li>
               ))}
             </ul>
-            <Link href="/about" className="brutal-btn inline-flex items-center gap-3 italic">
+            <Link href="/about" className="brutal-btn inline-flex items-center gap-3">
               {tx("Learn More About AIXCO Energy")} <MoveRight size={18} />
             </Link>
           </motion.div>

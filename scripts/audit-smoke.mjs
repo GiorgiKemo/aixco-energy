@@ -201,6 +201,45 @@ async function runHeroViewportFitCheck(browser) {
   }
 }
 
+async function runHeroTypographyCheck(browser) {
+  const context = await browser.newContext({ viewport: { width: 1525, height: 862 } });
+  const page = await context.newPage();
+
+  await page.goto(`${baseUrl}/`, { waitUntil: 'networkidle' });
+  const typographyState = await page.evaluate(() => {
+    const inspect = (selector) => {
+      const element = document.querySelector(selector);
+      if (!element) return null;
+      const styles = window.getComputedStyle(element);
+      return {
+        selector,
+        text: element.textContent?.replace(/\s+/g, ' ').trim() ?? '',
+        fontStyle: styles.fontStyle,
+        textTransform: styles.textTransform,
+      };
+    };
+
+    return [
+      inspect('.status-tag'),
+      inspect('.energy-hero h2.hero-reference-font'),
+      inspect('.energy-hero a[href="/projects"]'),
+      inspect('.energy-hero__metric span:nth-child(1)'),
+      inspect('.energy-hero__metric span:nth-child(2)'),
+      inspect('.energy-hero__vertical h3'),
+      inspect('.energy-hero__vertical p'),
+      inspect('.energy-hero a[href="/faq"]'),
+    ];
+  });
+
+  const badTypography = typographyState.filter((item) => !item || item.fontStyle !== 'normal' || item.textTransform !== 'none');
+  if (badTypography.length > 0) {
+    throw new Error(`Hero typography is forced italic/uppercase: ${JSON.stringify(typographyState)}`);
+  }
+
+  await assertNoHorizontalOverflow(page);
+  await context.close();
+}
+
 async function runNewsLanguageCheck(browser) {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
   await context.addInitScript(() => {
@@ -484,6 +523,7 @@ async function runNewsMarqueeA11yCheck(browser) {
 const checks = {
   'hero-video-asset': runHeroVideoAssetCheck,
   'hero-viewport-fit': runHeroViewportFitCheck,
+  'hero-typography': runHeroTypographyCheck,
   'not-found': runNotFoundCheck,
   'news-language': runNewsLanguageCheck,
   'news-repetition': runNewsRepetitionCheck,

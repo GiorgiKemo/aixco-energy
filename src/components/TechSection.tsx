@@ -14,11 +14,11 @@ export const TechSection: React.FC = () => {
     <section className="bg-zinc-950 text-industrial-black border-y border-zinc-800">
       <div className="max-w-7xl mx-auto px-6 py-32">
         <div className="max-w-3xl mx-auto text-center mb-20">
-          <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx("Investment Themes")}</div>
+          <div className="mb-5 text-sm font-black tracking-[0.18em] text-brand-red md:text-base">{tx("Investment Themes")}</div>
           <h2 className="text-[clamp(2.2rem,4.8vw,4.6rem)] mb-8">
             {tx("Technologies AIXCO Energy is actively interested in for long-term growth")}
           </h2>
-          <p className="text-sm font-black uppercase leading-relaxed text-zinc-500">
+          <p className="text-sm font-black leading-relaxed text-zinc-500">
             {tx("We focus on sectors where demand growth, technological improvement and infrastructure necessity can work together.")}
           </p>
         </div>
@@ -32,24 +32,24 @@ export const TechSection: React.FC = () => {
                   <Icon size={24} />
                 </div>
                 <h3 className="text-3xl mb-5">{tx(theme.title)}</h3>
-                <p className="text-sm font-black uppercase leading-relaxed text-zinc-500">{tx(theme.body)}</p>
+                <p className="text-sm font-black leading-relaxed text-zinc-500">{tx(theme.body)}</p>
               </article>
             );
           })}
         </div>
 
         <div className="border border-zinc-800 bg-industrial-white p-8 md:p-12">
-          <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx(futureGrowth.label)}</div>
+          <div className="mb-5 text-sm font-black tracking-[0.18em] text-brand-red md:text-base">{tx(futureGrowth.label)}</div>
           <h2 className="mb-8 text-[clamp(2.3rem,5vw,4.8rem)]">{tx(futureGrowth.title)}</h2>
-          <p className="mb-8 text-sm font-black uppercase leading-relaxed text-zinc-500">{tx(futureGrowth.body)}</p>
+          <p className="mb-8 text-sm font-black leading-relaxed text-zinc-500">{tx(futureGrowth.body)}</p>
           <div className="mb-8 flex flex-wrap gap-3">
             {futureGrowth.tags.map((tag) => (
-              <span key={tag} className="border border-brand-red/40 bg-brand-red/10 px-3 py-2 text-sm font-black uppercase text-brand-red">
+              <span key={tag} className="border border-brand-red/40 bg-brand-red/10 px-3 py-2 text-sm font-black text-brand-red">
                 {tx(tag)}
               </span>
             ))}
           </div>
-          <p className="text-sm font-black uppercase leading-relaxed text-zinc-500">{tx(futureGrowth.close)}</p>
+          <p className="text-sm font-black leading-relaxed text-zinc-500">{tx(futureGrowth.close)}</p>
         </div>
       </div>
     </section>

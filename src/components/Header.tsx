@@ -260,7 +260,7 @@ export const Header: React.FC = () => {
               aria-expanded={langOpen}
               aria-label={tx("Change language")}
               onClick={() => setLangOpen((value) => !value)}
-              className="inline-flex h-11 min-w-11 cursor-pointer items-center justify-center gap-1.5 rounded-full border border-zinc-800 bg-industrial-white px-3 text-xs font-black uppercase tracking-normal text-zinc-600 shadow-soft transition-colors hover:border-brand-red hover:text-brand-red focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red sm:min-w-[4.25rem]"
+              className="inline-flex h-11 min-w-11 cursor-pointer items-center justify-center gap-1.5 rounded-full border border-zinc-800 bg-industrial-white px-3 text-xs font-black tracking-normal text-zinc-600 shadow-soft transition-colors hover:border-brand-red hover:text-brand-red focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-red sm:min-w-[4.25rem]"
             >
               <Globe className="h-4 w-4" aria-hidden="true" />
               <span className="hidden sm:inline">{selectedLang.native}</span>
@@ -287,7 +287,7 @@ export const Header: React.FC = () => {
                       }`}
                     >
                       <span>{item.label}</span>
-                      <span className="text-xs font-black uppercase tracking-normal opacity-70">{item.native}</span>
+                      <span className="text-xs font-black tracking-normal opacity-70">{item.native}</span>
                     </button>
                   </li>
                 ))}
@@ -354,7 +354,7 @@ export const Header: React.FC = () => {
               </Link>
             ))}
             <div className="mt-2 border-t border-zinc-800 pt-4">
-              <div className="mb-3 text-xs font-black uppercase tracking-[0.14em] text-brand-red">{tx("Select language")}</div>
+              <div className="mb-3 text-xs font-black tracking-[0.14em] text-brand-red">{tx("Select language")}</div>
               <div className="grid grid-cols-3 gap-2">
                 {LANGS.map((item) => (
                   <button
@@ -365,7 +365,7 @@ export const Header: React.FC = () => {
                       setLang(item.code);
                       setOpen(false);
                     }}
-                    className={`inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg border px-3 text-xs font-black uppercase tracking-normal transition-colors ${
+                    className={`inline-flex min-h-10 cursor-pointer items-center justify-center rounded-lg border px-3 text-xs font-black tracking-normal transition-colors ${
                       item.code === lang
                         ? "border-brand-red bg-brand-red text-industrial-white"
                         : "border-zinc-800 bg-industrial-white text-zinc-600 hover:border-brand-red hover:text-brand-red"

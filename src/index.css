@@ -313,7 +313,7 @@
   }
 
   .status-tag {
-    @apply bg-brand-red px-2.5 py-1 text-sm font-semibold uppercase text-industrial-white;
+    @apply bg-brand-red px-2.5 py-1 text-sm font-semibold text-industrial-white;
   }
 
   .shadow-soft {

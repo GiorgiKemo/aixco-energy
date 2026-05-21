@@ -28,7 +28,7 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ items, idPrefix }) =
               aria-expanded={isOpen}
               aria-controls={`${panelId}-content`}
               onClick={() => setOpenId(isOpen ? null : panelId)}
-              className="flex min-h-14 w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left text-sm font-black uppercase leading-snug tracking-normal text-industrial-black transition-colors hover:bg-brand-red/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand-red sm:px-6"
+              className="flex min-h-14 w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left text-sm font-black leading-snug tracking-normal text-industrial-black transition-colors hover:bg-brand-red/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-brand-red sm:px-6"
             >
               <span>{tx(item.question)}</span>
               <ChevronDown

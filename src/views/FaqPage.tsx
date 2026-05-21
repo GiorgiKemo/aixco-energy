@@ -15,7 +15,7 @@ const FaqPage: React.FC = () => {
         <PageIntro eyebrow={tx(faqPageCopy.eyebrow)} title={tx(faqPageCopy.title)} />
 
         <div className="mb-12 rounded-lg border border-zinc-800 bg-zinc-950 p-6 text-center shadow-soft md:p-10">
-          <p className="mb-3 text-sm font-black uppercase tracking-[0.18em] text-brand-red">{tx(faqPageCopy.introLabel)}</p>
+          <p className="mb-3 text-sm font-black tracking-[0.18em] text-brand-red">{tx(faqPageCopy.introLabel)}</p>
           <h2 className="mb-4 text-[clamp(1.6rem,3vw,2.4rem)] leading-tight">{tx(faqPageCopy.introTitle)}</h2>
           <p className="mx-auto max-w-3xl text-sm font-bold leading-7 text-zinc-500">{tx(faqPageCopy.introBody)}</p>
         </div>

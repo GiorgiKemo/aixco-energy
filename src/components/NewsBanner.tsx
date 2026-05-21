@@ -24,16 +24,16 @@ export const NewsBanner: React.FC = () => {
 
       <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div className="lg:col-span-8">
-          <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-brand-red md:text-base">{tx(ctaCopy.label)}</div>
+          <div className="mb-5 text-sm font-black tracking-[0.18em] text-brand-red md:text-base">{tx(ctaCopy.label)}</div>
           <h2 className="text-[clamp(2.5rem,5vw,5rem)] mb-8 max-w-5xl">
             {tx(ctaCopy.title)}
           </h2>
-          <p className="text-zinc-500 uppercase text-sm font-black leading-relaxed max-w-3xl">
+          <p className="text-zinc-500 text-sm font-black leading-relaxed max-w-3xl">
             {tx(ctaCopy.body)}
           </p>
         </div>
         <div className="lg:col-span-4 lg:text-right">
-          <Link href="/news" className="brutal-btn group inline-flex items-center gap-4 italic">
+          <Link href="/news" className="brutal-btn group inline-flex items-center gap-4">
             {tx("Read News")} <ArrowRight className="group-hover:translate-x-2 transition-transform" />
           </Link>
         </div>

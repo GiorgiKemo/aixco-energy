@@ -32,7 +32,7 @@ const AboutPage: React.FC = () => {
               />
             </div>
             <div className="absolute bottom-4 left-4 max-w-[12rem] rounded-lg border border-zinc-800 bg-industrial-black p-4 text-industrial-white shadow-elegant">
-              <p className="text-4xl font-black italic text-brand-gold">{aboutPageCopy.metricValue}</p>
+              <p className="text-4xl font-black text-brand-gold">{aboutPageCopy.metricValue}</p>
               <p className="mt-2 text-sm font-bold leading-snug text-zinc-200">{tx(aboutPageCopy.metricLabel)}</p>
             </div>
             <div className="absolute -bottom-6 right-0 w-1/2 overflow-hidden rounded-lg border border-zinc-800 shadow-soft">
@@ -61,14 +61,14 @@ const AboutPage: React.FC = () => {
         </div>
 
         <div className="mb-20 text-center">
-          <p className="mb-4 text-sm font-black uppercase tracking-[0.18em] text-brand-red">{tx(aboutPageCopy.focusLabel)}</p>
+          <p className="mb-4 text-sm font-black tracking-[0.18em] text-brand-red">{tx(aboutPageCopy.focusLabel)}</p>
           <h2 className="mx-auto max-w-4xl text-[clamp(2rem,4vw,3.5rem)] leading-tight">{tx(aboutPageCopy.focusTitle)}</h2>
         </div>
 
         <div className="mb-24 grid grid-cols-1 gap-px border border-zinc-800 bg-zinc-800 md:grid-cols-2 lg:grid-cols-3">
           {aboutPageCopy.focusAreas.map((area) => (
             <article key={area.title} className="bg-zinc-950 p-8">
-              <h3 className="mb-4 text-2xl font-black italic">{tx(area.title)}</h3>
+              <h3 className="mb-4 text-2xl font-black">{tx(area.title)}</h3>
               <p className="text-sm font-bold leading-7 text-zinc-500">{tx(area.body)}</p>
             </article>
           ))}
@@ -76,12 +76,12 @@ const AboutPage: React.FC = () => {
 
         <div className="mb-24 grid grid-cols-1 gap-10 border-y border-zinc-800 py-16 lg:grid-cols-2">
           <div>
-            <h2 className="mb-6 text-2xl font-black uppercase tracking-normal">{tx(aboutPageCopy.visionTitle)}</h2>
+            <h2 className="mb-6 text-2xl font-black tracking-normal">{tx(aboutPageCopy.visionTitle)}</h2>
             <p className="mb-6 text-xl font-bold leading-snug text-industrial-black">{tx(aboutPageCopy.visionLead)}</p>
             <p className="text-sm font-bold leading-7 text-zinc-500">{tx(aboutPageCopy.visionBody)}</p>
           </div>
           <div>
-            <h2 className="mb-6 text-2xl font-black uppercase tracking-normal">{tx(aboutPageCopy.missionTitle)}</h2>
+            <h2 className="mb-6 text-2xl font-black tracking-normal">{tx(aboutPageCopy.missionTitle)}</h2>
             <ol className="space-y-5">
               {aboutPageCopy.missionItems.map((item) => (
                 <li key={item.label} className="text-sm font-bold leading-7 text-zinc-500">
@@ -104,7 +104,7 @@ const AboutPage: React.FC = () => {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-5">
             {aboutPageCopy.stats.map((stat) => (
               <div key={stat.title} className="border border-zinc-800 bg-zinc-950 p-6">
-                <h3 className="mb-2 text-xl font-black italic text-brand-red">{tx(stat.title)}</h3>
+                <h3 className="mb-2 text-xl font-black text-brand-red">{tx(stat.title)}</h3>
                 <p className="text-sm font-bold leading-relaxed text-zinc-500">{tx(stat.body)}</p>
               </div>
             ))}

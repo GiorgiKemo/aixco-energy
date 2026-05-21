@@ -18,7 +18,7 @@ export const NewsTicker: React.FC = () => {
       data-nav-section="/news"
       data-paused={isPaused}
       aria-label={tx("AIXCO Energy focus areas")}
-      className="energy-ticker relative z-20 shrink-0 overflow-hidden whitespace-nowrap border-y border-industrial-black bg-brand-red font-black uppercase text-industrial-black shadow-[0_0_24px_rgba(173,125,46,0.24)]"
+      className="energy-ticker relative z-20 shrink-0 overflow-hidden whitespace-nowrap border-y border-industrial-black bg-brand-red font-black text-industrial-black shadow-[0_0_24px_rgba(173,125,46,0.24)]"
     >
       <ul className="sr-only">
         {marqueeItems.map((item) => (

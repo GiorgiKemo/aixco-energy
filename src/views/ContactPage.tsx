@@ -51,14 +51,14 @@ const ContactPage: React.FC = () => {
         <PageIntro eyebrow={tx(contactPageCopy.eyebrow)} title={tx(contactPageCopy.title)} />
 
         <div className="mb-12 rounded-lg border border-zinc-800 bg-zinc-950 p-6 text-center shadow-soft md:p-10">
-          <p className="mb-3 text-sm font-black uppercase tracking-[0.18em] text-brand-red">{tx(contactPageCopy.introLabel)}</p>
+          <p className="mb-3 text-sm font-black tracking-[0.18em] text-brand-red">{tx(contactPageCopy.introLabel)}</p>
           <h2 className="mb-4 text-[clamp(1.6rem,3vw,2.4rem)] leading-tight">{tx(contactPageCopy.introTitle)}</h2>
           <p className="mx-auto max-w-3xl text-sm font-bold leading-7 text-zinc-500">{tx(contactPageCopy.introBody)}</p>
         </div>
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
           <div className="lg:col-span-6">
-            <p className="mb-3 text-sm font-black uppercase tracking-[0.18em] text-brand-red">{tx(contactPageCopy.infoLabel)}</p>
+            <p className="mb-3 text-sm font-black tracking-[0.18em] text-brand-red">{tx(contactPageCopy.infoLabel)}</p>
             <h2 className="mb-6 text-[clamp(1.5rem,3vw,2.2rem)] leading-tight">{tx(contactPageCopy.infoTitle)}</h2>
             <p className="mb-8 text-sm font-bold leading-7 text-zinc-500">{tx(contactPageCopy.infoBody)}</p>
 
@@ -184,7 +184,7 @@ const ContactPage: React.FC = () => {
         <div className="mt-16 grid grid-cols-1 gap-px border border-zinc-800 bg-zinc-800 md:grid-cols-3">
           {contactPageCopy.highlights.map((item) => (
             <div key={item.title} className="bg-industrial-white p-8 text-center">
-              <h4 className="mb-3 text-lg font-black uppercase tracking-normal">{tx(item.title)}</h4>
+              <h4 className="mb-3 text-lg font-black tracking-normal">{tx(item.title)}</h4>
               <p className="text-sm font-bold leading-relaxed text-zinc-500">{tx(item.body)}</p>
             </div>
           ))}
