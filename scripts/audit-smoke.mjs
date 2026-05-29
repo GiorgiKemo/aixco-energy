@@ -520,6 +520,69 @@ async function runNewsMarqueeA11yCheck(browser) {
   await context.close();
 }
 
+async function runEnergyTickerA11yCheck(browser) {
+  const context = await browser.newContext({ viewport: { width: 1024, height: 768 } });
+  const page = await context.newPage();
+
+  await page.goto(`${baseUrl}/`, { waitUntil: 'networkidle' });
+  const initialTickerState = await page.evaluate(() => {
+    const ticker = document.querySelector('.energy-ticker');
+    const track = ticker?.querySelector('.energy-ticker__track');
+    const srItems = Array.from(ticker?.querySelectorAll('ul.sr-only li') ?? []).map((item) =>
+      item.textContent?.replace(/\s+/g, ' ').trim(),
+    );
+    const pauseButton = ticker?.querySelector('button');
+
+    return {
+      label: ticker?.getAttribute('aria-label') ?? '',
+      paused: ticker?.getAttribute('data-paused'),
+      trackHidden: track?.getAttribute('aria-hidden'),
+      srItems,
+      buttonLabel: pauseButton?.getAttribute('aria-label') ?? '',
+      buttonPressed: pauseButton?.getAttribute('aria-pressed') ?? '',
+      animationPlayState: track ? window.getComputedStyle(track).animationPlayState : '',
+    };
+  });
+
+  if (
+    !initialTickerState.label ||
+    initialTickerState.paused !== 'false' ||
+    initialTickerState.trackHidden !== 'true' ||
+    initialTickerState.srItems.length < 5 ||
+    !initialTickerState.buttonLabel.includes('Pause') ||
+    initialTickerState.buttonPressed !== 'false' ||
+    initialTickerState.animationPlayState !== 'running'
+  ) {
+    throw new Error(`Energy ticker initial a11y state failed: ${JSON.stringify(initialTickerState)}`);
+  }
+
+  await page.getByRole('button', { name: /Pause energy ticker/i }).click();
+  const pausedTickerState = await page.evaluate(() => {
+    const ticker = document.querySelector('.energy-ticker');
+    const track = ticker?.querySelector('.energy-ticker__track');
+    const pauseButton = ticker?.querySelector('button');
+
+    return {
+      paused: ticker?.getAttribute('data-paused'),
+      buttonLabel: pauseButton?.getAttribute('aria-label') ?? '',
+      buttonPressed: pauseButton?.getAttribute('aria-pressed') ?? '',
+      animationPlayState: track ? window.getComputedStyle(track).animationPlayState : '',
+    };
+  });
+
+  if (
+    pausedTickerState.paused !== 'true' ||
+    !pausedTickerState.buttonLabel.includes('Play') ||
+    pausedTickerState.buttonPressed !== 'true' ||
+    pausedTickerState.animationPlayState !== 'paused'
+  ) {
+    throw new Error(`Energy ticker paused a11y state failed: ${JSON.stringify(pausedTickerState)}`);
+  }
+
+  await assertNoHorizontalOverflow(page);
+  await context.close();
+}
+
 const checks = {
   'hero-video-asset': runHeroVideoAssetCheck,
   'hero-viewport-fit': runHeroViewportFitCheck,
@@ -534,6 +597,7 @@ const checks = {
   'footer-legal-grouping': runFooterLegalGroupingCheck,
   'legal-focus': runLegalFocusCheck,
   'news-marquee-a11y': runNewsMarqueeA11yCheck,
+  'energy-ticker-a11y': runEnergyTickerA11yCheck,
 };
 
 async function main() {
