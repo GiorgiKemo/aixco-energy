@@ -61,6 +61,10 @@
     scroll-padding-top: var(--site-anchor-offset);
   }
 
+  html[data-glide-scroll="enabled"] {
+    scroll-behavior: auto;
+  }
+
   body {
     @apply bg-industrial-white text-industrial-black font-sans overflow-x-hidden;
     -webkit-font-smoothing: antialiased;

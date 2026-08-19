@@ -67,6 +67,10 @@ const expectations = [
     pass: smoothScroll.includes("glideScrollState") && css.includes('[data-glide-scroll-state="active"]'),
   },
   {
+    label: "Glide scroll disables native CSS easing while its frame loop is installed",
+    pass: css.includes('html[data-glide-scroll="enabled"]') && css.includes("scroll-behavior: auto"),
+  },
+  {
     label: "Scroll reveal Motion animations use explicit compositor-friendly transitions",
     pass:
       strategySection.includes("usePrefersReducedMotion") &&
